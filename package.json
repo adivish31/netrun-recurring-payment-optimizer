@@ -1,0 +1,32 @@
+{
+  "name": "netrun",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A constrained retry-budget optimizer for recurring payments. Powered by the CHAAR optimization engine.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "migrate": "psql \"$DATABASE_URL\" -f src/db/migrations/001_init.sql",
+    "rules:audit": "ts-node src/config/audit.ts",
+    "gen": "ts-node src/sim/generator.ts",
+    "eval": "ts-node src/eval/run.ts",
+    "sensitivity": "ts-node src/eval/sensitivity.ts",
+    "dev": "ts-node src/api/server.ts",
+    "test": "node --test --require ts-node/register tests/*.test.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "razorpay": "^2.9.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.0",
+    "@types/pg": "^8.11.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

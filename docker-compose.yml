@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: netrun
+      POSTGRES_PASSWORD: netrun
+      POSTGRES_DB: netrun
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U netrun"]
+      interval: 3s
+      timeout: 3s
+      retries: 10

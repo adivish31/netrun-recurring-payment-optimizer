@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo          # add — tsc incremental cache
+
+# Secrets — NEVER commit
+.env
+.env.local
+.env.*.local           # add
+*.pem                  # add
+*.key                  # add
+
+# Generated data — reproducible from --seed
+data/generated/
+*.sqlite               # add — if you fall back from Postgres
+*.sqlite-journal       # add
+
+# Local working notes — strategy, not reasoning
+FINAL_PLAN.md
+
+# Logs & coverage
+*.log
+npm-debug.log*         # add
+coverage/
+
+# Editor / OS
+.DS_Store
+.vscode/               # add
+.idea/                 # add
+Thumbs.db              # add
+
+# Demo assets — keep the repo light
+*.mp4                  # add — host the video, don't commit it
+*.mov                  # add
