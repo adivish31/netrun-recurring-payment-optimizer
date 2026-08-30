@@ -17,6 +17,18 @@
  */
 
 import type { Diagnosis, PromiseToPay } from '../types';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const apiKey = process.env.GEMINI_API_KEY;
+if (!apiKey) {
+  console.warn('GEMINI_API_KEY is not set in environment variables');
+}
+
+const genAI = new GoogleGenerativeAI(apiKey || '');
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash', generationConfig: { temperature: 0 } });
 
 /** TODO(step 9). Regex baseline lives beside it in tests for comparison. */
 export async function extractPromise(
