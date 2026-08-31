@@ -28,7 +28,7 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey || '');
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash', generationConfig: { temperature: 0 } });
+const model = genAI.getGenerativeModel({ model: 'gemini-3.8-flash', generationConfig: { temperature: 0 } });
 
 /** TODO(step 9). Regex baseline lives beside it in tests for comparison. */
 export async function extractPromise(

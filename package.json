@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "migrate": "psql \"$DATABASE_URL\" -f src/db/migrations/001_init.sql",
+    "migrate": "docker cp src/db/migrations/001_init.sql netrun-recurring-payment-optimizer-db-1:/tmp/001_init.sql && docker exec netrun-recurring-payment-optimizer-db-1 psql -U netrun -d netrun -f /tmp/001_init.sql",
     "rules:audit": "ts-node src/config/audit.ts",
     "gen": "ts-node src/sim/generator.ts",
     "eval": "ts-node src/eval/run.ts",
