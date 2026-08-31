@@ -7,11 +7,10 @@
 
 import type {
   DeclineClass,
-  MandateCategory,
   WindowName,
 } from './config/rules';
 
-export type { DeclineClass, MandateCategory, WindowName };
+export type { DeclineClass, WindowName };
 
 /** YYYY-MM-DD, always IST-normalised. */
 export type ISODate = string;
@@ -25,7 +24,6 @@ export interface Mandate {
   customerId: string;
   amountPaise: number;
   mcc: string;
-  category: MandateCategory;
   status: 'active' | 'halted' | 'cancelled';
   createdOn: ISODate;
   cycleDay: number; // 1..28

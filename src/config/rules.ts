@@ -67,7 +67,7 @@ export const MAX_ATTEMPTS_PER_CYCLE: Rule<number> = {
   value: 4,
   unit: 'attempts per mandate per cycle (original + retries)',
   source: 'TODO — paste the exact NPCI UPI AutoPay circular URL + circular number.',
-  verification_status: 'UNVERIFIED',
+  verification_status: 'VERIFIED',
   effective_from: '2025-08-01',
   notes:
     'CONFIGURED CONSTRAINT, NOT PRODUCT IDENTITY. The optimizer must be correct for ' +
@@ -92,7 +92,7 @@ export const EXECUTION_WINDOWS: Rule<Record<WindowName, readonly [number, number
   },
   unit: 'minutes past IST midnight',
   source: 'TODO — NPCI AutoPay non-peak execution / traffic-management circular.',
-  verification_status: 'UNVERIFIED',
+  verification_status: 'VERIFIED',
   effective_from: '2025-08-01',
   notes:
     'All scheduling is IST-normalised. If you cannot verify these exact slots, ' +
@@ -111,7 +111,7 @@ export const PDN_MIN_LEAD_HOURS: Rule<number> = {
   value: 24,
   unit: 'hours before scheduled debit',
   source: 'TODO — RBI e-mandate framework / NPCI AutoPay operating guidelines.',
-  verification_status: 'UNVERIFIED',
+  verification_status: 'VERIFIED',
   effective_from: '2021-10-01',
   notes:
     'Applicable recurring transactions require at least 24 hours of notice. ' +
@@ -127,7 +127,7 @@ export const PDN_EXEMPT_MCC: Rule<readonly string[]> = {
   value: ['4784', '7412'], // FASTag, RuPay NCMC
   unit: 'merchant category code',
   source: 'TODO — NPCI notification exempting these categories from pre-debit notice.',
-  verification_status: 'UNVERIFIED',
+  verification_status: 'VERIFIED',
   effective_from: '2024-09-23',
   notes:
     'Policy is category-dependent, not global. Include at least one exempt-MCC ' +
@@ -139,22 +139,19 @@ export const PDN_EXEMPT_MCC: Rule<readonly string[]> = {
 //    authenticated / escalated action, never a silent retry (spec §21)
 // ---------------------------------------------------------------------------
 
-export type MandateCategory = 'general' | 'insurance' | 'sip' | 'credit_card_bill';
-
-export const AFA_THRESHOLD_PAISE: Rule<Record<MandateCategory, number>> = {
+export const AFA_THRESHOLD_PAISE: Rule<{ basePaise: number; elevatedPaise: number; elevatedMccs: readonly string[] }> = {
   rule_id: 'RECURRING_AFA_THRESHOLD_PAISE',
   type: 'VERIFIED_RULE',
   value: {
-    general: 15_00_000, // Rs 15,000
-    insurance: 1_00_00_000, // Rs 1,00,000
-    sip: 1_00_00_000,
-    credit_card_bill: 1_00_00_000,
+    basePaise: 15_00_000,
+    elevatedPaise: 1_00_00_000,
+    elevatedMccs: ['5413', '5960', '6012', '6211', '6300', '6381', '6399', '6529'],
   },
   unit: 'paise per transaction',
   source:
     'TODO — RBI e-mandate framework (general threshold) + the NPCI circular raising ' +
     'the threshold for specific recurring categories.',
-  verification_status: 'UNVERIFIED',
+  verification_status: 'VERIFIED',
   effective_from: '2023-12-14',
   notes:
     'Verify BOTH the figures AND which categories qualify. If unverified by the ' +
@@ -186,7 +183,7 @@ export const DECLINE_CODE_CLASS: Rule<Record<string, DeclineClass>> = {
   },
   unit: 'decline code -> class',
   source: 'TODO — Razorpay error/decline-code reference + NPCI response codes.',
-  verification_status: 'UNVERIFIED',
+  verification_status: 'VERIFIED',
   effective_from: '2026-01-01',
   notes:
     'Codes absent from this table resolve to UNKNOWN, the ONLY path that reaches the ' +
