@@ -110,6 +110,7 @@ export interface EstimationContext {
   cycleId: string;
   customerId: string;
   amountPaise: number;
+  mcc: string;
   dueDate: ISODate;
   diagnosis: Diagnosis;
   promise: PromiseToPay | null;

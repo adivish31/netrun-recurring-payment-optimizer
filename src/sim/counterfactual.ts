@@ -21,7 +21,7 @@
  */
 
 import type { ISODate, WindowName, Mandate } from '../types';
-import { RECOVERY_GRACE_DAYS, WINDOW_NAMES } from '../config/rules';
+import { RECOVERY_GRACE_DAYS, WINDOW_NAMES, PDN_EXEMPT_MCC } from '../config/rules';
 import type { LatentCustomer, DowntimeBurst, AttemptOutcome } from './world-model';
 import { slotRng, simulateAttempt } from './world-model';
 
@@ -129,6 +129,7 @@ export function buildCounterfactualTable(
       }
 
       // Enumerate every feasible (date, window)
+      const isExempt = PDN_EXEMPT_MCC.value.includes(mandate.mcc);
       for (let dayOffset = 0; dayOffset <= graceDays; dayOffset++) {
         const dayOfMonth = mandate.cycleDay + dayOffset;
         const date = candidateDate(cycleNo, dayOfMonth);
@@ -145,7 +146,13 @@ export function buildCounterfactualTable(
           );
           const succeeded = result.success;
           outcomes.set(cfKey(cycleId, date, w), succeeded);
-          if (succeeded) anySlotSucceeds = true;
+          
+          // Only legally reachable slots contribute to oracleNrvPaise
+          const isFirstAttempt = (dayOffset === 0 && w === 'early');
+          const isLegalRetry = isExempt || dayOffset > 0;
+          if (succeeded && (isFirstAttempt || isLegalRetry)) {
+            anySlotSucceeds = true;
+          }
         }
       }
 
