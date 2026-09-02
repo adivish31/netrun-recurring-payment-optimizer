@@ -13,6 +13,7 @@ import {
   WINDOW_NAMES,
   RECOVERY_GRACE_DAYS,
   PDN_EXEMPT_MCC,
+  PDN_MIN_LEAD_HOURS,
 } from '../config/rules';
 import { cfKey } from '../sim/counterfactual';
 import { fixedStrategy, aggressiveStrategy, rulesOnlyStrategy, makeOracleStrategy } from './baselines';
@@ -23,6 +24,15 @@ function daysBetween(d1: string, d2: string): number {
   const totalDays1 = (y1! * 12 * 28) + (m1! * 28) + day1!;
   const totalDays2 = (y2! * 12 * 28) + (m2! * 28) + day2!;
   return totalDays2 - totalDays1;
+}
+
+function getAttemptHour(dueDate: string, slotDate: string, window: 'early' | 'midday' | 'late' | string): number {
+  const days = daysBetween(dueDate, slotDate);
+  let hour = days * 24;
+  if (window === 'early') hour += 0;
+  else if (window === 'midday') hour += 13;
+  else if (window === 'late') hour += 21.5;
+  return hour;
 }
 
 function runEval() {
@@ -102,26 +112,50 @@ function runEval() {
       if (mandate.amountPaise > getAfaThresholdPaise(mandate.mcc)) ruleViolations++;
       
       const exempt = PDN_EXEMPT_MCC.value.includes(mandate.mcc);
+      const leadHours = PDN_MIN_LEAD_HOURS.value;
 
-      for (const slot of schedule.slots) {
-        attemptsSpent++;
-        pdnsSent += exempt ? 0 : 1;
-
+      let successIdx = schedule.slots.length;
+      for (let i = 0; i < schedule.slots.length; i++) {
+        const slot = schedule.slots[i]!;
+        
+        // Rule Validation
         if (!WINDOW_NAMES.includes(slot.window)) ruleViolations++;
-        
         const daysElapsed = daysBetween(event.dueDate, slot.date);
-        
         if (daysElapsed < 0 || daysElapsed > graceDays) ruleViolations++;
         if (!exempt && daysElapsed < 1) ruleViolations++;
         if (exempt && daysElapsed === 0 && slot.window === 'early') ruleViolations++;
-
+        
         const key = cfKey(event.cycleId, slot.date, slot.window);
-        const outcome = world.counterfactual.outcomes.get(key);
-
-        if (outcome) {
-          grossRecovered += mandate.amountPaise;
-          break; // Stop retrying after success
+        if (world.counterfactual.outcomes.get(key)) {
+          successIdx = i;
+          break;
         }
+      }
+
+      const resolutionHour = successIdx < schedule.slots.length 
+        ? getAttemptHour(event.dueDate, schedule.slots[successIdx]!.date, schedule.slots[successIdx]!.window)
+        : Infinity;
+
+      for (let i = 0; i < schedule.slots.length; i++) {
+        const slot = schedule.slots[i]!;
+        
+        // Always spend attempt if we haven't reached/passed successIdx
+        if (i <= successIdx) {
+          attemptsSpent++;
+        }
+        
+        // Count PDN if not exempt AND it had to be sent before/at resolution
+        if (!exempt) {
+          const attemptHour = getAttemptHour(event.dueDate, slot.date, slot.window);
+          const sendHour = attemptHour - leadHours;
+          if (sendHour <= resolutionHour) {
+            pdnsSent++;
+          }
+        }
+      }
+
+      if (successIdx < schedule.slots.length) {
+        grossRecovered += mandate.amountPaise;
       }
     }
 
