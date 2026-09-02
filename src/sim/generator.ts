@@ -7,12 +7,9 @@
  */
 
 import type { Mandate, ISODate } from '../types';
-import type { WindowName } from '../config/rules';
 import {
   PDN_EXEMPT_MCC,
   AFA_THRESHOLD_PAISE,
-  RECOVERY_GRACE_DAYS,
-  WINDOW_NAMES,
 } from '../config/rules';
 import type { LatentCustomer, DowntimeBurst, AttemptOutcome } from './world-model';
 import {
@@ -24,7 +21,7 @@ import {
   simulateAttempt,
 } from './world-model';
 import type { CounterfactualTable } from './counterfactual';
-import { cfKey } from './counterfactual';
+import { buildCounterfactualTable } from './counterfactual';
 import type { SimulatedReply } from './replies';
 import { generateReplies } from './replies';
 
@@ -197,69 +194,6 @@ function runCycles(
   return events;
 }
 
-// ---------------------------------------------------------------------------
-// Counterfactual table — oracle for every (date, window) pair
-// ---------------------------------------------------------------------------
-
-function buildCounterfactual(
-  mandates: Mandate[],
-  customers: LatentCustomer[],
-  downtime: DowntimeBurst[],
-  cycleCount: number,
-  seed: number,
-): CounterfactualTable {
-  const customerMap = new Map(customers.map((c) => [c.customerId, c]));
-  const outcomes = new Map<string, boolean>();
-  const graceDays = RECOVERY_GRACE_DAYS.value;
-  const windowNames: WindowName[] = [...WINDOW_NAMES];
-
-  for (const mandate of mandates) {
-    const customer = customerMap.get(mandate.customerId)!;
-
-    for (let cycleNo = 1; cycleNo <= cycleCount; cycleNo++) {
-      const cycleId = `${mandate.mandateId}_c${cycleNo}`;
-
-      // Terminal customers always fail
-      if (customer.terminalAtCycle !== null && cycleNo >= customer.terminalAtCycle) {
-        // Fill all slots with false
-        for (let dayOffset = 0; dayOffset <= graceDays; dayOffset++) {
-          const candidateDay = Math.min(mandate.cycleDay + dayOffset, 28);
-          const candidateDate = dueDate(cycleNo, candidateDay);
-          for (const w of windowNames) {
-            outcomes.set(cfKey(cycleId, candidateDate, w), false);
-          }
-        }
-        continue;
-      }
-
-      // Enumerate every (date, window) in the recovery window
-      for (let dayOffset = 0; dayOffset <= graceDays; dayOffset++) {
-        const candidateDay = Math.min(mandate.cycleDay + dayOffset, 28);
-        const candidateDate = dueDate(cycleNo, candidateDay);
-        for (const w of windowNames) {
-          const rng = slotRng(seed, cycleId, candidateDate, w);
-          const result = simulateAttempt(
-            customer,
-            candidateDate,
-            w,
-            mandate.amountPaise,
-            downtime,
-            rng,
-          );
-          outcomes.set(cfKey(cycleId, candidateDate, w), result.success);
-        }
-      }
-    }
-  }
-
-  // Oracle NRV and no-action baselines are computed by eval, not here.
-  // We just provide the raw outcome table.
-  return {
-    outcomes,
-    oracleNrvPaise: new Map(),
-    noActionRecoveryPaise: new Map(),
-  };
-}
 
 // ---------------------------------------------------------------------------
 // generateWorld — the top-level entry point
@@ -302,8 +236,10 @@ export function generateWorld(opts: {
   const replyRng = mulberry32(hashSeed(seed, 'replies'));
   const replies = generateReplies(cycleIds, replyRng, customerLookup, mandateCustomerMap);
 
-  // Counterfactual table
-  const counterfactual = buildCounterfactual(mandates, customers, downtime, cycleCount, seed);
+  // Task 3: Counterfactual table — oracle for every (date, window) pair
+  const counterfactual = buildCounterfactualTable(
+    mandates, customers, downtime, cycleCount, seed, cycleEvents,
+  );
 
   return {
     mandates,

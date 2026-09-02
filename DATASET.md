@@ -157,3 +157,23 @@ These design choices prevent the dataset from being unrealistically easy:
 6. **Partial funds** — balance interacts with amount and timing; a fixed retry schedule ignores this
 7. **False promise claims** — "already paid" when they haven't; promise weighting must be skeptical
 8. **Prompt injection test** — the system must be robust to adversarial input
+
+## Counterfactual Table (The Oracle)
+
+The counterfactual table contains the outcome of an attempt in EVERY feasible (date, window) slot across the entire `RECOVERY_GRACE_DAYS` window for every generated cycle. 
+
+It is populated using the **exact same** per-slot seeded PRNG (`hashSeed(seed, cycleId, date, window)`) as the live simulator, guaranteeing that an attempt made by a strategy in a specific slot yields the identical success/failure result as the oracle table predicts.
+
+### What it contains
+1. **`outcomes`**: A map keyed by `cycleId|date|window` yielding boolean success or failure.
+2. **`oracleNrvPaise`**: The gross-recovery ceiling for each cycle — the mandate amount if at least one slot in the grace period succeeds, else 0. This is the theoretical maximum an omniscient strategy could recover.
+3. **`noActionRecoveryPaise`**: The outcome of the cycle's first automated attempt (the baseline that incremental recovery is measured against).
+
+### Why cancellation is excluded
+Cancellation/churn is deliberately NOT modeled in this table. Cancellation hazard depends dynamically on how many notifications a given strategy decides to send. Because different strategies send different numbers of notifications in different sequences, the cancellation probability diverges per-strategy. It does not belong in a static table of raw slot outcomes; instead, the evaluation harness computes survival dynamically as it walks each strategy's decisions.
+
+### Why the oracle ceiling is below 100%
+The theoretical recovery ceiling is strictly below 100% (currently ~30% in the generated world). This is because:
+1. **Terminal customers (~4%)**: Their mandates die regardless of action.
+2. **Balance bounds**: Some customers never receive sufficient funds during the recovery window, so every possible slot evaluates to `false`.
+This property is essential: it kills the objection that the dataset is "rigged" for 100% recovery. The optimizer is graded against the achievable oracle ceiling, not against perfection.
