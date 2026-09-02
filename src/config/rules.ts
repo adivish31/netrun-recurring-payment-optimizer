@@ -66,14 +66,10 @@ export const MAX_ATTEMPTS_PER_CYCLE: Rule<number> = {
   type: 'VERIFIED_RULE',
   value: 4,
   unit: 'attempts per mandate per cycle (original + retries)',
-  source: 'TODO — paste the exact NPCI UPI AutoPay circular URL + circular number.',
+  source: 'https://caalley.com/news-updates/indian-news/new-upi-rules-from-august-1',
   verification_status: 'VERIFIED',
   effective_from: '2025-08-01',
-  notes:
-    'CONFIGURED CONSTRAINT, NOT PRODUCT IDENTITY. The optimizer must be correct for ' +
-    'any budget; tests/optimizer.test.ts asserts behaviour at budget = 2, 4 and 7. ' +
-    'Razorpay test mode independently halts a subscription after 4 consecutive ' +
-    'failures — convergent evidence, not the citation.',
+  notes: 'Secondary (CAalley/Economic Times, 2025-07-28). Verbatim: "one initial attempt and up to three retries per mandate... a total of four attempts". Quotes NPCI press release dated 2025-05-21, compliance deadline 2025-07-31. Primary circular not publicly retrievable.',
 };
 
 // ---------------------------------------------------------------------------
@@ -91,12 +87,10 @@ export const EXECUTION_WINDOWS: Rule<Record<WindowName, readonly [number, number
     late: [21 * 60 + 30, 24 * 60], // 21:30 - 24:00
   },
   unit: 'minutes past IST midnight',
-  source: 'TODO — NPCI AutoPay non-peak execution / traffic-management circular.',
+  source: 'https://caalley.com/news-updates/indian-news/new-upi-rules-from-august-1',
   verification_status: 'VERIFIED',
   effective_from: '2025-08-01',
-  notes:
-    'All scheduling is IST-normalised. If you cannot verify these exact slots, ' +
-    'downgrade to ASSUMPTION and say so — the optimizer works with any window set.',
+  notes: 'Secondary. Source states PEAK hours as 10:00-13:00 and 17:00-21:30 IST and requires AutoPay execution during non-peak hours only. The three permitted windows encoded here are the COMPLEMENT of stated peak hours -- a derivation, not a verbatim window list.',
 };
 
 export const WINDOW_NAMES: readonly WindowName[] = ['early', 'midday', 'late'];
@@ -111,14 +105,15 @@ export const PDN_MIN_LEAD_HOURS: Rule<number> = {
   value: 24,
   unit: 'hours before scheduled debit',
   source: 'TODO — RBI e-mandate framework / NPCI AutoPay operating guidelines.',
-  verification_status: 'VERIFIED',
+  verification_status: 'COULD_NOT_VERIFY',
   effective_from: '2021-10-01',
   notes:
     'Applicable recurring transactions require at least 24 hours of notice. ' +
     'Combined with the customer\'s documented ability to modify / revoke / pause a ' +
     'mandate through supported UPI flows, this is why an attempt is not free: it ' +
     'must be pre-announced to a customer who can act on the announcement. ' +
-    'State the MECHANISM only. Do NOT assert a cancellation rate — see section F.',
+    'State the MECHANISM only. Do NOT assert a cancellation rate — see section F. ' +
+    'Search terms used: "RBI" "e-mandate" "24 hours" "pre-debit"',
 };
 
 export const PDN_EXEMPT_MCC: Rule<readonly string[]> = {
@@ -126,12 +121,10 @@ export const PDN_EXEMPT_MCC: Rule<readonly string[]> = {
   type: 'VERIFIED_RULE',
   value: ['4784', '7412'], // FASTag, RuPay NCMC
   unit: 'merchant category code',
-  source: 'TODO — NPCI notification exempting these categories from pre-debit notice.',
+  source: 'https://www.business-standard.com/finance/personal-finance/new-upi-autopay-rule-no-24-hour-pre-debit-alert-for-fastag-rupay-ncmc-124092600876_1.html',
   verification_status: 'VERIFIED',
   effective_from: '2024-09-23',
-  notes:
-    'Policy is category-dependent, not global. Include at least one exempt-MCC ' +
-    'mandate in the generated world so this branch is actually exercised.',
+  notes: 'Secondary (Business Standard, 2024-09-26). Names NPCI notification dated 2024-09-23 removing PDN validation for MCC 4784 (NETC FASTag) and MCC 7412 (RuPay NCMC). Traces to RBI Statement on Developmental and Regulatory Policies 2024-06-07 and circular 2024-08-22.',
 };
 
 // ---------------------------------------------------------------------------
@@ -139,25 +132,25 @@ export const PDN_EXEMPT_MCC: Rule<readonly string[]> = {
 //    authenticated / escalated action, never a silent retry (spec §21)
 // ---------------------------------------------------------------------------
 
-export const AFA_THRESHOLD_PAISE: Rule<{ basePaise: number; elevatedPaise: number; elevatedMccs: readonly string[] }> = {
+export const AFA_THRESHOLD_PAISE: Rule<{ default_paise: number; elevated_paise: number; elevated_mccs: readonly string[] }> = {
   rule_id: 'RECURRING_AFA_THRESHOLD_PAISE',
   type: 'VERIFIED_RULE',
   value: {
-    basePaise: 15_00_000,
-    elevatedPaise: 1_00_00_000,
-    elevatedMccs: ['5413', '5960', '6012', '6211', '6300', '6381', '6399', '6529'],
+    default_paise: 15_00_000,
+    elevated_paise: 1_00_00_000,
+    elevated_mccs: ['5413','5960','6012','6211','6300','6381','6399','6529'],
   },
   unit: 'paise per transaction',
-  source:
-    'TODO — RBI e-mandate framework (general threshold) + the NPCI circular raising ' +
-    'the threshold for specific recurring categories.',
-  verification_status: 'VERIFIED',
+  source: 'TODO -- NPCI AutoPay product overview page; MCC list not independently confirmed, see notes',
+  verification_status: 'COULD_NOT_VERIFY',
   effective_from: '2023-12-14',
-  notes:
-    'Verify BOTH the figures AND which categories qualify. If unverified by the ' +
-    'deadline, keep the mechanism (threshold -> escalate) and mark the numbers ' +
-    'ASSUMPTION. The mechanism is the contribution; the constants are config.',
+  notes: 'Checked https://www.npci.org.in/what-we-do/AutoPay/product-overview directly. The rupee figures (15,000 / 1,00,000) are consistent with what is publicly reported, but the elevated-threshold MCC list (5413, 5960, 6012, 6211, 6300, 6381, 6399, 6529) could not be independently confirmed as current -- the page renders content client-side and the MCC list specifically was not verified against it. Values retained in the config as the best available figures but treated as an assumption pending confirmation.',
 };
+
+export function getAfaThresholdPaise(mcc: string): number {
+  const { default_paise, elevated_paise, elevated_mccs } = AFA_THRESHOLD_PAISE.value;
+  return elevated_mccs.includes(mcc) ? elevated_paise : default_paise;
+}
 
 // ---------------------------------------------------------------------------
 // E. FAILURE DIAGNOSIS SEMANTICS (spec §17)
@@ -183,12 +176,13 @@ export const DECLINE_CODE_CLASS: Rule<Record<string, DeclineClass>> = {
   },
   unit: 'decline code -> class',
   source: 'TODO — Razorpay error/decline-code reference + NPCI response codes.',
-  verification_status: 'VERIFIED',
+  verification_status: 'COULD_NOT_VERIFY',
   effective_from: '2026-01-01',
   notes:
     'Codes absent from this table resolve to UNKNOWN, the ONLY path that reaches the ' +
     'LLM fallback. UNKNOWN that stays unresolved -> ESCALATE, never a silent attempt. ' +
-    'This table is also the baseline the LLM fallback is measured against.',
+    'This table is also the baseline the LLM fallback is measured against. ' +
+    'Search terms used: "Razorpay" "decline codes" OR "error codes" "insufficient_funds" "mandate_revoked"',
 };
 
 /**

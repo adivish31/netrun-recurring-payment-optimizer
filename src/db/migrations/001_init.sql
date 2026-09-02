@@ -34,8 +34,6 @@ CREATE TABLE mandates (
   customer_id   TEXT NOT NULL,
   amount_paise  BIGINT NOT NULL CHECK (amount_paise > 0),
   mcc           TEXT NOT NULL,
-  category      TEXT NOT NULL
-                  CHECK (category IN ('general','insurance','sip','credit_card_bill')),
   status        TEXT NOT NULL DEFAULT 'active'
                   CHECK (status IN ('active','halted','cancelled')),
   created_on    DATE NOT NULL,

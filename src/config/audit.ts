@@ -63,4 +63,8 @@ if (pending.length > 0) {
   process.exit(1);
 }
 
-console.log('All rules verified.');
+if (abandoned.length === 0) {
+  console.log('All rules verified.');
+} else {
+  console.log('Audit complete (some rules could not be verified).');
+}
