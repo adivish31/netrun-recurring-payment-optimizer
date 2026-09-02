@@ -87,8 +87,10 @@ function makeMandates(
       }
     }
 
-    // Amount: 5,000 to 200,000 paise (Rs 50 to Rs 2,000)
-    const amountPaise = Math.floor(rng() * 195000) + 5000;
+    // Retuned: mandate amount is a fraction of the customer's monthly inflow
+    // target median ~10% (between 2% and 18%)
+    const fraction = 0.02 + rng() * 0.16;
+    const amountPaise = Math.floor(customer.monthlyInflowPaise * fraction);
 
     // Cycle day: 1-28, often aligned with customer's replenishment
     // but not perfectly (that would be too easy)

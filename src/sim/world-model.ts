@@ -167,7 +167,8 @@ export function makeCustomers(n: number, rng: () => number): LatentCustomer[] {
     const monthlyInflowPaise = Math.floor(rng() * 180000) + 20000;
 
     // Balance volatility: how fast funds drain (0.05 to 0.25)
-    const balanceVolatility = 0.05 + rng() * 0.20;
+    // Retuned: targeting coverage window of 1-4 days -> volatility ~ 0.6 to 1.4
+    const balanceVolatility = 0.6 + rng() * 0.8;
 
     // Promise keep rate: 0.3 to 0.9
     let promiseKeepRate = 0.3 + rng() * 0.6;
@@ -220,32 +221,29 @@ const WINDOW_NAMES: WindowName[] = ['early', 'midday', 'late'];
 export function makeDowntime(rng: () => number): DowntimeBurst[] {
   const bursts: DowntimeBurst[] = [];
   // Generate 5-8 cluster centers (bad days for specific banks)
-  const clusterCount = 5 + Math.floor(rng() * 4); // 5-8
+  const clusterCount = 12 + Math.floor(rng() * 6); // 12 to 17 clusters
 
   for (let c = 0; c < clusterCount; c++) {
     const bank = BANKS[Math.floor(rng() * BANKS.length)]!;
-    const clusterCenter = Math.floor(rng() * 28) + 1; // day 1-28
-
-    // Each cluster produces 1-3 correlated bursts around the center day
-    const burstCount = 1 + Math.floor(rng() * 3);
+    const baseDay = 1 + Math.floor(rng() * 28);
+    
+    // Each cluster produces 3-7 correlated bursts
+    const burstCount = 3 + Math.floor(rng() * 5);
     for (let b = 0; b < burstCount; b++) {
-      const dayOffset = Math.floor(rng() * 3) - 1; // -1, 0, 1
-      const day = Math.max(1, Math.min(28, clusterCenter + dayOffset));
+      const dayOffset = -2 + Math.floor(rng() * 5); // -2 to 2
+      let day = baseDay + dayOffset;
+      if (day < 1) day += 28;
+      if (day > 28) day -= 28;
 
-      // Affect 1-2 windows
-      const primaryWindow = WINDOW_NAMES[Math.floor(rng() * WINDOW_NAMES.length)]!;
-      const affected: WindowName[] = [primaryWindow];
-      if (rng() < 0.4) {
-        // 40% chance of affecting a second window
-        const secondIdx = Math.floor(rng() * WINDOW_NAMES.length);
-        const secondWindow = WINDOW_NAMES[secondIdx]!;
-        if (secondWindow !== primaryWindow) {
-          affected.push(secondWindow);
-        }
+      // Affect 1 to 3 windows (usually all 3 for severe outages)
+      const affected: WindowName[] = [...WINDOW_NAMES];
+      const removeCount = Math.floor(rng() * 3); // remove 0, 1, or 2
+      for (let i = 0; i < removeCount; i++) {
+        affected.splice(Math.floor(rng() * affected.length), 1);
       }
 
-      // Severity 0.0 (total outage) to 0.6 (partial degradation)
-      const severity = rng() * 0.6;
+      // Severity 0.0 to 0.1 (blocks 90-100% of attempts)
+      const severity = rng() * 0.1;
 
       bursts.push({ bank, day, affectedWindows: affected, severity });
     }

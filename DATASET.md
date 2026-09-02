@@ -173,7 +173,7 @@ It is populated using the **exact same** per-slot seeded PRNG (`hashSeed(seed, c
 Cancellation/churn is deliberately NOT modeled in this table. Cancellation hazard depends dynamically on how many notifications a given strategy decides to send. Because different strategies send different numbers of notifications in different sequences, the cancellation probability diverges per-strategy. It does not belong in a static table of raw slot outcomes; instead, the evaluation harness computes survival dynamically as it walks each strategy's decisions.
 
 ### Why the oracle ceiling is below 100%
-The theoretical recovery ceiling is strictly below 100% (currently ~30% in the generated world). This is because:
+The theoretical recovery ceiling is strictly below 100% (currently ~76% in the generated world). This is because:
 1. **Terminal customers (~4%)**: Their mandates die regardless of action.
 2. **Balance bounds**: Some customers never receive sufficient funds during the recovery window, so every possible slot evaluates to `false`.
 This property is essential: it kills the objection that the dataset is "rigged" for 100% recovery. The optimizer is graded against the achievable oracle ceiling, not against perfection.
