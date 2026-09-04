@@ -80,6 +80,17 @@ npm run rules:audit
 
 <!-- Paste the audit table. -->
 
+### Dashboard & Backend
+
+To run the full stack:
+
+1. Start the Server (Port 3000):
+   ```bash
+   npm run dev
+   ```
+
+2. Open `http://localhost:3000` in your browser.
+
 ## Razorpay test-mode integration
 
 <!-- §33, §34. Exactly what is real and exactly what is simulated. -->

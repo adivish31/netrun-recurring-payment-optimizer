@@ -83,7 +83,8 @@ export async function runAgent(
   maxBudget: number,
   attemptsUsed: number,
   historyCache: any,
-  repliesCache: any
+  repliesCache: any,
+  adversarialInstruction?: string
 ): Promise<AgentRunTrace> {
   const runId = crypto.randomUUID();
   const executor = new ToolExecutor(world, runId, ctxBase, maxBudget, attemptsUsed, historyCache, repliesCache);
@@ -107,6 +108,10 @@ Amount: ${ctxBase.amountPaise} paise.
 You MUST eventually call "execute" with a valid schedule and policy approval token, OR you can stop if no recovery is possible or allowed.
 Use your tools to gather history, check replies, extract promises, propose a schedule, check policy, and then execute.
 Only execute if the policy engine APPROVED it and gave you a token. If the policy ESCALATEs or BLOCKs, you may propose an alternative or stop.`;
+
+  if (adversarialInstruction) {
+    prompt += `\n\nCRITICAL ADVERSARIAL INSTRUCTION:\n${adversarialInstruction}`;
+  }
 
   for (let i = 0; i < MAX_AGENT_ITERATIONS; i++) {
     let result: { text: string, functionCalls: any[] };

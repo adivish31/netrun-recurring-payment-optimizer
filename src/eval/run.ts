@@ -65,6 +65,8 @@ interface CycleOutcome {
   alternativesConsidered: number;
   timedOut: boolean;
   policyVerdict: string;
+  chosenSchedule: any | null;
+  runnerUpSchedule: any | null;
 }
 
 export function simulateStrategy(
@@ -92,6 +94,8 @@ export function simulateStrategy(
     let alternativesConsidered = 0;
     let timedOut = false;
     let policyVerdictKey = 'NONE';
+    let cycleChosen = null;
+    let cycleRunnerUp = null;
     
     let h = historyMap.get(mandate.mandateId);
     if (!h) {
@@ -163,11 +167,13 @@ export function simulateStrategy(
 
       // Capture optimizer metrics for netrun
       if (strategy.name === 'netrun') {
-        const netrun = strategy as NetrunStrategy;
+        const netrun = strategy as any;
         if (netrun.lastResult) {
           optimizerElapsedMs = netrun.lastResult.elapsedMs;
           alternativesConsidered = netrun.lastResult.alternativesConsidered;
           timedOut = netrun.lastResult.timedOut;
+          cycleChosen = netrun.lastResult.chosen;
+          cycleRunnerUp = netrun.lastResult.runnerUp;
         }
       }
 
@@ -251,6 +257,8 @@ export function simulateStrategy(
       alternativesConsidered,
       timedOut,
       policyVerdict: policyVerdictKey,
+      chosenSchedule: cycleChosen,
+      runnerUpSchedule: cycleRunnerUp
     });
   }
 
@@ -426,6 +434,132 @@ async function runEval() {
   console.log(`\n--- Headline Numbers ---`);
   console.log(`netrun NRV as % of oracle NRV (h=6): ${((netrunNrv6.nrv / oracleNrv6.nrv) * 100).toFixed(2)}%`);
   console.log(`netrun gross as % of oracle gross: ${((netrunGross / oracleGross) * 100).toFixed(2)}%`);
+
+  // --- EXPORT TO JSON ---
+  const fs = require('fs');
+  const path = require('path');
+  const resultsJsonPath = path.join(process.cwd(), 'data', 'generated', 'results.json');
+  
+  const resultsObj: any = { results: { '3': [], '6': [], '12': [] }, cycles: [], traces: {}, grid: [] };
+  
+  // Precompute grid for pure client-side slider lookup
+  const mandateMap = new Map(world.mandates.map(m => [m.mandateId, m]));
+  const [minHazard, maxHazard] = CANCEL_HAZARD_BASE.sweep;
+  const hazardStep = 0.005;
+  const fatigue = CANCEL_FATIGUE.value;
+  const margin = CONTRIBUTION_MARGIN.value;
+  const attemptCost = ATTEMPT_COST_PAISE.value;
+  
+  for (let hazard = minHazard; hazard <= maxHazard + 0.0001; hazard += hazardStep) {
+    const gridItem: any = { hazard: Number(hazard.toFixed(3)), horizons: { '3': [], '6': [], '12': [] } };
+    
+    for (const h of [3, 6, 12]) {
+      for (const strategy of strategies) {
+        let totalNrv = 0;
+        let totalGross = 0, totalFuture = 0, totalInterv = 0, totalChurn = 0;
+        let totalAttempts = 0, totalPdns = 0, totalViol = 0;
+        
+        for (let i = 0; i < world.cycleEvents.length; i++) {
+          const event = world.cycleEvents[i]!;
+          const mandate = mandateMap.get(event.mandateId)!;
+          const out = cachedOutcomes[strategy.name]![i]!;
+  
+          let pSurvives = 1.0;
+          for (let j = 1; j <= out.pdns; j++) {
+            pSurvives *= (1 - hazard * Math.pow(fatigue, j - 1));
+          }
+  
+          const cycleCurrent = out.gross * margin;
+          const cycleFuture = pSurvives * h * mandate.amountPaise * margin;
+          const cycleInterv = out.attempts * attemptCost;
+          const cycleChurn = (1 - pSurvives) * h * mandate.amountPaise * margin;
+  
+          totalNrv += (cycleCurrent + cycleFuture - cycleInterv - cycleChurn);
+          totalGross += cycleCurrent;
+          totalFuture += cycleFuture;
+          totalInterv += cycleInterv;
+          totalChurn += cycleChurn;
+          totalAttempts += out.attempts;
+          totalPdns += out.pdns;
+          totalViol += out.ruleViolations;
+        }
+        
+        gridItem.horizons[h.toString()].push({
+          strategy: strategy.name,
+          nrv: totalNrv,
+          gross: totalGross,
+          future: totalFuture,
+          interv: totalInterv,
+          churn: totalChurn,
+          att_cyc: totalAttempts / totalCycles,
+          pdn_cyc: totalPdns / totalCycles,
+          violations: totalViol
+        });
+      }
+    }
+    resultsObj.grid.push(gridItem);
+  }
+  
+  for (const h of [3, 6, 12]) {
+    for (const strategy of strategies) {
+      const outs = cachedOutcomes[strategy.name]!;
+      const nrvData = computeNrvFromOutcomes(outs, h);
+      let totalGross = 0, totalAttempts = 0, totalPdns = 0, totalViol = 0;
+      for (const o of outs) {
+        totalGross += o.gross;
+        totalAttempts += o.attempts;
+        totalPdns += o.pdns;
+        totalViol += o.ruleViolations;
+      }
+      resultsObj.results[h.toString()].push({
+        strategy: strategy.name,
+        nrv: nrvData.nrv,
+        gross: nrvData.nrvCurrent,
+        future: nrvData.nrvFuture,
+        interv: nrvData.nrvInterv,
+        churn: nrvData.nrvChurn,
+        att_cyc: totalAttempts / totalCycles,
+        pdn_cyc: totalPdns / totalCycles,
+        violations: totalViol
+      });
+    }
+  }
+
+  // Pick ~50 cycles
+  for (let i = 0; i < 50; i++) {
+    const o = netrunOuts[i];
+    if (!o) break;
+    const evt = world.cycleEvents[i];
+    if (!evt) continue;
+    
+    resultsObj.cycles.push({
+      id: evt.cycleId,
+      mandateId: evt.mandateId,
+      amountPaise: world.mandates.find((m: any) => m.mandateId === evt.mandateId)?.amountPaise || 0,
+      diagnosisClass: evt.firstAttempt.trueClass || 'UNKNOWN',
+      outcome: o.gross > 0 ? 'recovered' : 'lost'
+    });
+    
+    resultsObj.traces[evt.cycleId] = {
+      diagnosisClass: evt.firstAttempt.trueClass || 'UNKNOWN',
+      diagnosisSource: 'lookup',
+      chosenSchedule: o.chosenSchedule?.slots || [],
+      runnerUpSchedule: o.runnerUpSchedule?.slots || [],
+      runnerUpNrv: o.runnerUpSchedule?.expectedNrvPaise || 0,
+      nrvBreakdown: o.chosenSchedule?.breakdown ? {
+        gross: o.chosenSchedule.breakdown.expectedCurrentRecoveryPaise,
+        future: o.chosenSchedule.breakdown.expectedFutureValuePaise,
+        interv: o.chosenSchedule.breakdown.expectedInterventionCostPaise,
+        churn: o.chosenSchedule.breakdown.expectedChurnCostPaise
+      } : { gross: o.gross, future: 0, interv: 0, churn: 0 },
+      alternativesConsidered: o.alternativesConsidered,
+      policyVerdict: o.policyVerdict,
+      ruleId: o.policyVerdict.split(':')[1] || 'UNKNOWN'
+    };
+  }
+  
+  fs.mkdirSync(path.dirname(resultsJsonPath), { recursive: true });
+  fs.writeFileSync(resultsJsonPath, JSON.stringify(resultsObj, null, 2));
 }
 
 if (require.main === module) {

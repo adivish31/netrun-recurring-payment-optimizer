@@ -41,10 +41,16 @@ function runSensitivity() {
   const world = generateWorld({ seed: 42, mandateCount: 400, cycleCount: 6 });
   const oracleStrategy = makeOracleStrategy(world.counterfactual);
 
+  const { makePopulationEstimator } = require('../prior/estimator');
+  const { makeNetrunStrategy } = require('./baselines');
+  const estimator = makePopulationEstimator(world);
+  const netrunStrategy = makeNetrunStrategy(estimator);
+
   const strategies = [
     fixedStrategy,
     aggressiveStrategy,
     rulesOnlyStrategy,
+    netrunStrategy,
     oracleStrategy,
   ];
 
@@ -56,7 +62,7 @@ function runSensitivity() {
   const cachedOutcomes: Record<StrategyName, { gross: number; attempts: number; pdns: number }[]> = {} as any;
 
   for (const strategy of strategies) {
-    cachedOutcomes[strategy.name] = [];
+    cachedOutcomes[strategy.name as StrategyName] = [];
     for (const event of world.cycleEvents) {
       const mandate = mandateMap.get(event.mandateId)!;
 
@@ -122,7 +128,8 @@ function runSensitivity() {
         }
       }
 
-      cachedOutcomes[strategy.name].push({ gross: cycleGross, attempts: cycleAttempts, pdns: cyclePdns });
+      cachedOutcomes[strategy.name as StrategyName].push({
+        gross: cycleGross, attempts: cycleAttempts, pdns: cyclePdns });
     }
   }
 
@@ -160,7 +167,7 @@ function runSensitivity() {
       for (let i = 0; i < world.cycleEvents.length; i++) {
         const event = world.cycleEvents[i]!;
         const mandate = mandateMap.get(event.mandateId)!;
-        const out = cachedOutcomes[strategy.name][i]!;
+        const out = cachedOutcomes[strategy.name as StrategyName][i]!;
 
         let pSurvives = 1.0;
         for (let j = 1; j <= out.pdns; j++) {
@@ -175,7 +182,7 @@ function runSensitivity() {
         totalNrv += (cycleCurrent + cycleFuture - cycleInterv - cycleChurn);
       }
 
-      sweepNrv[strategy.name] = totalNrv;
+      sweepNrv[strategy.name as StrategyName] = totalNrv;
       if (strategy.name !== 'oracle' && totalNrv > maxNrv) {
         maxNrv = totalNrv;
         topRanked = strategy.name;
@@ -201,6 +208,44 @@ function runSensitivity() {
     console.log(`At hazard = 0, ${topAt0} has the highest NRV. At hazard = ${maxHazard}, ${topAtMax} has the highest NRV. The ordering NEVER changes across the range.`);
   } else {
     console.log(`At hazard = 0, ${topAt0} has the highest NRV. At hazard = ${maxHazard}, ${topAtMax} has the highest NRV. The top-ranked strategy changes at hazard = ${breakEvenPoints.map(b => b.hazard.toFixed(3)).join(', ')}.`);
+  }
+
+  // --- APPEND SENSITIVITY TO JSON ---
+  const fs = require('fs');
+  const path = require('path');
+  const resultsJsonPath = path.join(process.cwd(), 'data', 'generated', 'results.json');
+  if (fs.existsSync(resultsJsonPath)) {
+    const resultsObj = JSON.parse(fs.readFileSync(resultsJsonPath, 'utf-8'));
+    
+    // We only need the netrun strategy in the frontend? The prompt asks for: "Line chart: NRV vs hazard across [0, 0.08], all strategies."
+    // So we'll save all strategies.
+    
+    // Re-run the sweep just to save to JSON
+    resultsObj.sensitivity = [];
+    for (let hazard = minHazard; hazard <= maxHazard + 0.0001; hazard += step) {
+      const sweepNrv: Record<string, number> = {};
+      for (const strategy of strategies) {
+        let totalNrv = 0;
+        for (let i = 0; i < world.cycleEvents.length; i++) {
+          const event = world.cycleEvents[i]!;
+          const mandate = mandateMap.get(event.mandateId)!;
+          const out = cachedOutcomes[strategy.name as StrategyName][i]!;
+          let pSurvives = 1.0;
+          for (let j = 1; j <= out.pdns; j++) {
+            pSurvives *= (1 - hazard * Math.pow(fatigue, j - 1));
+          }
+          const cycleCurrent = out.gross * margin;
+          const cycleFuture = pSurvives * horizon * mandate.amountPaise * margin;
+          const cycleInterv = out.attempts * attemptCost;
+          const cycleChurn = (1 - pSurvives) * horizon * mandate.amountPaise * margin;
+          totalNrv += (cycleCurrent + cycleFuture - cycleInterv - cycleChurn);
+        }
+        sweepNrv[strategy.name] = totalNrv;
+      }
+      resultsObj.sensitivity.push({ hazard, ...sweepNrv });
+    }
+    
+    fs.writeFileSync(resultsJsonPath, JSON.stringify(resultsObj, null, 2));
   }
 }
 

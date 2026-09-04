@@ -61,7 +61,15 @@ Reply:
     };
   }
 
-  return { cycleId, promisedDate: null, promisedAmountPaise: null, confidence: 0.0, intent: 'unclear', source: 'llm', sourceText: replyText };
+  return { 
+    cycleId, 
+    promisedDate: result.data.promised_day_of_month ? `2000-01-${result.data.promised_day_of_month.toString().padStart(2, '0')}` : null,
+    promisedAmountPaise: result.data.promised_amount_rupees ? result.data.promised_amount_rupees * 100 : null,
+    confidence: result.data.confidence,
+    intent: result.data.intent,
+    source: 'llm',
+    sourceText: replyText
+  };
 }
 
 /** TODO(step 10, CUTTABLE). Only called for UNKNOWN codes. */

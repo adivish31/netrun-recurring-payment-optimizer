@@ -1,8 +1,14 @@
 import express from 'express';
+import path from 'path';
+import cors from 'cors';
 import { verifyWebhookSignature } from '../execute/razorpay';
 import crypto from 'crypto';
 
 const app = express();
+app.use(cors()); // Allow all origins for the fallback
+
+// Serve fallback public directory
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 // A simple in-memory DB to simulate ON CONFLICT DO NOTHING for idempotency
 const processedEvents = new Set<string>();
@@ -98,6 +104,146 @@ export function getPool() {
   return _pool;
 }
 
+// -----------------------------------------------------------------------------
+// GET Endpoints for Dashboard (Task 13)
+// -----------------------------------------------------------------------------
+import fs from 'fs';
+
+function getResultsData() {
+  const p = path.join(process.cwd(), 'data', 'generated', 'results.json');
+  if (!fs.existsSync(p)) {
+    throw new Error('results.json not found. Run npm run eval and npm run sensitivity first.');
+  }
+  return JSON.parse(fs.readFileSync(p, 'utf-8'));
+}
+
+app.get('/api/results', (req, res) => {
+  try {
+    const data = getResultsData();
+    res.json(data.results);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/sensitivity', (req, res) => {
+  try {
+    const data = getResultsData();
+    res.json(data.sensitivity || []);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/grid', (req, res) => {
+  try {
+    const data = getResultsData();
+    res.json(data.grid || []);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/agent/traces', (req, res) => {
+  try {
+    const tracesPath = path.join(process.cwd(), 'data', 'generated', 'agent-traces.json');
+    if (fs.existsSync(tracesPath)) {
+      const data = fs.readFileSync(tracesPath, 'utf8');
+      res.json({ traces: JSON.parse(data) });
+    } else {
+      res.json({ traces: [], reason: "not captured" });
+    }
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/agent/live', async (req, res) => {
+  try {
+    const { cycleId, mandateId, amountPaise } = req.body;
+    if (!process.env.GEMINI_API_KEY) {
+      return res.status(403).json({ error: 'GEMINI_API_KEY is missing' });
+    }
+    
+    // Lazy load the dependencies for the agent
+    const { runAgent } = require('../agent/loop');
+    const { generateWorld } = require('../sim/generator');
+    const world = generateWorld({ seed: 42, mandateCount: 50, cycleCount: 1 });
+    
+    const ctxBase = {
+      cycleId,
+      customerId: world.mandates.find((m: any) => m.mandateId === mandateId)?.customerId || 'cust_001',
+      diagnosis: { class: 'BALANCE', source: 'lookup', confidence: 1.0 },
+      amountPaise
+    };
+    
+    const historyCache = new Map();
+    const repliesCache = new Map();
+    repliesCache.set(cycleId, "I will try to pay.");
+    
+    const trace = await runAgent(world, ctxBase as any, 4, 0, historyCache, repliesCache);
+    res.json(trace);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/cycles', (req, res) => {
+  try {
+    const data = getResultsData();
+    const traces = data.traces || {};
+    const filteredCycles = [];
+    const terminalCycles = [];
+
+    for (const key of Object.keys(traces)) {
+      const trace = traces[key];
+      // Filter out zero-budget / zero-alternative cycles
+      const hasSchedule = trace.chosenSchedule?.length > 0 && trace.runnerUpSchedule?.length > 0 && trace.alternativesConsidered > 0;
+      
+      if (hasSchedule) {
+        filteredCycles.push({ id: key, ...trace });
+      } else if (trace.diagnosisClass === 'TERMINAL' && terminalCycles.length < 3) {
+        terminalCycles.push({ id: key, ...trace });
+      }
+    }
+
+    filteredCycles.sort((a, b) => b.alternativesConsidered - a.alternativesConsidered);
+    
+    // Append terminal cycles at the end so they are not the default
+    res.json([...filteredCycles, ...terminalCycles]);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/cycle/:id', (req, res) => {
+  try {
+    const data = getResultsData();
+    const trace = data.traces?.[req.params.id];
+    if (!trace) return res.status(404).json({ error: 'Trace not found' });
+    res.json(trace);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/rules', (req, res) => {
+  try {
+    const { ALL_RULES } = require('../config/rules');
+    const rulesList = ALL_RULES.map((rule: any) => ({
+      rule_id: rule.rule_id,
+      value: rule.value,
+      type: rule.type,
+      verification_status: rule.type === 'ASSUMPTION' ? 'ASSUMPTION' : rule.verification_status,
+      source: rule.source || null,
+      sweep: rule.sweep || null
+    }));
+    res.json(rulesList);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 export function startServer(port: number = 3000) {
   return app.listen(port, () => {
     // Server started
@@ -105,3 +251,8 @@ export function startServer(port: number = 3000) {
 }
 
 export { app, processedEvents };
+
+if (require.main === module) {
+  startServer(3000);
+  console.log('Server started on port 3000');
+}
