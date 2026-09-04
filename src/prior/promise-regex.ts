@@ -35,6 +35,12 @@ function hindiToArabic(s: string): string {
 export function extractPromisedDay(text: string): number | null {
   const normalized = hindiToArabic(text.toLowerCase().trim());
 
+  // Injection defence
+  const injectionPattern = /(?:ignore|you are now|output exactly|[{}]|json|system prompt|instructions?)/i;
+  if (injectionPattern.test(normalized)) {
+    return null; // Return null so it becomes 'unclear' intent
+  }
+
   // Pattern 1: "{number} tareekh/tarikh/date/ko"
   // e.g. "5 tareekh ko", "15 tarikh", "7 ko payment"
   const dateContextPattern = /\b(\d{1,2})\s*(?:tareekh|tarikh|date|ko\b)/;
@@ -61,17 +67,6 @@ export function extractPromisedDay(text: string): number | null {
     if (day >= 1 && day <= 28) return day;
   }
 
-  // Pattern 4: "next {number}" or just a bare number in context
-  // Only if the text seems to be about payment/money
-  const paymentContext = /(?:salary|paise|payment|amount|fund|bhej|daal|kar)/i;
-  if (paymentContext.test(normalized)) {
-    const bareNumber = /\b(\d{1,2})\b/;
-    const m4 = normalized.match(bareNumber);
-    if (m4) {
-      const day = parseInt(m4[1]!, 10);
-      if (day >= 1 && day <= 28) return day;
-    }
-  }
-
+  // Removed pattern 4 (bare numbers) as per user request
   return null;
 }

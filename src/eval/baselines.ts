@@ -8,7 +8,7 @@
  *      evaluation result. An optimizer with nothing to compare it to is not.
  */
 
-import type { Schedule, StrategyName, EstimationContext, Slot, ISODate, WindowName } from '../types';
+import type { Schedule, StrategyName, EstimationContext, Slot, ISODate, WindowName, SuccessEstimator } from '../types';
 import {
   PDN_EXEMPT_MCC,
   getAfaThresholdPaise,
@@ -18,6 +18,7 @@ import {
 } from '../config/rules';
 import type { CounterfactualTable } from '../sim/counterfactual';
 import { cfKey } from '../sim/counterfactual';
+import { optimize } from '../schedule/optimizer';
 
 export interface Strategy {
   name: StrategyName;
@@ -212,6 +213,50 @@ export function makeOracleStrategy(cfTable: CounterfactualTable): Strategy {
         }
       }
       return null;
+    },
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Strategy 5: NetRun (optimizer-backed)
+// ---------------------------------------------------------------------------
+
+export interface NetrunStrategy extends Strategy {
+  lastResult: import('../types').OptimizerResult | null;
+}
+
+export function makeNetrunStrategy(estimator: SuccessEstimator): NetrunStrategy {
+  return {
+    name: 'netrun',
+    lastResult: null,
+    plan(ctx: EstimationContext, remainingBudget: number): Schedule | null {
+      const result = optimize(ctx, estimator, remainingBudget);
+      this.lastResult = result;
+      return result.chosen;
+    },
+  };
+}
+
+export function makeNetrunShrinkageStrategy(estimator: SuccessEstimator): NetrunStrategy {
+  return {
+    name: 'netrun_shrinkage',
+    lastResult: null,
+    plan(ctx: EstimationContext, remainingBudget: number): Schedule | null {
+      const result = optimize(ctx, estimator, remainingBudget);
+      this.lastResult = result;
+      return result.chosen;
+    },
+  };
+}
+
+export function makeNetrunPromiseStrategy(estimator: SuccessEstimator): NetrunStrategy {
+  return {
+    name: 'netrun_promise',
+    lastResult: null,
+    plan(ctx: EstimationContext, remainingBudget: number): Schedule | null {
+      const result = optimize(ctx, estimator, remainingBudget);
+      this.lastResult = result;
+      return result.chosen;
     },
   };
 }

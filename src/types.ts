@@ -204,6 +204,8 @@ export interface Decision {
 
 export type StrategyName =
   | 'netrun'
+  | 'netrun_shrinkage'
+  | 'netrun_promise'
   | 'fixed' // fixed offsets, e.g. T+1 / T+3 / T+7
   | 'aggressive' // spend the whole budget as early as permitted
   | 'rules_only' // decline-code lookup, no prior, no promise

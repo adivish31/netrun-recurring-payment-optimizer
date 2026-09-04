@@ -75,3 +75,9 @@ Hazard   | fixed (₹)  | aggressive | rules_only | oracle     | Top Ranked
 The sweep table above demonstrates the full range of mathematical outcomes across the declared plausible bounds of this hazard. 
 
 **Break-even finding**: At hazard = 0, `fixed` has the highest NRV. At hazard = 0.08, `fixed` still has the highest NRV. The ordering NEVER changes across the entire range. Even if there was strictly zero churn cost for sending notifications, `fixed` remains the dominant strategy on this dataset due to its higher gross recovery.
+
+## Measured contribution of personalised estimation
+
+Replacing the population-level day-of-month prior with a per-customer shrinkage posterior adds ₹28,574.71 NRV at the default alpha=5 — 1.85% over the population estimator, 1.75% of oracle NRV. The delta is exactly ₹0.00 at cycle 1 (no history exists) and grows monotonically to ₹7,370 by cycle 6, confirming the improvement comes from accumulated per-customer history rather than an artefact. History is strictly causal: at cycle N the estimator sees only cycles 1..N-1 of that mandate, verified across a sample of 20 (mandate, cycle) pairs.
+
+The alpha sweep is monotonically decreasing across the declared range [1, 20], so the optimum lies at or below the lower bound — with only six cycles of history, per-customer data outperforms the population prior more strongly than the default assumed. We report the default-alpha result as the headline rather than the tuned one.

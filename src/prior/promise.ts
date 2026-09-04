@@ -14,12 +14,36 @@
  */
 
 import type { PromiseToPay, SuccessPrior } from '../types';
+import { PROMISE_WEIGHT_CAP } from '../config/rules';
 
-/** TODO(step 9). Pure function — unit-test with a zero keep-rate customer. */
 export function applyPromise(
-  _prior: SuccessPrior,
-  _promise: PromiseToPay,
-  _keepRate: number
+  prior: SuccessPrior,
+  promise: PromiseToPay,
+  keepRate: number
 ): SuccessPrior {
-  throw new Error('not implemented — build order step 9');
+  if (!promise.promisedDate || promise.intent !== 'will_pay') {
+    return prior;
+  }
+
+  const promisedDay = parseInt(promise.promisedDate.slice(8, 10), 10);
+  if (isNaN(promisedDay) || promisedDay < 1 || promisedDay > 28) {
+    return prior;
+  }
+
+  const weight = Math.min(keepRate, PROMISE_WEIGHT_CAP.value);
+  const byDayOfMonth = [...prior.byDayOfMonth];
+
+  for (let d = 1; d <= 28; d++) {
+    if (d === promisedDay) {
+      byDayOfMonth[d] = (1 - weight) * (byDayOfMonth[d] || 0) + weight;
+    } else {
+      byDayOfMonth[d] = (1 - weight) * (byDayOfMonth[d] || 0);
+    }
+  }
+
+  return {
+    ...prior,
+    byDayOfMonth,
+    promiseAdjusted: true,
+  };
 }

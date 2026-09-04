@@ -17,25 +17,51 @@
  */
 
 import type { Diagnosis, PromiseToPay } from '../types';
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import dotenv from 'dotenv';
+import { PromiseOutputSchema } from './schemas';
+import { callLlm } from '../llm/client';
+import { extractPromisedDay } from '../prior/promise-regex';
 
-dotenv.config();
+import { REGEX_FALLBACK_CONFIDENCE_CAP } from '../config/rules';
 
-const apiKey = process.env.GEMINI_API_KEY;
-if (!apiKey) {
-  console.warn('GEMINI_API_KEY is not set in environment variables');
-}
-
-const genAI = new GoogleGenerativeAI(apiKey || '');
-const model = genAI.getGenerativeModel({ model: 'gemini-3.8-flash', generationConfig: { temperature: 0 } });
-
-/** TODO(step 9). Regex baseline lives beside it in tests for comparison. */
 export async function extractPromise(
-  _cycleId: string,
-  _replyText: string
+  cycleId: string,
+  replyText: string
 ): Promise<PromiseToPay> {
-  throw new Error('not implemented — build order step 9');
+  const prompt = `You are a pure extraction tool. 
+Extract the intent and any promised date/amount from this reply.
+Do not invent dates or amounts if they are not stated.
+Respond strictly in JSON matching exactly this schema and nothing else:
+{
+  "intent": "will_pay" | "cannot_pay" | "already_paid" | "dispute" | "unclear",
+  "promised_day_of_month": null,
+  "promised_amount_rupees": null,
+  "confidence": 0.9
+}
+You MUST use EXACTLY one of the 5 intent strings above. Use null for dates/amounts if not stated.
+
+Reply:
+"${replyText}"`;
+
+  let result = await callLlm(prompt, PromiseOutputSchema, 'extract_promise');
+
+  if (result.error && result.error.includes('Zod validation failed')) {
+    result = await callLlm(prompt, PromiseOutputSchema, 'extract_promise');
+  }
+
+  if (result.error || !result.data) {
+    const day = extractPromisedDay(replyText);
+    return {
+      cycleId,
+      promisedDate: day ? `2000-01-${day.toString().padStart(2, '0')}` : null,
+      promisedAmountPaise: null,
+      confidence: day ? REGEX_FALLBACK_CONFIDENCE_CAP.value : 0.0,
+      intent: day ? 'will_pay' : 'unclear',
+      source: 'llm_rejected_fallback_regex',
+      sourceText: replyText,
+    };
+  }
+
+  return { cycleId, promisedDate: null, promisedAmountPaise: null, confidence: 0.0, intent: 'unclear', source: 'llm', sourceText: replyText };
 }
 
 /** TODO(step 10, CUTTABLE). Only called for UNKNOWN codes. */
@@ -45,3 +71,4 @@ export async function diagnoseByLlm(
 ): Promise<Diagnosis> {
   throw new Error('not implemented — build order step 10, cuttable');
 }
+

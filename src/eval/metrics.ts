@@ -35,10 +35,15 @@ export interface NrvParams {
 }
 
 function daysBetween(d1: string, d2: string): number {
-  const [y1, m1, day1] = d1.split('-').map(Number);
-  const [y2, m2, day2] = d2.split('-').map(Number);
-  const totalDays1 = (y1! * 12 * 28) + (m1! * 28) + day1!;
-  const totalDays2 = (y2! * 12 * 28) + (m2! * 28) + day2!;
+  const y1 = (d1.charCodeAt(0) - 48) * 1000 + (d1.charCodeAt(1) - 48) * 100 + (d1.charCodeAt(2) - 48) * 10 + (d1.charCodeAt(3) - 48);
+  const m1 = (d1.charCodeAt(5) - 48) * 10 + (d1.charCodeAt(6) - 48);
+  const day1 = (d1.charCodeAt(8) - 48) * 10 + (d1.charCodeAt(9) - 48);
+  const y2 = (d2.charCodeAt(0) - 48) * 1000 + (d2.charCodeAt(1) - 48) * 100 + (d2.charCodeAt(2) - 48) * 10 + (d2.charCodeAt(3) - 48);
+  const m2 = (d2.charCodeAt(5) - 48) * 10 + (d2.charCodeAt(6) - 48);
+  const day2 = (d2.charCodeAt(8) - 48) * 10 + (d2.charCodeAt(9) - 48);
+  
+  const totalDays1 = (y1 * 12 * 28) + (m1 * 28) + day1;
+  const totalDays2 = (y2 * 12 * 28) + (m2 * 28) + day2;
   return totalDays2 - totalDays1;
 }
 

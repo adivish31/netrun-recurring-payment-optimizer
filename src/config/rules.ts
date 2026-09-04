@@ -342,6 +342,30 @@ export const OPTIMIZER_TIME_BOX_MS: Assumption<number> = {
   sweep: [50, 2000],
 };
 
+export const OPTIMIZER_MAX_CANDIDATES: Assumption<number> = {
+  rule_id: 'OPTIMIZER_MAX_CANDIDATES',
+  type: 'ASSUMPTION',
+  value: 18,
+  unit: 'max number of non-dominated candidates to evaluate',
+  rationale:
+    'Bounds C(K, B) complexity. Prevents combinatorial explosion in subset search.',
+  sweep: [10, 20],
+};
+
+
+
+export const REGEX_FALLBACK_CONFIDENCE_CAP: Assumption<number> = {
+  rule_id: 'REGEX_FALLBACK_CONFIDENCE_CAP',
+  type: 'ASSUMPTION',
+  value: 0.6,
+  unit: 'confidence score (0-1)',
+  rationale:
+    'Regex extraction is deterministic but brittle. It can easily be spoofed by bare ' +
+    'digits or injection strings. Its confidence must be strictly lower than a parsed ' +
+    'LLM output (which is typically 0.9 or 1.0) so it does not override priors as aggressively.',
+  sweep: [0.3, 0.8],
+};
+
 // ---------------------------------------------------------------------------
 // AUDIT
 // ---------------------------------------------------------------------------
@@ -363,6 +387,8 @@ export const ALL_RULES: readonly Rule<unknown>[] = [
   PRIOR_SHRINKAGE_ALPHA,
   PROMISE_WEIGHT_CAP,
   OPTIMIZER_TIME_BOX_MS,
+  OPTIMIZER_MAX_CANDIDATES,
+  REGEX_FALLBACK_CONFIDENCE_CAP,
 ];
 
 export const unverifiedRules = (): string[] =>
