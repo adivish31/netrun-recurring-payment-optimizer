@@ -1,4 +1,23 @@
-```
+# Constraints and Rules
+
+Every numeric constraint in this system is strictly separated from the business logic. There are no magic numbers in `src/policy/` or `src/schedule/`. All constraints reside in a single typed configuration file (`src/config/rules.ts`).
+
+## The 3/3/12 Split
+
+The system operates under exactly **18 constraints**:
+- **6 Rules**: Derived from documentation or structure.
+  - **3 VERIFIED**: Successfully traced to primary or secondary public documents (e.g. NPCI circulars, press releases).
+  - **3 COULD_NOT_VERIFY**: The mechanism exists, but the exact numeric threshold could not be sourced publicly.
+- **12 ASSUMPTIONs**: Model parameters required to run the simulation, but for which no public measurement exists. These are aggressively swept across wide bounds to prove the system's conclusions hold regardless of the specific number.
+
+> [!IMPORTANT]
+> The optimizer is evaluated at budgets 2, 4, and 7 precisely because the attempt cap is a configuration parameter, not the product's identity. If regulatory limits change tomorrow, the engine remains correct.
+
+## Provenance Audit
+
+The following table is output verbatim from `npm run rules:audit`:
+
+```text
 NetRun — constraint provenance audit
 ======================================================================================================================
 RULE ID                                 VALUE                     TYPE           PROVENANCE
@@ -19,8 +38,10 @@ RECOVERY_GRACE_DAYS                     15                        ASSUMPTION    
 PRIOR_SHRINKAGE_ALPHA                   5                         ASSUMPTION     sweep [1, 20] — posterior[d] = (alpha * population_prior[d] + successes[d]…
 PROMISE_WEIGHT_CAP                      0.6                       ASSUMPTION     sweep [0, 1] — A promise shifts prior mass onto the promised date, weight…
 OPTIMIZER_TIME_BOX_MS                   250                       ASSUMPTION     sweep [50, 2000] — Guards the exhaustive enumeration. With a small budget ove…
+OPTIMIZER_MAX_CANDIDATES                18                        ASSUMPTION     sweep [10, 20] — Bounds C(K, B) complexity. Prevents combinatorial explosio…
+REGEX_FALLBACK_CONFIDENCE_CAP           0.6                       ASSUMPTION     sweep [0.3, 0.8] — Regex extraction is deterministic but brittle. It can easi…
 ----------------------------------------------------------------------------------------------------------------------
-16 constraints — 6 rules, 10 assumptions, 3 could not be verified
+18 constraints — 6 rules, 12 assumptions, 3 could not be verified
 
 COULD_NOT_VERIFY (state this openly in README + video):
   - UPI_AUTOPAY_PD_NOTICE_LEAD_HOURS
@@ -29,4 +50,6 @@ COULD_NOT_VERIFY (state this openly in README + video):
 Audit complete (some rules could not be verified).
 ```
 
-Six constraints began as VERIFIED_RULE. Three are confirmed against retrievable sources naming specific NPCI circulars — MAX_ATTEMPTS_PER_CYCLE and EXECUTION_WINDOWS trace to an NPCI press release dated 2025-05-21 (compliance deadline 2025-07-31); PDN_EXEMPT_MCC traces to an NPCI notification dated 2024-09-23. Three are marked COULD_NOT_VERIFY — the exact MCC list for the elevated AFA threshold, the RBI e-mandate circular for the 24-hour notice period, and Razorpay's decline-code taxonomy — and are treated exactly as assumptions. The optimizer is tested at recovery-budget values of 2, 4 and 7 precisely because the attempt cap is configuration, not product identity.
+### Note on Unverified Rules
+
+The 3 `COULD_NOT_VERIFY` rules listed above are never presented as verified facts. The mechanisms absolutely exist in UPI AutoPay logic (AFA threshold steps, advance notice windows), but retrieving the primary source circular PDF proving the *exact numeric integer* was not achieved before release. 

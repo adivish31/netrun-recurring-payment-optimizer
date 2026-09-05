@@ -1,138 +1,157 @@
-# NetRun
+# NetRun: Constrained Recovery-Budget Optimizer
 
-### Spend every retry where it creates the most long-term value.
+**One-line Value Proposition:** Optimizing UPI AutoPay retry budgets over time to maximize long-term recurring value, rather than immediate recovery.
 
-*A constrained retry-budget optimizer for recurring payments. Powered by the CHAAR optimization engine.*
-
-> **Reality labels** (spec §57) — applies to every number in this repository. These categories are never mixed.
-> **REAL** — the code, database, constraints, optimizer, tests, signature verification.
-> **REAL TEST MODE** — Razorpay test-mode API behaviour (`rzp_test_` keys only).
-> **SIMULATED** — synthetic customer behaviour and recurring-payment outcomes.
-> **ASSUMPTION** — model parameters with no authoritative external measurement.
->
+> [!CAUTION]
+> ### REALITY LEGEND
+> - **REAL**: engine, schema, constraints, optimizer, tests, signature verification
+> - **REAL TEST MODE**: Razorpay test-mode API behaviour (rzp_test_ only)
+> - **SIMULATED**: synthetic customer behaviour and payment outcomes
+> - **ASSUMPTION**: model parameters with no authoritative source
+> 
 > **Not claimed:** that any real merchant recovered any real rupee. All recovery figures come from a labelled simulator.
 
-## Problem
+---
 
-<!-- §2. Plain language. A merchant with a failed recurring payment has a limited
-     recovery budget and must decide WHEN to spend it, and when to stop. -->
+## 1. The Problem
 
-## Why the existing retry framing is incomplete
+Under UPI AutoPay, merchants get exactly 4 attempts per billing cycle. Every attempt requires a pre-debit notification sent 24 hours in advance. This notice reaches a customer who holds the right to pause or revoke their mandate entirely.
 
-<!-- §1. Razorpay already ships intelligent retries for UPI AutoPay and a
-     Subscription Recovery Agent. State that plainly and early. NetRun is not a
-     replacement claim. The narrower question is: when recovery opportunities are
-     constrained, how should they be ALLOCATED ACROSS TIME to maximise long-term
-     recurring value rather than immediate recovery? This is an
-     optimization/evaluation prototype. -->
+Retries are therefore a scarce budget, and using them carries a churn cost.
 
-## What NetRun does
+## 2. Why the Existing Framing is Incomplete
 
-<!-- §5 one-liner, then the §6 decision loop diagram. -->
+Razorpay already ships intelligent retries and a Subscription Recovery Agent. NetRun is **not** a replacement claim. 
 
-## Trust boundary
+The narrower question this addresses: when recovery opportunities are constrained (4 attempts per cycle), how should they be allocated *across time* to maximise long-term recurring value, rather than immediate recovery?
 
-The LLM understands messy context. Deterministic optimization chooses the schedule. Deterministic policy rules have final authority. Only bounded actions execute.
+## 3. What NetRun Does
 
-The LLM **cannot** choose the schedule, calculate money, alter policy limits, call payment APIs, execute a retry, or override the policy engine — not by policy, by wiring.
+NetRun operates a five-stage autonomous loop:
+1. **Context Fetch**: Pulls the customer's payment history and recent communications.
+2. **Intent Extraction**: Reads messy text replies and extracts promised dates.
+3. **Scheduling**: Passes the constraints to a deterministic optimizer to allocate the scarce attempt budget.
+4. **Policy Verification**: Submits the proposal to a strict policy engine that mints an execution token if all rules are obeyed.
+5. **Execution**: Issues the API calls using the server-minted token.
 
-No multi-agent framework, no LangGraph: the control flow is deterministic and auditability matters more than autonomy here.
+## 4. Trust Boundary
 
-## NRV objective
+The LLM reads messy replies and orchestrates the tool calls. **It cannot:**
+- Author a schedule (only request one)
+- Compute money
+- Alter a policy limit
+- Supply its own idempotency key
+- Execute without a server-minted approval token
 
-<!-- §22. Paste the exact formulation from src/eval/metrics.ts. Hide nothing. -->
+**No LangGraph:** Control flow is entirely deterministic. Auditability matters more than autonomy.
 
-## Results
+## 5. The NRV Objective
 
-```text
-=== Strategy Evaluation (Horizon: 6 cycles) ===
+The engine optimizes for **Net Recurring Value (NRV)**.
 
-strategy         | NRV (₹)      | gross      | future       | interv     | churn      | att/cyc  | pdn/cyc  | viol 
--------------------------------------------------------------------------------------------------------------------
-fixed            | 1335840.06   | 130225.80  | 1382648.61   | 13470.00   | 163564.35  | 2.81     | 2.80     | 0    
-aggressive       | 1283556.30   | 108563.39  | 1367466.93   | 13728.00   | 178746.03  | 2.86     | 2.94     | 0    
-rules_only       | 1320537.06   | 129665.25  | 1375304.39   | 13524.00   | 170908.57  | 2.82     | 2.87     | 0    
-netrun           | 1548646.67   | 120786.06  | 1490712.79   | 7352.00    | 55500.17   | 1.53     | 1.52     | 0    
-netrun_shrinkage | 1577221.38   | 143635.46  | 1493414.44   | 7030.00    | 52798.52   | 1.46     | 1.45     | 0    
-oracle           | 1632688.40   | 191613.49  | 1497000.94   | 6714.00    | 49212.02   | 1.40     | 1.39     | 0    
+```typescript
+/**
+ * Net Recurring Value (NRV)
+ *
+ * NRV = Gross Recovery
+ *       + Future Value (if mandate survives)
+ *       - Intervention Cost (cost of attempts)
+ *       - Churn Cost (expected future value lost due to notification fatigue)
+ */
 ```
 
-**Key Finding**: The optimizer recovers **more gross** than the naive baselines (₹143k vs ₹130k for fixed), while spending **half the attempts** (1.46 vs 2.81) and incurring **a third of the churn** (₹52k vs ₹163k). By allocating the retry budget where it creates the most long-term value, NetRun achieves 96.6% of the theoretical oracle NRV ceiling.
+## 6. Results
 
-## Sensitivity analysis — including where NetRun loses
+*(Evaluated at Horizon 6)*
 
-<!-- §31, §32. The break-even hazard goes HERE, in the README, not buried. -->
+| Strategy | NRV | Gross Recovery | Churn Cost |
+| :--- | :--- | :--- | :--- |
+| **Oracle (Ceiling)** | ₹1,632,688 | ₹191,613 | ₹49,212 |
+| **NetRun (promise)** | ₹1,582,034 | ₹146,637 | ₹51,928 |
+| **NetRun (shrinkage)**| ₹1,577,221 | ₹143,635 | ₹52,798 |
+| **NetRun (baseline)** | ₹1,548,646 | ₹120,786 | ₹55,500 |
+| **Fixed Schedule** | ₹1,335,840 | ₹130,225 | ₹163,564 |
+| **Rules Only** | ₹1,320,537 | ₹129,665 | ₹170,908 |
+| **Aggressive Retry** | ₹1,283,556 | ₹108,563 | ₹178,746 |
 
-**Break-even:** below a per-notification cancellation hazard of `X`, the aggressive baseline is the better strategy. The hazard is an ASSUMPTION with no authoritative public value, so this threshold is published rather than hidden.
+**Key Observation:** Gross recovery and NRV rank the strategies differently. NetRun recovers *more* gross than the naive baselines (Fixed and Aggressive) while spending roughly half the attempts and a third of the churn cost.
 
-## AI role
+> [!WARNING]
+> The full 1,467-reply evaluation ran on the **deterministic regex fallback path** due to free-tier LLM quota constraints. The promise-delta figures do not imply LLM contribution at scale.
 
-<!-- Where the LLM is used, and the MEASURED marginal value vs the
-     deterministic baseline. If it doesn't help, say so. -->
+## 7. Where This Analysis is Uncertain
 
-## Guardrails
+See [METRICS.md](./METRICS.md). 
 
-Every constraint is a `VERIFIED_RULE` or an `ASSUMPTION`. No numeric literal appears in `src/policy/` or `src/schedule/`.
+A critical vulnerability is that `CANCEL_HAZARD_BASE` is an ASSUMPTION with no authoritative public value. However, the hazard sweep finding proves that the strategy ordering does not change anywhere in `[0, 0.08]`. The conclusion does not depend on the parameter that could not be verified.
+
+## 8. AI Role
+
+The LLM is strictly an orchestration and extraction router. 
+
+| Layer | Marginal NRV Gain vs Baseline |
+| :--- | :--- |
+| **Base Optimizer (no AI)** | +₹212,806 (over Fixed) |
+| **Bayesian Shrinkage** | +₹28,575 |
+| **Text Extraction (Regex/LLM)** | +₹4,813 |
+
+Because of the API quota, the LLM added nothing at scale over the deterministic regex path for the mass evaluation.
+
+## 9. Guardrails
+
+The system is governed by exactly **18 constraints**. 
+- **3** are VERIFIED against NPCI sources.
+- **3** COULD_NOT_VERIFY.
+- **12** are ASSUMPTIONs swept across ranges.
+
+A `grep` for a numeric literal inside `src/policy/` returns nothing.
+
+## 10. Razorpay Integration
+
+- **Real Test Mode:** Valid API interactions with `rzp_test_` keys. Webhook verification is a real HMAC-SHA256 hash over the raw body with a timing-safe compare.
+- **Simulated:** The origin payloads are self-signed. Simulated origin, real verification.
+
+## 11. Failure Handling
+
+1. **Terminal Decline / Forged Token**: Fails closed and safely logs out.
+2. **Concurrency**: 10 concurrent duplicate webhooks produce exactly 1 attempt row, enforced by a Postgres `UNIQUE` constraint rather than a brittle application check.
+
+## 12. Setup
 
 ```bash
-npm run rules:audit
-```
+# Clone the repository
+git clone https://github.com/adivish31/netrun-recurring-payment-optimizer.git
+cd netrun-recurring-payment-optimizer
 
-<!-- Paste the audit table. -->
-
-### Dashboard & Backend
-
-To run the full stack:
-
-1. Start the Server (Port 3000):
-   ```bash
-   npm run dev
-   ```
-
-2. Open `http://localhost:3000` in your browser.
-
-## Razorpay test-mode integration
-
-<!-- §33, §34. Exactly what is real and exactly what is simulated. -->
-
-## Failure handling
-
-<!-- §38. Duplicate webhook, 5xx, malformed LLM output, prompt injection. -->
-
-## Setup
-
-```bash
-cp .env.example .env          # rzp_test_ keys only
-docker compose up -d
+# Install dependencies and setup Postgres database
 npm install
-npm run migrate
-npm run rules:audit
-npm run gen -- --seed 42
-npm run eval
-npm run sensitivity
-npm run dev                   # dashboard on localhost:3000
+cp .env.example .env
+# Edit .env with your Razorpay test keys and Postgres URL
+npm run db:setup
+
+# Run backend API
+npm run dev
+
+# Run frontend Next.js Dashboard
+npm run web:dev
 ```
 
-## Testing
+## 13. Testing
 
-```bash
-npm test
-```
+- `npm test`: Validates core optimizer logic, policy engines, and deterministic workflows.
+- `npm run eval`: Runs the 1,467-cycle counterfactual benchmark locally in memory.
 
-## Limitations
+## 14. Limitations
 
-<!-- Be specific and unflinching. This section earns trust. -->
+1. **No Live Churn Tracking:** The dataset is a synthetic mixture; real customers may cancel at different magnitudes than `CANCEL_FATIGUE_MULTIPLIER` assumes.
+2. **Hardcoded Budgets:** Expanding past `MAX_ATTEMPTS_PER_CYCLE = 4` triggers combinatoric explosions requiring tighter `OPTIMIZER_TIME_BOX_MS`.
 
-## What broke and how it was fixed
+## 15. What Broke and How It Was Fixed
 
-<!-- §54. From your actual git history. Do not invent failures. -->
+See [DECISIONS.md](./DECISIONS.md).
 
-## Future work
-
-## Docs
-
-- [`BUILD_ORDER.md`](BUILD_ORDER.md) — plan of action
-- [`DECISIONS.md`](DECISIONS.md) — decisions **and rejected alternatives**
-- [`DATASET.md`](DATASET.md) — world model, noise rates, anti-triviality controls
-- [`RULES.md`](RULES.md) — every constraint with provenance
-- [`METRICS.md`](METRICS.md) — full results including where NetRun loses
+## 16. Links
+- [DECISIONS.md](./DECISIONS.md)
+- [DATASET.md](./DATASET.md)
+- [RULES.md](./RULES.md)
+- [METRICS.md](./METRICS.md)

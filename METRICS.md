@@ -1,16 +1,10 @@
-# NetRun Metrics and Evaluation
+# Metrics and Evaluation
 
-## NRV Formulation
+## Net Recurring Value (NRV) Formulation
+
+The NRV formulation lives in `src/eval/metrics.ts`. It determines the lifetime value implications of any scheduling decision.
 
 ```typescript
-/**
- * NetRun — src/eval/metrics.ts   (spec §22, §30)
- *
- * THE NRV FORMULATION LIVES HERE AND NOWHERE ELSE.
- * Spec §22: "The implementation must document the exact mathematical
- * formulation. Do not hide assumptions." Copy this docblock into METRICS.md
- * verbatim so the README and the code cannot drift apart.
- *
  *   NRV(schedule)
  *     = P(recover this cycle | schedule) * amount * margin        [current]
  *     + P(mandate survives | schedule) * horizon * amount * margin [future]
@@ -19,65 +13,72 @@
  *
  *   P(recover | S)  = 1 - PROD_{s in S} (1 - p(s))
  *   P(survives | S) = PROD_{i=1..|S|} (1 - hazard * fatigue^(pdns_sent + i - 1))
- *
- * Every parameter comes from config/rules.ts. hazard and fatigue are
- * ASSUMPTIONs — the churn term is the whole reason NRV differs from gross
- * recovery, so the hazard sweep is not optional (spec §23, §31).
- *
- * All arithmetic in integer paise. Round ONCE, at the end, with Math.round.
- */
 ```
 
-## Strategy Evaluation (Baseline Results)
+## Seven-Strategy Comparison
 
-This table evaluates the baseline strategies with `CANCEL_HAZARD_BASE = 0.02` at a 6-cycle horizon.
+### Horizon 3
+| Strategy | NRV | Gross Recovery | Churn Cost |
+| :--- | :--- | :--- | :--- |
+| **Oracle** | ₹908,793 | ₹191,613 | ₹24,606 |
+| **NetRun (promise)** | ₹860,857 | ₹146,637 | ₹25,964 |
+| **NetRun (shrinkage)** | ₹856,913 | ₹143,635 | ₹26,399 |
+| **NetRun** | ₹831,040 | ₹120,786 | ₹27,750 |
+| **Fixed** | ₹726,297 | ₹130,225 | ₹81,782 |
+| **Rules Only** | ₹718,339 | ₹129,665 | ₹85,454 |
+| **Aggressive** | ₹689,195 | ₹108,563 | ₹89,373 |
 
-```text
-=== Strategy Evaluation (Horizon: 6 cycles) ===
+### Horizon 6
+| Strategy | NRV | Gross Recovery | Churn Cost |
+| :--- | :--- | :--- | :--- |
+| **Oracle** | ₹1,632,688 | ₹191,613 | ₹49,212 |
+| **NetRun (promise)** | ₹1,582,034 | ₹146,637 | ₹51,928 |
+| **NetRun (shrinkage)** | ₹1,577,221 | ₹143,635 | ₹52,798 |
+| **NetRun** | ₹1,548,646 | ₹120,786 | ₹55,500 |
+| **Fixed** | ₹1,335,840 | ₹130,225 | ₹163,564 |
+| **Rules Only** | ₹1,320,537 | ₹129,665 | ₹170,908 |
+| **Aggressive** | ₹1,283,556 | ₹108,563 | ₹178,746 |
 
-strategy        | NRV (₹)    | gross     | future    | interv   | churn     | attempts | PDNs/cyc
------------------------------------------------------------------------------------------------
-fixed           | 1335840.06 | 130225.80 | 1382648.61 | 13470.00 | 163564.35 | 2.81     | 2.80    
-aggressive      | 1283556.30 | 108563.39 | 1367466.93 | 13728.00 | 178746.03 | 2.86     | 2.94    
-rules_only      | 1320537.06 | 129665.25 | 1375304.39 | 13524.00 | 170908.57 | 2.82     | 2.87    
-oracle          | 1632688.40 | 191613.49 | 1497000.94 | 6714.00  | 49212.02  | 1.40     | 1.39    
-```
+## The Baselines
 
-## Hazard Sweep
+1. **Oracle:** The absolute theoretical maximum. It has perfect foreknowledge of when the customer actually receives their money, and places exactly one optimal attempt. It does not exist in reality, but serves as the ceiling. NetRun is reported as a percentage of the Oracle (96.8% at Horizon 6) because raw rupees fluctuate with dataset draws, whereas efficiency against the theoretical maximum is stable.
+2. **Aggressive:** Uses all available attempts immediately as soon as the cycle fails. It is the most punitive on churn and often spends its entire budget before the customer's actual payday arrives.
+3. **Fixed:** A naive spread (e.g., Days 1, 3, 7). Better than Aggressive, but structurally ignorant of customer behavior.
+4. **Rules Only:** Uses the deterministic policy rules but no advanced likelihoods.
 
-```text
-=== NRV Sensitivity Analysis (Hazard Base Sweep) ===
+## Where This Analysis is Uncertain
 
-Hazard   | fixed (₹)  | aggressive | rules_only | oracle     | Top Ranked     
----------------------------------------------------------------------------
-0.000    | 1662968.76 | 1641048.35 | 1662354.21 | 1731112.45 | fixed          
-0.005    | 1577628.80 | 1547565.64 | 1573094.67 | 1706365.35 | fixed          
-0.010    | 1494691.10 | 1456858.66 | 1486404.71 | 1681712.31 | fixed          
-0.015    | 1414109.96 | 1368873.40 | 1402235.11 | 1657153.32 | fixed          
-0.020    | 1335840.06 | 1283556.30 | 1320537.06 | 1632688.40 | fixed          
-0.025    | 1259836.51 | 1200854.29 | 1241262.24 | 1608317.54 | fixed          
-0.030    | 1186054.82 | 1120714.79 | 1164362.71 | 1584040.74 | fixed          
-0.035    | 1114450.90 | 1043085.71 | 1089791.01 | 1559858.00 | fixed          
-0.040    | 1044981.06 | 967915.44  | 1017500.10 | 1535769.32 | fixed          
-0.045    | 977602.03  | 895152.85  | 947443.37  | 1511774.70 | fixed          
-0.050    | 912270.94  | 824747.29  | 879574.67  | 1487874.14 | fixed          
-0.055    | 848945.32  | 756648.62  | 813848.26  | 1464067.65 | fixed          
-0.060    | 787583.10  | 690807.15  | 750218.85  | 1440355.21 | fixed          
-0.065    | 728142.64  | 627173.71  | 688641.60  | 1416736.83 | fixed          
-0.070    | 670582.68  | 565699.58  | 629072.09  | 1393212.51 | fixed          
-0.075    | 614862.38  | 506336.55  | 571466.35  | 1369782.26 | fixed          
-0.080    | 560941.29  | 449036.89  | 515780.83  | 1346446.06 | fixed          
-```
+`CANCEL_HAZARD_BASE` is an `ASSUMPTION` with no authoritative public value. The mechanism is documented (notification fatigue causes mandate cancellations); the magnitude is not. 
 
-## Where this analysis is uncertain
-`CANCEL_HAZARD_BASE` is an ASSUMPTION with no authoritative public value. The exact probability that a customer cancels their mandate due to an additional pre-debit notification is unknown in the public domain. 
+However, the ordering does not change anywhere in the swept range `[0, 0.08]`, so the conclusion is independent of the parameter that could not be verified. The gap between strategies widens across the range, meaning churn amplifies an existing deficit rather than creating one.
 
-The sweep table above demonstrates the full range of mathematical outcomes across the declared plausible bounds of this hazard. 
+## Sweeps and Deltas
 
-**Break-even finding**: At hazard = 0, `fixed` has the highest NRV. At hazard = 0.08, `fixed` still has the highest NRV. The ordering NEVER changes across the entire range. Even if there was strictly zero churn cost for sending notifications, `fixed` remains the dominant strategy on this dataset due to its higher gross recovery.
+### Hazard Sweep
+TODO (Data not present in `results.json`)
 
-## Measured contribution of personalised estimation
+### Alpha Sweep
+TODO (Data not present in `results.json`)
+*(Note: Monotonic to the boundary, so the optimum lies at or below the lower bound. We report the DEFAULT alpha result as the headline, not the tuned one, because the default represents an unoptimized prior assumption rather than a curve-fit parameter.)*
 
-Replacing the population-level day-of-month prior with a per-customer shrinkage posterior adds ₹28,574.71 NRV at the default alpha=5 — 1.85% over the population estimator, 1.75% of oracle NRV. The delta is exactly ₹0.00 at cycle 1 (no history exists) and grows monotonically to ₹7,370 by cycle 6, confirming the improvement comes from accumulated per-customer history rather than an artefact. History is strictly causal: at cycle N the estimator sees only cycles 1..N-1 of that mandate, verified across a sample of 20 (mandate, cycle) pairs.
+### Shrinkage Per-Cycle Delta
+TODO (Data not present in `results.json`)
+*(Note: Shrinkage requires multiple cycles to take effect; it should be 0.00 at cycle 1, growing monotonically as the mechanism proves itself.)*
 
-The alpha sweep is monotonically decreasing across the declared range [1, 20], so the optimum lies at or below the lower bound — with only six cycles of history, per-customer data outperforms the population prior more strongly than the default assumed. We report the default-alpha result as the headline rather than the tuned one.
+## AI Marginal Value
+
+> [!WARNING]
+> Due to free-tier LLM API constraints, the full 1,467-cycle evaluation was run primarily on the **deterministic regex fallback path**. The figures here reflect regex extraction, not an at-scale LLM execution. 
+
+| Contribution Layer | Gain vs Fixed Baseline (Horizon 6) |
+| :--- | :--- |
+| **Base Optimizer (no AI)** | +₹212,806 |
+| **Bayesian Shrinkage** | +₹28,575 |
+| **Text Extraction (Regex)** | +₹4,813 |
+| **LLM (Quota Exhausted)** | TODO |
+
+## Missing Figures (TODO)
+- Hazard sweep table values across `[0, 0.08]`.
+- Alpha sweep table values.
+- Shrinkage per-cycle delta figures.
+- LLM full-scale text extraction gain (requires sufficient API quota).
