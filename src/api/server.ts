@@ -216,6 +216,23 @@ app.get('/api/cycles', (req, res) => {
   }
 });
 
+/**
+ * The full per-cycle decision map, keyed by cycleId.
+ *
+ * /api/cycles filters and re-orders for display, which means a cycleId taken
+ * from an agent trace may not appear in it. The cockpit needs an exact
+ * lookup by cycleId so that one shared selection drives the Agent, Pipeline
+ * and Decision tabs together.
+ */
+app.get('/api/cycle-traces', (req, res) => {
+  try {
+    const data = getResultsData();
+    res.json(data.traces || {});
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 app.get('/api/cycle/:id', (req, res) => {
   try {
     const data = getResultsData();

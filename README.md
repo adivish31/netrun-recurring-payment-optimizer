@@ -13,6 +13,28 @@
 
 ---
 
+## 🏆 Buildathon Judging Criteria
+
+### 1. Problem Taste (Did we pick something that matters?)
+Yes. Businesses lose massive revenue due to failed recurring payments, but current solutions rely on generic, aggressive retry engines. Under UPI AutoPay, merchants get exactly 4 attempts per billing cycle, each requiring a 24-hour pre-debit notice. Every notice risks annoying the customer into revoking the mandate entirely. A retry is not free—it's a scarce resource with a high churn cost. NetRun solves a highly specific, high-stakes financial optimization problem: allocating a constrained retry budget across time to maximize long-term Net Recurring Value.
+
+### 2. Build Quality (Does it run, is it structured, would you trust it?)
+**Yes.** NetRun is built for integer-paise correctness. 
+- **Deterministic and Replayable**: There are no unpredictable multi-agent loops handling money.
+- **Strict Guardrails**: Governed by 18 explicitly defined constraints (verified against NPCI). 
+- **Idempotent Execution**: Concurrency edge cases (like 10 duplicate webhooks firing simultaneously) are handled not by brittle application checks, but by hard Postgres `UNIQUE` constraints.
+- **Auditable**: Every decision is logged, and the tool surface itself is the guardrail (the AI cannot compute money or execute without a server-minted token).
+
+### 3. AI Judgment (The right tool in the right place)
+We use the LLM specifically for what it excels at: **reading unstructured, messy customer replies** (like Hinglish emails: *"meri salary 8 tarikh ko aayegi bro"*) and extracting structured intent (promised dates). 
+**Where we chose NOT to use AI:** The AI does **not** author schedules, compute money, or execute payments. Everything that touches money—the planner, the rulebook, the executor—is strict deterministic code. This separation ensures the system remains mathematically optimal and perfectly auditable.
+
+### 4. Failure Recovery (What broke, and what you did about it)
+During development, the execution pipeline used an in-memory guard to prevent duplicate webhook processing. When stress-tested with ten identical webhooks delivered concurrently, the in-memory lock completely failed due to race conditions, leading to duplicate charges.
+**The Fix:** I abandoned application-level checks entirely. The idempotency guard was moved to the database level and is now enforced by a hard Postgres unique constraint. It now guarantees integer-paise correctness under any concurrent load and fails safely.
+
+---
+
 ## 1. The Problem
 
 Under UPI AutoPay, merchants get exactly 4 attempts per billing cycle. Every attempt requires a pre-debit notification sent 24 hours in advance. This notice reaches a customer who holds the right to pause or revoke their mandate entirely.

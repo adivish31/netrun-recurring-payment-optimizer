@@ -83,7 +83,12 @@ export interface PromiseToPay {
   promisedAmountPaise: number | null;
   confidence: number; // 0..1
   intent: 'will_pay' | 'cannot_pay' | 'already_paid' | 'dispute' | 'unclear';
-  source: 'regex' | 'llm' | 'llm_rejected_fallback_regex';
+  /**
+   * Where the extraction came from. 'mock' is the keyword stub that runs only
+   * under ALLOW_MOCK_LLM=1 — it is a distinct value precisely so stub output
+   * can never be counted or displayed as model output.
+   */
+  source: 'regex' | 'llm' | 'mock' | 'llm_rejected_fallback_regex';
   sourceText: string;
 }
 

@@ -221,8 +221,22 @@ export function optimize(
   let bestSchedule: Schedule | null = null;
   let bestBreakdown = emptyNrv;
 
-  let secondBestNrv = -Infinity;
-  let secondBestSchedule: Schedule | null = null;
+  /**
+   * The runner-up must be MATERIALLY different, not the chosen schedule with
+   * one slot moved to another execution window on the same day. Same-day
+   * window permutations score identically here (pSuccess is estimated per
+   * day, not per window), so reporting one as the runner-up makes the
+   * "why THIS schedule?" panel read as a zero-value decision when the real
+   * decision was between different days.
+   *
+   * Keying candidates by their multiset of DATES makes the comparison
+   * meaningful: the runner-up is the best schedule that lands on a different
+   * set of days.
+   */
+  const dateSignature = (slots: readonly Slot[]): string =>
+    slots.map((s) => s.date).join('|');
+
+  const bestByDates = new Map<string, { nrv: number; schedule: Schedule }>();
 
   let alternativesConsidered = 0;
   let timedOut = false;
@@ -267,39 +281,30 @@ export function optimize(
       const nrvResult = computeNrv(schedule, ctx.amountPaise, pdnsAlreadySent, nrvParams);
       alternativesConsidered++;
 
-      if (nrvResult.totalPaise > bestNrv) {
-        // Current best becomes runner-up
-        secondBestNrv = bestNrv;
-        secondBestSchedule = bestSchedule;
+      const scored: Schedule = {
+        slots: subset,
+        expectedNrvPaise: nrvResult.totalPaise,
+        breakdown: {
+          expectedCurrentRecoveryPaise: nrvResult.expectedCurrentRecoveryPaise,
+          expectedFutureValuePaise: nrvResult.expectedFutureValuePaise,
+          expectedInterventionCostPaise: nrvResult.expectedInterventionCostPaise,
+          expectedChurnCostPaise: nrvResult.expectedChurnCostPaise,
+        },
+        pRecoverThisCycle: 0, // Will be filled by caller if needed
+        pMandateSurvives: 0,
+      };
 
+      // Keep the best schedule seen for each distinct set of days.
+      const sig = dateSignature(subset);
+      const incumbent = bestByDates.get(sig);
+      if (!incumbent || nrvResult.totalPaise > incumbent.nrv) {
+        bestByDates.set(sig, { nrv: nrvResult.totalPaise, schedule: scored });
+      }
+
+      if (nrvResult.totalPaise > bestNrv) {
         bestNrv = nrvResult.totalPaise;
         bestBreakdown = nrvResult;
-        bestSchedule = {
-          slots: subset,
-          expectedNrvPaise: nrvResult.totalPaise,
-          breakdown: {
-            expectedCurrentRecoveryPaise: nrvResult.expectedCurrentRecoveryPaise,
-            expectedFutureValuePaise: nrvResult.expectedFutureValuePaise,
-            expectedInterventionCostPaise: nrvResult.expectedInterventionCostPaise,
-            expectedChurnCostPaise: nrvResult.expectedChurnCostPaise,
-          },
-          pRecoverThisCycle: 0, // Will be filled by caller if needed
-          pMandateSurvives: 0,
-        };
-      } else if (nrvResult.totalPaise > secondBestNrv) {
-        secondBestNrv = nrvResult.totalPaise;
-        secondBestSchedule = {
-          slots: subset,
-          expectedNrvPaise: nrvResult.totalPaise,
-          breakdown: {
-            expectedCurrentRecoveryPaise: nrvResult.expectedCurrentRecoveryPaise,
-            expectedFutureValuePaise: nrvResult.expectedFutureValuePaise,
-            expectedInterventionCostPaise: nrvResult.expectedInterventionCostPaise,
-            expectedChurnCostPaise: nrvResult.expectedChurnCostPaise,
-          },
-          pRecoverThisCycle: 0,
-          pMandateSurvives: 0,
-        };
+        bestSchedule = scored;
       }
 
       // Advance to next combination
@@ -328,10 +333,25 @@ export function optimize(
     };
   }
 
+  // The runner-up is the best alternative that lands on a DIFFERENT set of
+  // days. When every candidate shares the chosen schedule's days there is no
+  // materially different alternative, and we say so with null rather than
+  // reporting a same-day window permutation and a delta of zero.
+  let runnerUp: Schedule | null = null;
+  if (bestSchedule) {
+    const chosenSig = dateSignature(bestSchedule.slots);
+    for (const [sig, entry] of bestByDates) {
+      if (sig === chosenSig) continue;
+      if (!runnerUp || entry.nrv > runnerUp.expectedNrvPaise) {
+        runnerUp = entry.schedule;
+      }
+    }
+  }
+
   return {
     chosen: bestSchedule,
     alternativesConsidered,
-    runnerUp: secondBestSchedule,
+    runnerUp,
     timedOut: false,
     elapsedMs: Date.now() - startTime,
   };

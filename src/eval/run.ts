@@ -315,6 +315,18 @@ async function runEval() {
   }
   console.log(`Extracted ${promisesMap.size} promises.`);
   console.log(`Source distribution:`, sources);
+  // A run whose promises came from the keyword stub is not a measurement of
+  // the model's marginal value. Say so unmissably rather than let the number
+  // be quoted as if a model produced it.
+  const mockCount = sources['mock'] || 0;
+  if (mockCount > 0) {
+    console.warn(
+      `\n!!! ${mockCount} of ${promisesMap.size} promises came from the MOCK extractor ` +
+        `(ALLOW_MOCK_LLM=1). These results do NOT measure the model. Do not quote them ` +
+        `as an LLM result.\n`
+    );
+  }
+
   const fallbackCount = sources['llm_rejected_fallback_regex'] || 0;
   if (promisesMap.size > 0 && fallbackCount / promisesMap.size > 0.1) {
     console.warn(`\nWARNING: LLM fallback rate is ${((fallbackCount / promisesMap.size) * 100).toFixed(1)}%. Check API keys and rate limits.\n`);

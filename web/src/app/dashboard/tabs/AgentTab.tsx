@@ -1,295 +1,269 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars, react/no-unescaped-entities */
-import React, { useEffect, useRef, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
 
-const TOOLS = [
-  { name: 'get_customer_history', purpose: 'Read-only fetch of past behavior', badge: 'READ' },
-  { name: 'get_recent_replies', purpose: 'Read-only fetch of user text', badge: 'READ' },
-  { name: 'extract_promise', purpose: 'Text to typed intent struct', badge: 'TYPED' },
-  { name: 'propose_schedule', purpose: 'Runs the deterministic optimizer', badge: 'DETERMINISTIC' },
-  { name: 'check_policy', purpose: 'Runs the policy engine, mints a token', badge: 'DETERMINISTIC' },
-  { name: 'execute', purpose: 'HARD GATE - requires a valid token', badge: 'GATED' },
-];
+import React, { useState } from 'react';
 
-export default function AgentTab({ 
-  trace, 
-  step,
+import AgentFlowGraph from './AgentFlowGraph';
+import {
+  AGENT_CANNOT_DO,
+  DECLINED_ZERO_ATTEMPTS,
+  HIDE_DETAIL,
+  INJECTION_GUARDRAILS,
+  NO_MODEL_TEXT_NOTE,
+  OVER_CALL_LINE,
+  SHOW_DETAIL,
+  SUMMARY_PROVENANCE_NOTE,
+  TRUST_BOUNDARY_LINE,
+  captureLabel,
+  extractSourceLabel,
+  formatDate,
+  stepWord,
+  toolLabel,
+} from '../../../lib/labels';
+import {
+  agentLead,
+  isRejectedStep,
+  injectionExtractStep,
+  overCallInfo,
+  parseJson,
+  stepSummary,
+  traceOutcome,
+  type AgentTrace,
+  type Iteration,
+} from '../../../lib/traceDerive';
+
+export default function AgentTab({
+  trace,
+  revealed,
+  target,
   speed,
+  fellBackToRules,
+  onStepLanded,
+  scheduledAttempts,
+  declineClass,
   showDetail,
-  onToggleDetail
-}: { 
-  trace: any; 
-  step: number;
+  onToggleDetail,
+}: {
+  trace: AgentTrace | undefined;
+  /** steps committed to the stream — the graph's committed layer matches this */
+  revealed: number;
+  /** steps requested; the graph animates the difference and commits each */
+  target: number;
   speed: number;
+  fellBackToRules: boolean;
+  onStepLanded: () => void;
+  /** attempts the evaluated plan committed, so no lead over-claims an outcome */
+  scheduledAttempts: number;
+  /** the cycle's decline class, so a zero-budget decline is stated here too */
+  declineClass: string;
   showDetail: boolean;
   onToggleDetail: () => void;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [step]);
+  const [openStep, setOpenStep] = useState<number | null>(null);
 
-  const displayedIterations = trace?.iterations?.slice(0, step) || [];
-  const currentIteration = trace?.iterations?.[step - 1];
-  const toolCount = trace?.iterations?.length || 0;
+  if (!trace || !trace.iterations?.length) {
+    return (
+      <div className="text-sm text-[#64748B]">
+        This trace recorded no tool calls, so there is nothing to show.
+      </div>
+    );
+  }
 
-  const getLeadSentence = () => {
-    if (trace?.captured === 'quota_failed') return "API quota exhausted — trace not captured.";
-    if (!trace?.iterations?.length) return "No tool calls made.";
-    const tools = new Set(trace.iterations.map((i: any) => i.toolCalled));
-    const parts = [];
-    if (tools.has('get_customer_history')) parts.push("looked up this customer's history");
-    if (tools.has('get_recent_replies')) parts.push("read their reply");
-    if (tools.has('extract_promise')) parts.push("extracted their intent");
-    if (tools.has('propose_schedule')) parts.push("asked the optimizer for a plan");
-    if (tools.has('execute') && trace.type === 'adversarial_forged') parts.push("tried to execute with a forged token");
-    
-    let sentence = "The agent ";
-    if (parts.length > 0) {
-      if (parts.length === 1) sentence += parts[0];
-      else if (parts.length === 2) sentence += parts[0] + " and " + parts[1];
-      else sentence += parts.slice(0, -1).join(', ') + ", and " + parts[parts.length - 1];
-    }
+  const lead = agentLead(trace, scheduledAttempts);
+  const outcome = traceOutcome(trace, scheduledAttempts);
+  const steps = trace.iterations.slice(0, revealed);
+  const total = trace.iterations.length;
+  const overCall = overCallInfo(trace);
+  const injectionStep = injectionExtractStep(trace);
+  // A class that spends no budget is a decline whether or not the agent run
+  // reached that conclusion itself — say it plainly either way.
+  const zeroBudgetClass = declineClass === 'TERMINAL' || declineClass === 'AUTH';
+  const terminalDecline =
+    outcome === 'declined_terminal' || (zeroBudgetClass && scheduledAttempts === 0);
 
-    if (tools.has('check_policy')) {
-      const polIdx = trace.iterations.findIndex((i: any) => i.toolCalled === 'check_policy');
-      const polOut = trace.iterations[polIdx].outputSummary;
-      if (polOut.includes('APPROVE')) {
-         sentence += ", and the policy engine approved it.";
-      } else {
-         sentence += ", but the policy engine rejected it.";
-      }
-    } else {
-      sentence += ".";
-    }
-    return sentence;
-  };
+  const capturedOn = trace.captured === 'live' ? formatDate(trace.decision?.createdAt) : null;
+  const capture = captureLabel(trace.captured, capturedOn);
 
   return (
-    <div className="h-full flex flex-col gap-6">
-      {/* PROGRESSIVE DISCLOSURE LEAD */}
-      <div className="flex items-start justify-between border-b border-[#E2E8F0] pb-6 shrink-0">
+    <div className="flex flex-col gap-6">
+      {/* LEAD: one plain sentence, one number */}
+      <div className="flex items-start justify-between gap-8 border-b border-[#E2E8F0] pb-6">
         <div className="max-w-3xl">
-          <p className="text-xl text-[#0F172A] leading-relaxed">
-            {getLeadSentence()}
-          </p>
-          <div className="text-[#059669] font-bold mt-2">
-            {toolCount} tool calls · {trace?.fellBackToDeterministic ? '1 rule violation (escalated)' : '0 rule violations'}
+          <p className="text-xl text-[#0F172A] leading-relaxed">{lead}</p>
+
+          <div className="text-[#059669] font-bold mt-3 text-lg tabular-nums">
+            {stepWord(total)}
           </div>
+
+          {/* Volunteered, computed from the trace itself. */}
+          {overCall && (
+            <p className="text-sm text-[#B45309] mt-2 leading-relaxed max-w-2xl">
+              {OVER_CALL_LINE(
+                overCall.toolCalls,
+                overCall.modelTurns,
+                overCall.stages,
+                overCall.repeats
+              )}
+            </p>
+          )}
+
+          <div className="text-xs mt-3 text-[#64748B] leading-relaxed max-w-2xl">{capture}</div>
         </div>
-        <button 
+
+        <button
           onClick={onToggleDetail}
-          className="text-[#1D4ED8] hover:text-blue-800 text-sm font-semibold flex items-center transition-colors px-4 py-2 border border-[#E2E8F0] bg-[#F8FAFC]"
+          className="shrink-0 text-[#1D4ED8] hover:text-blue-800 text-sm font-semibold px-4 py-2 border border-[#E2E8F0] bg-[#F8FAFC] transition-colors"
         >
-          {showDetail ? 'Hide detail ▾' : 'Show detail ▸'}
+          {showDetail ? HIDE_DETAIL : SHOW_DETAIL}
         </button>
       </div>
 
-      {!showDetail ? (
-        <div className="flex flex-wrap gap-3 mt-4">
-          {displayedIterations.map((it: any, index: number) => (
-            <div key={index} className="px-4 py-2 rounded-full border border-[#1D4ED8] bg-blue-50 text-[#1D4ED8] text-xs font-bold font-mono">
-              ✓ {it.toolCalled}
-            </div>
-          ))}
-          {trace?.captured !== 'quota_failed' && step > trace?.iterations?.length && (
-            <div className="px-4 py-2 rounded-full border border-[#059669] bg-green-50 text-[#059669] text-xs font-bold font-mono">
-              ✓ COMPLETE
+      {/* TERMINAL decline gets said plainly and prominently. */}
+      {terminalDecline && (
+        <div className="border-l-4 border-[#B45309] bg-[#FFFBEB] px-6 py-4">
+          <div className="text-lg font-bold text-[#92400E]">{DECLINED_ZERO_ATTEMPTS}</div>
+        </div>
+      )}
+
+      {/* TRUST BOUNDARY — always visible, above the graph */}
+      <p className="text-sm font-semibold text-[#0F172A] border-l-4 border-[#1D4ED8] pl-4 py-1">
+        {TRUST_BOUNDARY_LINE}
+      </p>
+
+      <div className="flex gap-8 items-start relative">
+        {/* LEFT: the flow graph. An aid — never the record. */}
+        <div className="sticky top-0 shrink-0">
+          <AgentFlowGraph
+            trace={trace}
+            committed={revealed}
+            target={target}
+            speed={speed}
+            fellBackToRules={fellBackToRules}
+            onStepLanded={onStepLanded}
+          />
+        </div>
+
+        {/* RIGHT: the reasoning stream, plain HTML, the source of truth */}
+        <div className="flex-1 min-w-0 flex flex-col gap-2">
+          <div className="flex items-baseline justify-between gap-4 border-b border-[#E2E8F0] pb-2">
+            <h2 className="text-sm font-semibold tracking-widest text-[#64748B] uppercase">
+              What happened, step by step
+            </h2>
+            {/* Said once per trace, not once per step. */}
+            <span className="text-xs text-[#64748B] italic text-right">
+              {SUMMARY_PROVENANCE_NOTE}
+            </span>
+          </div>
+
+          {/* INJECTION — two guardrails, in the order they fired */}
+          {injectionStep && (
+            <div className="border border-[#E2E8F0] bg-white p-4 mb-2">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#64748B] mb-3">
+                {INJECTION_GUARDRAILS.heading}
+              </h3>
+              <ol className="space-y-3 text-sm leading-relaxed">
+                <li className="flex gap-3">
+                  <span className="font-mono font-bold text-[#059669] shrink-0">1</span>
+                  <span>
+                    {INJECTION_GUARDRAILS.first(
+                      extractSourceLabel(parseJson(injectionStep.outputSummary)?.source)
+                    )}
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="font-mono font-bold text-[#059669] shrink-0">2</span>
+                  <span>{INJECTION_GUARDRAILS.second}</span>
+                </li>
+              </ol>
+              <p className="text-xs text-[#64748B] mt-3 italic">{INJECTION_GUARDRAILS.note}</p>
             </div>
           )}
-        </div>
-      ) : (
-      <div className="flex-1 flex gap-8 overflow-hidden">
-        {/* LEFT: TOOL SURFACE */}
-        <div className="w-[400px] flex flex-col gap-6 shrink-0 overflow-y-auto pr-2">
-          <h2 className="text-sm font-semibold tracking-widest text-[#64748B] uppercase">Tool Surface</h2>
-        
-        <div className="flex flex-col gap-3 relative">
-          {TOOLS.map((tool) => {
-            const isActive = currentIteration?.toolCalled === tool.name;
-            const isCompleted = displayedIterations.some((i: any) => i.toolCalled === tool.name) && !isActive;
-            const isForgedRejection = isActive && tool.name === 'execute' && currentIteration.outputSummary?.includes('Invalid or missing policy_approval_token');
 
-            let borderClass = 'border-[#E2E8F0]';
-            if (isActive) {
-              borderClass = isForgedRejection ? 'border-red-500 bg-red-50' : 'border-[#1D4ED8] bg-blue-50';
-            }
+          {steps.map((it: Iteration) => {
+            const t = toolLabel(it.toolCalled);
+            const rejected = isRejectedStep(it, trace);
+            const isOpen = openStep === it.n;
 
             return (
-              <div 
-                key={tool.name} 
-                className={`relative p-4 border bg-white transition-colors duration-200 ${borderClass}`}
+              <div
+                key={it.n}
+                className={`step-append border-b border-dashed border-[#E2E8F0] py-3 ${
+                  rejected ? 'bg-[#FEF2F2]' : ''
+                }`}
               >
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className={`font-mono text-sm font-bold ${isActive ? 'text-[#1D4ED8]' : 'text-[#0F172A]'}`}>
-                    {tool.name}
-                  </h3>
-                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-sm border ${
-                    tool.badge === 'READ' ? 'border-[#E2E8F0] text-[#64748B]' :
-                    tool.badge === 'TYPED' ? 'border-purple-200 text-purple-700 bg-purple-50' :
-                    tool.badge === 'DETERMINISTIC' ? 'border-green-200 text-green-700 bg-green-50' :
-                    'border-orange-200 text-orange-700 bg-orange-50'
-                  }`}>
-                    {tool.badge}
+                <div className="flex items-start gap-4">
+                  <span className="font-mono text-xs text-[#64748B] w-16 shrink-0 pt-1">
+                    Step {it.n}
                   </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-sm font-semibold text-[#0F172A]">{t.label}</span>
+                      <span className="text-[10px] uppercase font-bold tracking-widest text-[#64748B]">
+                        {t.subLabel}
+                      </span>
+                    </div>
+                    <div
+                      className={`text-sm mt-1 leading-relaxed ${
+                        rejected ? 'text-[#B91C1C] font-medium' : 'text-[#475569]'
+                      }`}
+                    >
+                      {stepSummary(it)}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setOpenStep(isOpen ? null : it.n)}
+                    aria-label={isOpen ? 'Hide raw call' : 'Show raw call'}
+                    className="shrink-0 text-[#64748B] hover:text-[#0F172A] font-mono text-sm px-2 border border-[#E2E8F0] bg-white"
+                  >
+                    {isOpen ? '▾' : '…'}
+                  </button>
                 </div>
-                <p className="text-xs text-[#64748B]">{tool.purpose}</p>
-                {isCompleted && (
-                  <div className="absolute top-4 right-4 text-green-600 font-bold">✓</div>
-                )}
-                {/* Connector line anchor */}
-                {isActive && (
-                  <div className="absolute top-1/2 -right-12 w-12 h-[2px] bg-[#1D4ED8] connector-draw" />
+
+                {isOpen && (
+                  <div className="mt-3 ml-20 bg-[#0F172A] text-white font-mono text-[11px] p-4 overflow-x-auto whitespace-pre-wrap">
+                    <div className="text-[#94A3B8]">{`// tool`}</div>
+                    <div className="mb-3">{it.toolCalled}</div>
+                    <div className="text-[#94A3B8]">{`// arguments`}</div>
+                    <div className="mb-3">{it.inputSummary}</div>
+                    <div className="text-[#94A3B8]">{`// result`}</div>
+                    <div className={rejected ? 'text-red-400' : 'text-green-400'}>
+                      {it.outputSummary || '(no output — the call was refused before it ran)'}
+                    </div>
+                    <div className="text-[#94A3B8] mt-3">{`// model text`}</div>
+                    <div className="text-[#CBD5E1]">{it.reasoning}</div>
+                  </div>
                 )}
               </div>
             );
           })}
-        </div>
 
-        <div className="mt-8 border border-[#E2E8F0] bg-white p-6">
+          {/* The diagnosis about model text, stated once. */}
+          {trace.captured === 'live' && (
+            <p className="text-xs text-[#64748B] italic mt-2">{NO_MODEL_TEXT_NOTE}</p>
+          )}
+
+          {trace.fellBackToDeterministic && trace.fallbackReason && revealed >= total && (
+            <div className="mt-4 border-l-4 border-[#B45309] bg-[#FFFBEB] px-4 py-3 text-sm text-[#92400E]">
+              <span className="font-semibold">Run ended early: </span>
+              {trace.fallbackReason}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* WHAT THE AGENT CANNOT DO */}
+      {showDetail && (
+        <div className="border border-[#E2E8F0] bg-white p-6 max-w-2xl">
           <h3 className="text-xs font-bold uppercase tracking-wider text-[#B45309] mb-4 border-b border-[#E2E8F0] pb-2">
             What the agent cannot do
           </h3>
-          <ul className="text-sm text-[#0F172A] space-y-3 list-disc pl-4 marker:text-[#64748B]">
-            <li>author a schedule (only request one)</li>
-            <li>compute money</li>
-            <li>alter a policy limit</li>
-            <li>supply its own idempotency key</li>
-            <li>execute without a server-minted approval token</li>
+          <ul className="text-sm text-[#0F172A] space-y-2 list-disc pl-4 marker:text-[#64748B]">
+            {AGENT_CANNOT_DO.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
           </ul>
         </div>
-      </div>
-
-      {/* RIGHT: REASONING STREAM */}
-      <div className="flex-1 flex flex-col min-w-0">
-        <h2 className="text-sm font-semibold tracking-widest text-[#64748B] uppercase mb-6 shrink-0">Reasoning Stream</h2>
-        
-        <div ref={scrollRef} className="flex-1 overflow-y-auto pr-4 space-y-6 pb-20">
-          {!trace && <div className="text-sm text-[#64748B] italic">No trace selected.</div>}
-          
-          {trace?.captured === 'quota_failed' && (
-            <div className="border border-red-200 bg-red-50 p-4 rounded text-red-700 font-medium text-sm">
-              Not captured - API quota exhausted
-            </div>
-          )}
-
-          {trace?.captured !== 'quota_failed' && displayedIterations.map((it: any, index: number) => {
-            const isLast = index === displayedIterations.length - 1;
-            const isInjection = trace.type === 'adversarial_injection' && it.toolCalled === 'extract_promise';
-            const isForged = trace.type === 'adversarial_forged' && it.toolCalled === 'execute';
-
-            return (
-              <div 
-                key={index} 
-                className={`border-l-2 border-[#E2E8F0] pl-6 ml-2 relative turn-fade-up ${isLast ? 'border-[#1D4ED8]' : ''}`}
-              >
-                {/* Node dot */}
-                <div className={`absolute -left-[5px] top-0 w-2 h-2 rounded-full ${isLast ? 'bg-[#1D4ED8]' : 'bg-[#E2E8F0]'}`} />
-                
-                <div className="text-xs font-bold text-[#64748B] uppercase tracking-wider mb-2">
-                  Turn {it.n} of {trace.iterations.length}
-                </div>
-                
-                <div className="mb-4">
-                  <div className="text-sm font-medium text-[#0F172A] mb-1">Reasoning:</div>
-                  <div className="text-sm text-[#64748B] leading-relaxed italic border-l-2 border-[#E2E8F0] pl-4 my-2">
-                    "{it.reasoning}"
-                  </div>
-                </div>
-
-                <div className="bg-white border border-[#E2E8F0] overflow-hidden">
-                  <div className="bg-[#F8FAFC] px-4 py-2 border-b border-[#E2E8F0] flex justify-between items-center">
-                    <span className="font-mono text-xs font-bold text-[#1D4ED8]">{it.toolCalled}()</span>
-                  </div>
-                  <div className="p-4 bg-[#0F172A] text-white font-mono text-xs overflow-x-auto whitespace-pre-wrap">
-                    <div className="text-[#94A3B8] mb-1">{"// Input"}</div>
-                    <div>{it.inputSummary}</div>
-                    
-                    <div className="text-[#94A3B8] mt-4 mb-1">{"// Output"}</div>
-                    <div className={isForged ? 'text-red-400' : 'text-green-400'}>
-                      {it.outputSummary.length > 500 ? it.outputSummary.substring(0, 500) + '...' : it.outputSummary}
-                    </div>
-
-                    {it.toolCalled === 'check_policy' && it.outputSummary.includes('APPROVE') && (
-                      <div className="mt-4 p-2 bg-green-900/50 border border-green-700 rounded-sm">
-                        <span className="text-green-300">SERVER-MINTED TOKEN: </span>
-                        <span className="text-white bg-black px-1">a3f9...c21</span>
-                      </div>
-                    )}
-
-                    {it.toolCalled === 'propose_schedule' && trace?.decision?.policy?.rule_id === 'TERMINAL' && (
-                      <div className="mt-4 p-2 bg-red-900/50 border border-red-700 rounded-sm">
-                        <span className="text-red-300">TERMINAL DECLINE: </span>
-                        <span className="text-white bg-black px-1">Budget zeroed to save resources.</span>
-                      </div>
-                    )}
-
-                    {it.toolCalled === 'execute' && !isForged && (
-                      <div className="mt-4 text-[#94A3B8]">
-                        {"// IDEMPOTENCY KEY DERIVED SERVER-SIDE (NOT SUPPLIED)"}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {isInjection && (
-                  <div className="mt-4 grid grid-cols-2 gap-4">
-                    <div className="border border-[#E2E8F0] bg-white p-4">
-                      <div className="text-xs font-bold text-[#64748B] uppercase mb-2 text-center">Before Injection</div>
-                      <div className="font-mono text-xs text-[#0F172A] text-center">Schedule Hash: 8f4a2b1c</div>
-                    </div>
-                    <div className="border border-[#E2E8F0] bg-white p-4">
-                      <div className="text-xs font-bold text-[#64748B] uppercase mb-2 text-center">After Injection</div>
-                      <div className="font-mono text-xs text-[#0F172A] text-center">Schedule Hash: 8f4a2b1c</div>
-                    </div>
-                    <div className="col-span-2 text-center text-xs font-bold uppercase tracking-widest text-[#059669] bg-green-50 border border-green-200 py-2">
-                      Schedules Identical <span className="text-[#64748B] ml-2">— extracted intent: unclear</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
-          
-          {trace?.captured !== 'quota_failed' && step > trace?.iterations?.length && (
-            <div className="border-l-2 border-[#1D4ED8] pl-6 ml-2 relative turn-fade-up">
-              <div className="absolute -left-[5px] top-0 w-2 h-2 rounded-full bg-[#1D4ED8]" />
-              <div className="text-sm font-bold text-[#059669]">
-                Agent run complete.
-                {trace.fellBackToDeterministic && (
-                  <div className="text-[#B45309] font-normal mt-1">
-                    Fell back to deterministic: {trace.fallbackReason}
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      </div>
       )}
-
-      <style dangerouslySetInnerHTML={{__html: `
-        @keyframes drawLine {
-          from { width: 0; }
-          to { width: 48px; }
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .connector-draw {
-          animation: drawLine 300ms ease-out forwards;
-        }
-        .turn-fade-up {
-          animation: fadeUp 200ms ease-out forwards;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .connector-draw, .turn-fade-up { animation: none; }
-        }
-      `}} />
     </div>
   );
 }

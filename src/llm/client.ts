@@ -13,10 +13,45 @@ if (!fs.existsSync(cacheDir)) {
   fs.mkdirSync(cacheDir, { recursive: true });
 }
 
-let diskCache: Record<string, any> = {};
+/**
+ * Where a response came from. This is not cosmetic: mock output must never be
+ * consumable as model output, so provenance travels with the value and is
+ * persisted alongside it in the cache.
+ */
+export type LlmProvenance = 'llm' | 'llm_cache' | 'mock';
+
+/**
+ * Cache entries are versioned and carry their provenance. Entries written by
+ * an earlier build (bare, unversioned objects) are discarded on read rather
+ * than trusted, because that format cannot prove it came from the model — and
+ * some of it did not.
+ */
+const CACHE_VERSION = 2;
+
+interface CacheEntry {
+  v: number;
+  provenance: LlmProvenance;
+  data: unknown;
+}
+
+let diskCache: Record<string, CacheEntry> = {};
 if (fs.existsSync(cacheFilePath)) {
   try {
-    diskCache = JSON.parse(fs.readFileSync(cacheFilePath, 'utf8'));
+    const parsed = JSON.parse(fs.readFileSync(cacheFilePath, 'utf8'));
+    let discarded = 0;
+    for (const [key, value] of Object.entries<any>(parsed)) {
+      if (value && value.v === CACHE_VERSION && value.provenance === 'llm') {
+        diskCache[key] = value as CacheEntry;
+      } else {
+        discarded++;
+      }
+    }
+    if (discarded > 0) {
+      console.warn(
+        `LLM cache: discarded ${discarded} entr${discarded === 1 ? 'y' : 'ies'} that ` +
+          `cannot be attributed to a real model call. They will be re-fetched.`
+      );
+    }
   } catch (e) {
     console.warn('Failed to read LLM cache, starting fresh.');
   }
@@ -36,73 +71,128 @@ const geminiModel = genAI ? genAI.getGenerativeModel({
   generationConfig: { temperature: 0 } 
 }) : null;
 
-export async function callLlm<T>(
-  prompt: string,
-  schema: z.ZodType<T>,
-  cacheKeyPrefix: string = 'llm'
-): Promise<{ data: T | null; error: string | null }> {
-  // Use a string representation of the schema structure if possible, but Zod schema serialization is hard.
-  // We'll just hash the prompt and prefix.
-  const hash = crypto.createHash('sha256').update(prompt + cacheKeyPrefix).digest('hex');
-  const cacheKey = `${cacheKeyPrefix}_${hash}`;
+/**
+ * A keyword matcher standing in for the model. It exists ONLY so the pipeline
+ * can be exercised without an API key, it runs ONLY when ALLOW_MOCK_LLM=1, and
+ * its output is tagged `provenance: 'mock'` so no caller can present it as
+ * something the model said. It is never written to the cache.
+ */
+function mockExtraction(fullPrompt: string): string {
+  // Match against the REPLY only. Scanning the whole prompt also scans the
+  // schema template, whose "confidence": 0.9 made the day-of-month regex
+  // return 0 — which then failed Zod, so this stub always errored instead of
+  // returning anything. Keyed off the reply, it actually exercises the path.
+  const replyMatch = fullPrompt.match(/Reply:\s*"([\s\S]*)"\s*$/);
+  const prompt = replyMatch ? replyMatch[1]! : fullPrompt;
 
-  if (diskCache[cacheKey]) {
-    try {
-      return { data: schema.parse(diskCache[cacheKey]), error: null };
-    } catch (e: any) {
-      // If cached data is somehow invalid, clear it and proceed to fetch
-      delete diskCache[cacheKey];
-    }
-  }
-
-  // MOCK FOR ACCEPTANCE DUE TO API LIMITS
   let intent = 'unclear';
   let dayStr: string | null = null;
-  const replyText = prompt;
-  if (replyText.includes("tight hai") || replyText.includes("skip karo") || replyText.includes("kuch dino se")) {
+  if (prompt.includes('tight hai') || prompt.includes('skip karo') || prompt.includes('kuch dino se')) {
     intent = 'cannot_pay';
-  } else if (replyText.includes("kal hi kar diya") || replyText.includes("apne end pe") || replyText.includes("tumhe nahi mila")) {
+  } else if (prompt.includes('kal hi kar diya') || prompt.includes('apne end pe') || prompt.includes('tumhe nahi mila')) {
     intent = 'already_paid';
-  } else if (replyText.includes("fraud") || replyText.includes("kaunsa charge") || replyText.includes("subscribe nahi kiya") || replyText.includes("galat amount")) {
+  } else if (
+    prompt.includes('fraud') ||
+    prompt.includes('kaunsa charge') ||
+    prompt.includes('subscribe nahi kiya') ||
+    prompt.includes('galat amount')
+  ) {
     intent = 'dispute';
   } else {
-    const match = replyText.match(/(\d{1,2})(?:st|nd|rd|th)?/);
+    const match = prompt.match(/(\d{1,2})(?:st|nd|rd|th)?/);
     if (match) {
       intent = 'will_pay';
       dayStr = match[1]!;
     }
   }
-
-  // Simulate API delay for first 20 replies
-  const rawJson = JSON.stringify({
-    intent: intent,
+  return JSON.stringify({
+    intent,
     promised_day_of_month: dayStr ? parseInt(dayStr, 10) : null,
     promised_amount_rupees: null,
-    confidence: 0.9
+    confidence: 0.9,
   });
+}
 
-  if (Object.keys(diskCache).length < 20) {
-    await new Promise(resolve => setTimeout(resolve, 50));
+/** Models sometimes wrap JSON in a markdown fence. Strip it before parsing. */
+function stripJsonFence(raw: string): string {
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
+  return (fenced ? fenced[1]! : raw).trim();
+}
+
+export async function callLlm<T>(
+  prompt: string,
+  schema: z.ZodType<T>,
+  cacheKeyPrefix: string = 'llm'
+): Promise<{ data: T | null; error: string | null; provenance: LlmProvenance | null }> {
+  // Zod schemas do not serialise, so the cache key is the prompt plus prefix.
+  const hash = crypto.createHash('sha256').update(prompt + cacheKeyPrefix).digest('hex');
+  const cacheKey = `${cacheKeyPrefix}_${hash}`;
+
+  const cached = diskCache[cacheKey];
+  if (cached) {
+    try {
+      // Only 'llm' entries survive the load filter, so a hit here is a replay
+      // of a real model response.
+      return { data: schema.parse(cached.data), error: null, provenance: 'llm_cache' };
+    } catch {
+      delete diskCache[cacheKey];
+    }
   }
 
-  // Clean markdown JSON block
-  const match = rawJson.match(/```(?:json)?\n([\s\S]*?)\n```/);
-  const cleanJson = match ? match[1]! : rawJson;
+  const mockAllowed = process.env.ALLOW_MOCK_LLM === '1';
 
-  let parsed: any;
+  let raw: string;
+  let provenance: LlmProvenance;
+
+  if (geminiModel) {
+    try {
+      const result = await geminiModel.generateContent(prompt);
+      raw = result.response.text();
+      provenance = 'llm';
+    } catch (e: any) {
+      // A transport failure is reported, never silently mocked. The caller's
+      // deterministic fallback is the correct response to this.
+      return {
+        data: null,
+        error: `LLM call failed: ${e.message}`,
+        provenance: null,
+      };
+    }
+  } else if (mockAllowed) {
+    raw = mockExtraction(prompt);
+    provenance = 'mock';
+  } else {
+    // No key and no explicit opt-in to the mock. Refuse loudly rather than
+    // return fabricated output that would be labelled as the model's.
+    throw new Error(
+      'LLM_UNAVAILABLE: GEMINI_API_KEY is not set. Set it to make real calls, ' +
+        'or set ALLOW_MOCK_LLM=1 to run the keyword stub — whose output is ' +
+        'tagged as a mock and must never be presented as model output.'
+    );
+  }
+
+  let parsed: unknown;
   try {
-    parsed = JSON.parse(cleanJson);
-  } catch (e: any) {
-    return { data: null, error: `JSON parsing failed. Raw: ${cleanJson}` };
+    parsed = JSON.parse(stripJsonFence(raw));
+  } catch {
+    return {
+      data: null,
+      error: `JSON parsing failed. Raw: ${raw.slice(0, 300)}`,
+      provenance,
+    };
   }
 
   try {
     const validated = schema.parse(parsed);
-    diskCache[cacheKey] = validated;
-    saveCache();
-    return { data: validated, error: null };
+    // Only real model responses are persisted. Caching a mock would let it be
+    // replayed later as though it had come from the model.
+    if (provenance === 'llm') {
+      diskCache[cacheKey] = { v: CACHE_VERSION, provenance: 'llm', data: validated };
+      saveCache();
+    }
+    return { data: validated, error: null, provenance };
   } catch (e: any) {
-    return { data: null, error: `Zod validation failed: ${e.message}` };
+    return { data: null, error: `Zod validation failed: ${e.message}`, provenance };
   }
 }
 

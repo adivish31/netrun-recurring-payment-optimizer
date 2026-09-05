@@ -168,7 +168,7 @@ Only execute if the policy engine APPROVED it and gave you a token. If the polic
         toolCalled: name,
         inputSummary: JSON.stringify(args),
         outputSummary: outputSummary,
-        reasoning: "LLM decided to call " + name,
+        reasoning: text && text.trim().length > 0 ? text.trim() : "Model generated tool call without explicit reasoning text",
       });
 
       if (blockedError) {

@@ -61,13 +61,15 @@ Reply:
     };
   }
 
-  return { 
-    cycleId, 
+  return {
+    cycleId,
     promisedDate: result.data.promised_day_of_month ? `2000-01-${result.data.promised_day_of_month.toString().padStart(2, '0')}` : null,
     promisedAmountPaise: result.data.promised_amount_rupees ? result.data.promised_amount_rupees * 100 : null,
     confidence: result.data.confidence,
     intent: result.data.intent,
-    source: 'llm',
+    // Carry the client's provenance through. A mock extraction is labelled
+    // 'mock', never 'llm' — the distinction is the whole point.
+    source: result.provenance === 'mock' ? 'mock' : 'llm',
     sourceText: replyText
   };
 }

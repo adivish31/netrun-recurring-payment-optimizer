@@ -6,11 +6,11 @@
   body {
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   }
-  
+
   .tabular-data,
   .metric-value,
   .rule-id,
@@ -30,63 +30,137 @@
     background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h32v32H0z' fill='none'/%3E%3Cpath d='M31 0v32M0 31h32' stroke='rgba(15, 23, 42, 0.03)' stroke-width='1'/%3E%3C/svg%3E");
     background-size: 32px 32px;
   }
+}
 
-  /* 1. Strikethrough draw */
-  .animate-strike {
-    position: relative;
-    display: inline-block;
-  }
-  .animate-strike::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -2%;
-    width: 0;
-    height: 4px;
-    background: #DC2626;
-    animation: draw-strike 0.5s ease-out 0.4s forwards;
-  }
-  
-  /* 2. Fade up on scroll */
-  .fade-up-enter {
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
-  }
-  .fade-up-enter.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ==========================================================================
+   ANIMATION
+   Sequence and causality only. Nothing loops, parallaxes or counts up.
+   Every rule here is switched off wholesale by prefers-reduced-motion, and
+   every tab is fully functional with all of it removed.
+   ========================================================================== */
 
-  /* 3. Timeline draw */
-  .timeline-row {
-    position: relative;
-  }
-  .timeline-line {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    height: 2px;
-    background: #E2E8F0;
-    width: 0%;
-    z-index: 0;
-    transition: width 0.6s ease-out;
-  }
-  .timeline-row.is-visible .timeline-line {
-    width: 100%;
-  }
-  .timeline-marker {
-    opacity: 0;
-    transform: scale(0.5);
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-  }
-  .timeline-row.is-visible .timeline-marker {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* A tool pill or node lights, then settles — ~200ms.
+   Animating the ring rather than the element's own border means the resting
+   state is whatever the component already declares, with nothing to restore. */
+@keyframes accent-ring {
+  from { box-shadow: 0 0 0 2px #1D4ED8; }
+  to   { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0); }
+}
+
+.tool-active,
+.node-active {
+  animation: accent-ring 200ms ease-out 1;
+}
+
+/* The forged-token rejection: execute flashes red ONCE, then settles.
+   The red border that remains is state, not animation — it was refused. */
+@keyframes reject-flash {
+  from { box-shadow: 0 0 0 3px #DC2626; }
+  to   { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.tool-rejected {
+  animation: reject-flash 400ms ease-out 1;
+  border-color: #DC2626;
+}
+
+/* Connector draws from the previous step to the new one — ~300ms */
+.connector {
+  width: 0;
+  transition: width 300ms ease-out;
+}
+
+.connector-drawn {
+  width: 100%;
+}
+
+/* A step appends with an 8px fade-up — ~150ms */
+@keyframes fade-up-8 {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-append {
+  animation: fade-up-8 150ms ease-out 1;
+}
+
+/* Right-rail trace log appends its line as each tool fires */
+.log-append {
+  animation: fade-up-8 150ms ease-out 1;
+}
+
+.rail-bar {
+  transition: width 300ms ease-out;
+}
+
+/* Landing page: the hero strikethrough draws once — ~500ms */
+.animate-strike {
+  position: relative;
+  display: inline-block;
+}
+
+.animate-strike::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -2%;
+  width: 0;
+  height: 4px;
+  background: #DC2626;
+  animation: draw-strike 500ms ease-out 400ms forwards;
 }
 
 @keyframes draw-strike {
   to { width: 104%; }
 }
 
+/* Sections fade up once when scrolled into view (IntersectionObserver) */
+.fade-up-enter {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+.fade-up-enter.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   prefers-reduced-motion: skip ALL of it. Nothing above is load-bearing for
+   legibility — the end state of every rule is the readable state.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-strike::after {
+    width: 104%;
+    animation: none;
+  }
+
+  .connector {
+    width: 100%;
+    transition: none;
+  }
+
+  .fade-up-enter,
+  .step-append,
+  .log-append {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .tool-active,
+  .node-active,
+  .tool-rejected {
+    animation: none;
+  }
+}
