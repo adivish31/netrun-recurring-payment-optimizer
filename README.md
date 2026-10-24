@@ -163,7 +163,7 @@ npm run web:dev
 
 Two services: the Express API (`/`) and the Next.js dashboard (`/web`). The API serves the committed `data/generated/results.json` and `agent-traces.json`, so it runs without Postgres. Only `/webhooks/razorpay` needs `DATABASE_URL`, and only the live-agent button needs `GEMINI_API_KEY`.
 
-**Render (one click):** New → Blueprint → select this repo. `render.yaml` creates `netrun-api` and `netrun-web` and wires `NEXT_PUBLIC_API_BASE` to the API host. Fill in the optional secrets when prompted.
+**Render (one click):** New → Blueprint → select this repo. `render.yaml` creates `netrun-api` and `netrun-web`. Fill in the optional secrets when prompted, and set `NEXT_PUBLIC_API_BASE` on `netrun-web` to the API's public URL (`https://netrun-api-xxxx.onrender.com`).
 
 **Manual / other hosts:**
 

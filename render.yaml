@@ -36,10 +36,9 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22"
-      # Bare host (no scheme); web/src/lib/api.ts prefixes https://.
-      # Baked in at build time, so redeploy web if the API URL changes.
+      # Public API URL, e.g. https://netrun-api-xxxx.onrender.com.
+      # (fromService `host` is the private hostname, which browsers and
+      # free-plan services cannot reach.) Baked in at build time, so
+      # redeploy web if the API URL changes.
       - key: NEXT_PUBLIC_API_BASE
-        fromService:
-          type: web
-          name: netrun-api
-          property: host
+        sync: false
