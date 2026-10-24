@@ -13,7 +13,9 @@ dist/
 *.key                  # add
 
 # Generated data — reproducible from --seed
-data/generated/
+data/generated/*
+!data/generated/results.json
+!data/generated/agent-traces.json
 *.sqlite               # add — if you fall back from Postgres
 *.sqlite-journal       # add
 
@@ -34,3 +36,6 @@ Thumbs.db              # add
 # Demo assets — keep the repo light
 *.mp4                  # add — host the video, don't commit it
 *.mov                  # add
+# Local caches and scratch work
+.cache/
+scratch/

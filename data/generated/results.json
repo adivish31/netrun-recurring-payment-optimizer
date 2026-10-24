@@ -1,0 +1,5943 @@
+{
+  "results": {
+    "3": [
+      {
+        "strategy": "fixed",
+        "nrv": 72629793.0838434,
+        "gross": 13022580,
+        "future": 69132430.54192163,
+        "interv": 1347000,
+        "churn": 8178217.45807823,
+        "att_cyc": 2.80625,
+        "pdn_cyc": 2.79625,
+        "violations": 0
+      },
+      {
+        "strategy": "aggressive",
+        "nrv": 68919584.38736118,
+        "gross": 10856339,
+        "future": 68373346.6936806,
+        "interv": 1372800,
+        "churn": 8937301.30631941,
+        "att_cyc": 2.86,
+        "pdn_cyc": 2.93875,
+        "violations": 0
+      },
+      {
+        "strategy": "rules_only",
+        "nrv": 71833915.73271088,
+        "gross": 12966525,
+        "future": 68765219.36635539,
+        "interv": 1352400,
+        "churn": 8545428.633644512,
+        "att_cyc": 2.8175,
+        "pdn_cyc": 2.870833333333333,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun",
+        "nrv": 83104036.56447974,
+        "gross": 12078606,
+        "future": 74535639.28223974,
+        "interv": 735200,
+        "churn": 2775008.7177600022,
+        "att_cyc": 1.5316666666666667,
+        "pdn_cyc": 1.5191666666666668,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun_shrinkage",
+        "nrv": 85691342.14911966,
+        "gross": 14363546,
+        "future": 74670722.07455966,
+        "interv": 703000,
+        "churn": 2639925.925440001,
+        "att_cyc": 1.4645833333333333,
+        "pdn_cyc": 1.4520833333333334,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun_promise",
+        "nrv": 86085700.33951968,
+        "gross": 14663715,
+        "future": 74714216.66975968,
+        "interv": 695800,
+        "churn": 2596431.330240002,
+        "att_cyc": 1.4495833333333332,
+        "pdn_cyc": 1.4370833333333333,
+        "violations": 0
+      },
+      {
+        "strategy": "oracle",
+        "nrv": 90879394.66719961,
+        "gross": 19161349,
+        "future": 74850046.83359961,
+        "interv": 671400,
+        "churn": 2460601.166399999,
+        "att_cyc": 1.39875,
+        "pdn_cyc": 1.39125,
+        "violations": 0
+      }
+    ],
+    "6": [
+      {
+        "strategy": "fixed",
+        "nrv": 133584006.1676868,
+        "gross": 13022580,
+        "future": 138264861.08384326,
+        "interv": 1347000,
+        "churn": 16356434.91615646,
+        "att_cyc": 2.80625,
+        "pdn_cyc": 2.79625,
+        "violations": 0
+      },
+      {
+        "strategy": "aggressive",
+        "nrv": 128355629.77472238,
+        "gross": 10856339,
+        "future": 136746693.3873612,
+        "interv": 1372800,
+        "churn": 17874602.61263882,
+        "att_cyc": 2.86,
+        "pdn_cyc": 2.93875,
+        "violations": 0
+      },
+      {
+        "strategy": "rules_only",
+        "nrv": 132053706.46542175,
+        "gross": 12966525,
+        "future": 137530438.73271078,
+        "interv": 1352400,
+        "churn": 17090857.267289024,
+        "att_cyc": 2.8175,
+        "pdn_cyc": 2.870833333333333,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun",
+        "nrv": 154864667.12895948,
+        "gross": 12078606,
+        "future": 149071278.56447947,
+        "interv": 735200,
+        "churn": 5550017.4355200045,
+        "att_cyc": 1.5316666666666667,
+        "pdn_cyc": 1.5191666666666668,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun_shrinkage",
+        "nrv": 157722138.29823932,
+        "gross": 14363546,
+        "future": 149341444.14911932,
+        "interv": 703000,
+        "churn": 5279851.850880002,
+        "att_cyc": 1.4645833333333333,
+        "pdn_cyc": 1.4520833333333334,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun_promise",
+        "nrv": 158203485.67903936,
+        "gross": 14663715,
+        "future": 149428433.33951935,
+        "interv": 695800,
+        "churn": 5192862.660480004,
+        "att_cyc": 1.4495833333333332,
+        "pdn_cyc": 1.4370833333333333,
+        "violations": 0
+      },
+      {
+        "strategy": "oracle",
+        "nrv": 163268840.33439922,
+        "gross": 19161349,
+        "future": 149700093.66719922,
+        "interv": 671400,
+        "churn": 4921202.332799998,
+        "att_cyc": 1.39875,
+        "pdn_cyc": 1.39125,
+        "violations": 0
+      }
+    ],
+    "12": [
+      {
+        "strategy": "fixed",
+        "nrv": 255492432.3353736,
+        "gross": 13022580,
+        "future": 276529722.1676865,
+        "interv": 1347000,
+        "churn": 32712869.83231292,
+        "att_cyc": 2.80625,
+        "pdn_cyc": 2.79625,
+        "violations": 0
+      },
+      {
+        "strategy": "aggressive",
+        "nrv": 247227720.54944476,
+        "gross": 10856339,
+        "future": 273493386.7747224,
+        "interv": 1372800,
+        "churn": 35749205.22527764,
+        "att_cyc": 2.86,
+        "pdn_cyc": 2.93875,
+        "violations": 0
+      },
+      {
+        "strategy": "rules_only",
+        "nrv": 252493287.9308435,
+        "gross": 12966525,
+        "future": 275060877.46542156,
+        "interv": 1352400,
+        "churn": 34181714.53457805,
+        "att_cyc": 2.8175,
+        "pdn_cyc": 2.870833333333333,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun",
+        "nrv": 298385928.25791895,
+        "gross": 12078606,
+        "future": 298142557.12895894,
+        "interv": 735200,
+        "churn": 11100034.871040009,
+        "att_cyc": 1.5316666666666667,
+        "pdn_cyc": 1.5191666666666668,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun_shrinkage",
+        "nrv": 301783730.59647864,
+        "gross": 14363546,
+        "future": 298682888.29823864,
+        "interv": 703000,
+        "churn": 10559703.701760003,
+        "att_cyc": 1.4645833333333333,
+        "pdn_cyc": 1.4520833333333334,
+        "violations": 0
+      },
+      {
+        "strategy": "netrun_promise",
+        "nrv": 302439056.3580787,
+        "gross": 14663715,
+        "future": 298856866.6790387,
+        "interv": 695800,
+        "churn": 10385725.320960008,
+        "att_cyc": 1.4495833333333332,
+        "pdn_cyc": 1.4370833333333333,
+        "violations": 0
+      },
+      {
+        "strategy": "oracle",
+        "nrv": 308047731.66879845,
+        "gross": 19161349,
+        "future": 299400187.33439845,
+        "interv": 671400,
+        "churn": 9842404.665599996,
+        "att_cyc": 1.39875,
+        "pdn_cyc": 1.39125,
+        "violations": 0
+      }
+    ]
+  },
+  "cycles": [
+    {
+      "id": "mdt_0001_c1",
+      "mandateId": "mdt_0001",
+      "amountPaise": 12880,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0001_c2",
+      "mandateId": "mdt_0001",
+      "amountPaise": 12880,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0001_c3",
+      "mandateId": "mdt_0001",
+      "amountPaise": 12880,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0001_c4",
+      "mandateId": "mdt_0001",
+      "amountPaise": 12880,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0001_c5",
+      "mandateId": "mdt_0001",
+      "amountPaise": 12880,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0001_c6",
+      "mandateId": "mdt_0001",
+      "amountPaise": 12880,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0002_c1",
+      "mandateId": "mdt_0002",
+      "amountPaise": 7685,
+      "diagnosisClass": "TRANSIENT",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0002_c2",
+      "mandateId": "mdt_0002",
+      "amountPaise": 7685,
+      "diagnosisClass": "TRANSIENT",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0002_c3",
+      "mandateId": "mdt_0002",
+      "amountPaise": 7685,
+      "diagnosisClass": "TRANSIENT",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0002_c4",
+      "mandateId": "mdt_0002",
+      "amountPaise": 7685,
+      "diagnosisClass": "TRANSIENT",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0002_c5",
+      "mandateId": "mdt_0002",
+      "amountPaise": 7685,
+      "diagnosisClass": "TRANSIENT",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0002_c6",
+      "mandateId": "mdt_0002",
+      "amountPaise": 7685,
+      "diagnosisClass": "TRANSIENT",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0003_c1",
+      "mandateId": "mdt_0003",
+      "amountPaise": 19853,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0003_c2",
+      "mandateId": "mdt_0003",
+      "amountPaise": 19853,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0003_c3",
+      "mandateId": "mdt_0003",
+      "amountPaise": 19853,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0003_c4",
+      "mandateId": "mdt_0003",
+      "amountPaise": 19853,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0003_c5",
+      "mandateId": "mdt_0003",
+      "amountPaise": 19853,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0003_c6",
+      "mandateId": "mdt_0003",
+      "amountPaise": 19853,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0004_c1",
+      "mandateId": "mdt_0004",
+      "amountPaise": 6062,
+      "diagnosisClass": "TERMINAL",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0004_c2",
+      "mandateId": "mdt_0004",
+      "amountPaise": 6062,
+      "diagnosisClass": "TERMINAL",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0004_c3",
+      "mandateId": "mdt_0004",
+      "amountPaise": 6062,
+      "diagnosisClass": "TERMINAL",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0004_c4",
+      "mandateId": "mdt_0004",
+      "amountPaise": 6062,
+      "diagnosisClass": "TERMINAL",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0004_c5",
+      "mandateId": "mdt_0004",
+      "amountPaise": 6062,
+      "diagnosisClass": "TERMINAL",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0004_c6",
+      "mandateId": "mdt_0004",
+      "amountPaise": 6062,
+      "diagnosisClass": "TERMINAL",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0005_c1",
+      "mandateId": "mdt_0005",
+      "amountPaise": 8965,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0005_c2",
+      "mandateId": "mdt_0005",
+      "amountPaise": 8965,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0005_c3",
+      "mandateId": "mdt_0005",
+      "amountPaise": 8965,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0005_c4",
+      "mandateId": "mdt_0005",
+      "amountPaise": 8965,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0005_c5",
+      "mandateId": "mdt_0005",
+      "amountPaise": 8965,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0005_c6",
+      "mandateId": "mdt_0005",
+      "amountPaise": 8965,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0006_c1",
+      "mandateId": "mdt_0006",
+      "amountPaise": 20549,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0006_c2",
+      "mandateId": "mdt_0006",
+      "amountPaise": 20549,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0006_c3",
+      "mandateId": "mdt_0006",
+      "amountPaise": 20549,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0006_c4",
+      "mandateId": "mdt_0006",
+      "amountPaise": 20549,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0006_c5",
+      "mandateId": "mdt_0006",
+      "amountPaise": 20549,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0006_c6",
+      "mandateId": "mdt_0006",
+      "amountPaise": 20549,
+      "diagnosisClass": "UNKNOWN",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0007_c1",
+      "mandateId": "mdt_0007",
+      "amountPaise": 8194,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0007_c2",
+      "mandateId": "mdt_0007",
+      "amountPaise": 8194,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0007_c3",
+      "mandateId": "mdt_0007",
+      "amountPaise": 8194,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0007_c4",
+      "mandateId": "mdt_0007",
+      "amountPaise": 8194,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0007_c5",
+      "mandateId": "mdt_0007",
+      "amountPaise": 8194,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0007_c6",
+      "mandateId": "mdt_0007",
+      "amountPaise": 8194,
+      "diagnosisClass": "BALANCE",
+      "outcome": "lost"
+    },
+    {
+      "id": "mdt_0008_c1",
+      "mandateId": "mdt_0008",
+      "amountPaise": 3179,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0008_c2",
+      "mandateId": "mdt_0008",
+      "amountPaise": 3179,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0008_c3",
+      "mandateId": "mdt_0008",
+      "amountPaise": 3179,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0008_c4",
+      "mandateId": "mdt_0008",
+      "amountPaise": 3179,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0008_c5",
+      "mandateId": "mdt_0008",
+      "amountPaise": 3179,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0008_c6",
+      "mandateId": "mdt_0008",
+      "amountPaise": 3179,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0009_c1",
+      "mandateId": "mdt_0009",
+      "amountPaise": 21596,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    },
+    {
+      "id": "mdt_0009_c2",
+      "mandateId": "mdt_0009",
+      "amountPaise": 21596,
+      "diagnosisClass": "BALANCE",
+      "outcome": "recovered"
+    }
+  ],
+  "traces": {
+    "mdt_0001_c1": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 12880,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0001_c2": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 12880,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0001_c3": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 12880,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0001_c4": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 12880,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0001_c5": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 12880,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0001_c6": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 12880,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0002_c1": {
+      "diagnosisClass": "TRANSIENT",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-01-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-01-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-01-04",
+          "window": "early",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-01-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-01-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpNrv": 49221,
+      "nrvBreakdown": {
+        "gross": 4552,
+        "future": 46110,
+        "interv": 458,
+        "churn": 0
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0002_c2": {
+      "diagnosisClass": "TRANSIENT",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-02-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-02-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-02-04",
+          "window": "early",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-02-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-02-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpNrv": 49221,
+      "nrvBreakdown": {
+        "gross": 4552,
+        "future": 46110,
+        "interv": 458,
+        "churn": 0
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0002_c3": {
+      "diagnosisClass": "TRANSIENT",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-03-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-03-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-03-04",
+          "window": "early",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-03-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-03-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpNrv": 49221,
+      "nrvBreakdown": {
+        "gross": 4552,
+        "future": 46110,
+        "interv": 458,
+        "churn": 0
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0002_c4": {
+      "diagnosisClass": "TRANSIENT",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-04-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-04-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-04-04",
+          "window": "early",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-04-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-04-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpNrv": 49221,
+      "nrvBreakdown": {
+        "gross": 4552,
+        "future": 46110,
+        "interv": 458,
+        "churn": 0
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0002_c5": {
+      "diagnosisClass": "TRANSIENT",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-05-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-05-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-05-04",
+          "window": "early",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-05-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-05-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpNrv": 49221,
+      "nrvBreakdown": {
+        "gross": 4552,
+        "future": 46110,
+        "interv": 458,
+        "churn": 0
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0002_c6": {
+      "diagnosisClass": "TRANSIENT",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-06-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-06-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-06-04",
+          "window": "early",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-06-03",
+          "window": "midday",
+          "pSuccess": 0.25849497993377374
+        },
+        {
+          "date": "2026-06-03",
+          "window": "late",
+          "pSuccess": 0.25849497993377374
+        }
+      ],
+      "runnerUpNrv": 49221,
+      "nrvBreakdown": {
+        "gross": 4552,
+        "future": 46110,
+        "interv": 458,
+        "churn": 0
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0003_c1": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 19853,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0003_c2": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 19853,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0003_c3": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 19853,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0003_c4": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 19853,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0003_c5": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 19853,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0003_c6": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 19853,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0004_c1": {
+      "diagnosisClass": "TERMINAL",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 0,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "BLOCK:DECLINE_CLASS_STRATEGY",
+      "ruleId": "DECLINE_CLASS_STRATEGY"
+    },
+    "mdt_0004_c2": {
+      "diagnosisClass": "TERMINAL",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 0,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "BLOCK:DECLINE_CLASS_STRATEGY",
+      "ruleId": "DECLINE_CLASS_STRATEGY"
+    },
+    "mdt_0004_c3": {
+      "diagnosisClass": "TERMINAL",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 0,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "BLOCK:DECLINE_CLASS_STRATEGY",
+      "ruleId": "DECLINE_CLASS_STRATEGY"
+    },
+    "mdt_0004_c4": {
+      "diagnosisClass": "TERMINAL",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 0,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "BLOCK:DECLINE_CLASS_STRATEGY",
+      "ruleId": "DECLINE_CLASS_STRATEGY"
+    },
+    "mdt_0004_c5": {
+      "diagnosisClass": "TERMINAL",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 0,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "BLOCK:DECLINE_CLASS_STRATEGY",
+      "ruleId": "DECLINE_CLASS_STRATEGY"
+    },
+    "mdt_0004_c6": {
+      "diagnosisClass": "TERMINAL",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 0,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "BLOCK:DECLINE_CLASS_STRATEGY",
+      "ruleId": "DECLINE_CLASS_STRATEGY"
+    },
+    "mdt_0005_c1": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-02-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-01-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 55363,
+      "nrvBreakdown": {
+        "gross": 5349,
+        "future": 52069,
+        "interv": 200,
+        "churn": 1721
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0005_c2": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-03-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-02-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 55363,
+      "nrvBreakdown": {
+        "gross": 5349,
+        "future": 52069,
+        "interv": 200,
+        "churn": 1721
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0005_c3": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-04-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-03-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 55363,
+      "nrvBreakdown": {
+        "gross": 5349,
+        "future": 52069,
+        "interv": 200,
+        "churn": 1721
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0005_c4": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-05-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-04-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 55363,
+      "nrvBreakdown": {
+        "gross": 5349,
+        "future": 52069,
+        "interv": 200,
+        "churn": 1721
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0005_c5": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-06-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-05-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 55363,
+      "nrvBreakdown": {
+        "gross": 5349,
+        "future": 52069,
+        "interv": 200,
+        "churn": 1721
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0005_c6": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-07-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-06-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 55363,
+      "nrvBreakdown": {
+        "gross": 5349,
+        "future": 52069,
+        "interv": 200,
+        "churn": 1721
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0006_c1": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 20549,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0006_c2": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 20549,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0006_c3": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 20549,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0006_c4": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 20549,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0006_c5": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 20549,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0006_c6": {
+      "diagnosisClass": "UNKNOWN",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [],
+      "runnerUpSchedule": [],
+      "runnerUpNrv": 0,
+      "nrvBreakdown": {
+        "gross": 20549,
+        "future": 0,
+        "interv": 0,
+        "churn": 0
+      },
+      "alternativesConsidered": 0,
+      "policyVerdict": "NONE",
+      "ruleId": "UNKNOWN"
+    },
+    "mdt_0007_c1": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-01-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-01-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        },
+        {
+          "date": "2026-01-09",
+          "window": "midday",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpNrv": 47957,
+      "nrvBreakdown": {
+        "gross": 5182,
+        "future": 47591,
+        "interv": 200,
+        "churn": 1573
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0007_c2": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-02-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-02-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        },
+        {
+          "date": "2026-02-09",
+          "window": "midday",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpNrv": 47957,
+      "nrvBreakdown": {
+        "gross": 5182,
+        "future": 47591,
+        "interv": 200,
+        "churn": 1573
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0007_c3": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-03-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-03-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        },
+        {
+          "date": "2026-03-09",
+          "window": "midday",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpNrv": 47957,
+      "nrvBreakdown": {
+        "gross": 5182,
+        "future": 47591,
+        "interv": 200,
+        "churn": 1573
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0007_c4": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-04-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-04-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        },
+        {
+          "date": "2026-04-09",
+          "window": "midday",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpNrv": 47957,
+      "nrvBreakdown": {
+        "gross": 5182,
+        "future": 47591,
+        "interv": 200,
+        "churn": 1573
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0007_c5": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-05-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-05-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        },
+        {
+          "date": "2026-05-09",
+          "window": "midday",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpNrv": 47957,
+      "nrvBreakdown": {
+        "gross": 5182,
+        "future": 47591,
+        "interv": 200,
+        "churn": 1573
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0007_c6": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-06-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-06-09",
+          "window": "early",
+          "pSuccess": 0.6323529411764706
+        },
+        {
+          "date": "2026-06-09",
+          "window": "midday",
+          "pSuccess": 0.6323529411764706
+        }
+      ],
+      "runnerUpNrv": 47957,
+      "nrvBreakdown": {
+        "gross": 5182,
+        "future": 47591,
+        "interv": 200,
+        "churn": 1573
+      },
+      "alternativesConsidered": 7,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0008_c1": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-02-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-01-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 19503,
+      "nrvBreakdown": {
+        "gross": 1897,
+        "future": 18464,
+        "interv": 200,
+        "churn": 610
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0008_c2": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-03-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-02-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 19503,
+      "nrvBreakdown": {
+        "gross": 1897,
+        "future": 18464,
+        "interv": 200,
+        "churn": 610
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0008_c3": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-04-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-03-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 19503,
+      "nrvBreakdown": {
+        "gross": 1897,
+        "future": 18464,
+        "interv": 200,
+        "churn": 610
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0008_c4": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-05-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-04-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 19503,
+      "nrvBreakdown": {
+        "gross": 1897,
+        "future": 18464,
+        "interv": 200,
+        "churn": 610
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0008_c5": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-06-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-05-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 19503,
+      "nrvBreakdown": {
+        "gross": 1897,
+        "future": 18464,
+        "interv": 200,
+        "churn": 610
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0008_c6": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-07-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-06-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 19503,
+      "nrvBreakdown": {
+        "gross": 1897,
+        "future": 18464,
+        "interv": 200,
+        "churn": 610
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0009_c1": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-02-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-01-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 133648,
+      "nrvBreakdown": {
+        "gross": 12886,
+        "future": 125430,
+        "interv": 200,
+        "churn": 4146
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    },
+    "mdt_0009_c2": {
+      "diagnosisClass": "BALANCE",
+      "diagnosisSource": "lookup",
+      "chosenSchedule": [
+        {
+          "date": "2026-03-01",
+          "window": "early",
+          "pSuccess": 0.5966850828729282
+        }
+      ],
+      "runnerUpSchedule": [
+        {
+          "date": "2026-02-28",
+          "window": "early",
+          "pSuccess": 0.5818181818181818
+        }
+      ],
+      "runnerUpNrv": 133648,
+      "nrvBreakdown": {
+        "gross": 12886,
+        "future": 125430,
+        "interv": 200,
+        "churn": 4146
+      },
+      "alternativesConsidered": 987,
+      "policyVerdict": "APPROVE:auto-approved",
+      "ruleId": "auto-approved"
+    }
+  },
+  "grid": [
+    {
+      "hazard": 0,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 88986228,
+            "gross": 13022580,
+            "future": 77310648,
+            "interv": 1347000,
+            "churn": 0,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 86794187,
+            "gross": 10856339,
+            "future": 77310648,
+            "interv": 1372800,
+            "churn": 0,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 88924773,
+            "gross": 12966525,
+            "future": 77310648,
+            "interv": 1352400,
+            "churn": 0,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 88654054,
+            "gross": 12078606,
+            "future": 77310648,
+            "interv": 735200,
+            "churn": 0,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 90971194,
+            "gross": 14363546,
+            "future": 77310648,
+            "interv": 703000,
+            "churn": 0,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 91278563,
+            "gross": 14663715,
+            "future": 77310648,
+            "interv": 695800,
+            "churn": 0,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 95800597,
+            "gross": 19161349,
+            "future": 77310648,
+            "interv": 671400,
+            "churn": 0,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 166296876,
+            "gross": 13022580,
+            "future": 154621296,
+            "interv": 1347000,
+            "churn": 0,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 164104835,
+            "gross": 10856339,
+            "future": 154621296,
+            "interv": 1372800,
+            "churn": 0,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 166235421,
+            "gross": 12966525,
+            "future": 154621296,
+            "interv": 1352400,
+            "churn": 0,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 165964702,
+            "gross": 12078606,
+            "future": 154621296,
+            "interv": 735200,
+            "churn": 0,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 168281842,
+            "gross": 14363546,
+            "future": 154621296,
+            "interv": 703000,
+            "churn": 0,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 168589211,
+            "gross": 14663715,
+            "future": 154621296,
+            "interv": 695800,
+            "churn": 0,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 173111245,
+            "gross": 19161349,
+            "future": 154621296,
+            "interv": 671400,
+            "churn": 0,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 320918172,
+            "gross": 13022580,
+            "future": 309242592,
+            "interv": 1347000,
+            "churn": 0,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 318726131,
+            "gross": 10856339,
+            "future": 309242592,
+            "interv": 1372800,
+            "churn": 0,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 320856717,
+            "gross": 12966525,
+            "future": 309242592,
+            "interv": 1352400,
+            "churn": 0,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 320585998,
+            "gross": 12078606,
+            "future": 309242592,
+            "interv": 735200,
+            "churn": 0,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 322903138,
+            "gross": 14363546,
+            "future": 309242592,
+            "interv": 703000,
+            "churn": 0,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 323210507,
+            "gross": 14663715,
+            "future": 309242592,
+            "interv": 695800,
+            "churn": 0,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 327732541,
+            "gross": 19161349,
+            "future": 309242592,
+            "interv": 671400,
+            "churn": 0,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.005,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 84719230.06065452,
+            "gross": 13022580,
+            "future": 75177149.03032698,
+            "interv": 1347000,
+            "churn": 2133498.9696728922,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 82120051.25803287,
+            "gross": 10856339,
+            "future": 74973580.12901612,
+            "interv": 1372800,
+            "churn": 2337067.87098372,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 84461796.05725123,
+            "gross": 12966525,
+            "future": 75079159.52862538,
+            "interv": 1352400,
+            "churn": 2231488.4713744894,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 87257088.93328002,
+            "gross": 12078606,
+            "future": 76612165.46663971,
+            "interv": 735200,
+            "churn": 698482.5333599993,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 89642804.12632003,
+            "gross": 14363546,
+            "future": 76646453.06315966,
+            "interv": 703000,
+            "churn": 664194.9368399986,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 89972253.29072005,
+            "gross": 14663715,
+            "future": 76657493.14535967,
+            "interv": 695800,
+            "churn": 653154.8546399984,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 94563241.88919981,
+            "gross": 19161349,
+            "future": 76691970.44459966,
+            "interv": 671400,
+            "churn": 618677.5553999991,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 157762880.12130913,
+            "gross": 13022580,
+            "future": 150354298.06065395,
+            "interv": 1347000,
+            "churn": 4266997.9393457845,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 154756563.51606557,
+            "gross": 10856339,
+            "future": 149947160.25803223,
+            "interv": 1372800,
+            "churn": 4674135.74196744,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 157309467.11450255,
+            "gross": 12966525,
+            "future": 150158319.05725077,
+            "interv": 1352400,
+            "churn": 4462976.942748979,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 163170771.86655998,
+            "gross": 12078606,
+            "future": 153224330.93327942,
+            "interv": 735200,
+            "churn": 1396965.0667199986,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 165625062.25263998,
+            "gross": 14363546,
+            "future": 153292906.12631932,
+            "interv": 703000,
+            "churn": 1328389.8736799972,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 165976591.58143994,
+            "gross": 14663715,
+            "future": 153314986.29071933,
+            "interv": 695800,
+            "churn": 1306309.7092799968,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 170636534.77839956,
+            "gross": 19161349,
+            "future": 153383940.88919932,
+            "interv": 671400,
+            "churn": 1237355.1107999983,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 303850180.2426174,
+            "gross": 13022580,
+            "future": 300708596.1213079,
+            "interv": 1347000,
+            "churn": 8533995.878691569,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 300029588.03213084,
+            "gross": 10856339,
+            "future": 299894320.51606447,
+            "interv": 1372800,
+            "churn": 9348271.48393488,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 303004809.2290047,
+            "gross": 12966525,
+            "future": 300316638.11450154,
+            "interv": 1352400,
+            "churn": 8925953.885497957,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 314998137.7331194,
+            "gross": 12078606,
+            "future": 306448661.86655885,
+            "interv": 735200,
+            "churn": 2793930.133439997,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 317589578.50527954,
+            "gross": 14363546,
+            "future": 306585812.25263864,
+            "interv": 703000,
+            "churn": 2656779.7473599943,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 317985268.1628797,
+            "gross": 14663715,
+            "future": 306629972.58143866,
+            "interv": 695800,
+            "churn": 2612619.4185599936,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 322783120.5567999,
+            "gross": 19161349,
+            "future": 306767881.77839863,
+            "interv": 671400,
+            "churn": 2474710.2215999966,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.01,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 80572345.1958033,
+            "gross": 13022580,
+            "future": 73103706.59790185,
+            "interv": 1347000,
+            "churn": 4206941.402098335,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 77584702.68674402,
+            "gross": 10856339,
+            "future": 72705905.84337197,
+            "interv": 1372800,
+            "churn": 4604742.156628055,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 80127298.07196055,
+            "gross": 12966525,
+            "future": 72911910.53598037,
+            "interv": 1352400,
+            "churn": 4398737.464019745,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 85866431.00511965,
+            "gross": 12078606,
+            "future": 75916836.50256021,
+            "interv": 735200,
+            "churn": 1393811.4974400003,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 88320032.19327945,
+            "gross": 14363546,
+            "future": 75985067.09664012,
+            "interv": 703000,
+            "churn": 1325580.903360001,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 88671339.61087947,
+            "gross": 14663715,
+            "future": 76007036.3054401,
+            "interv": 695800,
+            "churn": 1303611.6945600002,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 93330589.79679956,
+            "gross": 19161349,
+            "future": 76075644.39839993,
+            "interv": 671400,
+            "churn": 1235003.6016000016,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 149469110.39160633,
+            "gross": 13022580,
+            "future": 146207413.1958037,
+            "interv": 1347000,
+            "churn": 8413882.80419667,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 145685866.37348735,
+            "gross": 10856339,
+            "future": 145411811.68674394,
+            "interv": 1372800,
+            "churn": 9209484.31325611,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 148640471.14392072,
+            "gross": 12966525,
+            "future": 145823821.07196075,
+            "interv": 1352400,
+            "churn": 8797474.92803949,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 160389456.0102393,
+            "gross": 12078606,
+            "future": 151833673.00512043,
+            "interv": 735200,
+            "churn": 2787622.9948800006,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 162979518.38655907,
+            "gross": 14363546,
+            "future": 151970134.19328025,
+            "interv": 703000,
+            "churn": 2651161.806720002,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 163374764.22175905,
+            "gross": 14663715,
+            "future": 152014072.6108802,
+            "interv": 695800,
+            "churn": 2607223.3891200004,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 168171230.5935992,
+            "gross": 19161349,
+            "future": 152151288.79679987,
+            "interv": 671400,
+            "churn": 2470007.203200003,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 287262640.78321195,
+            "gross": 13022580,
+            "future": 292414826.3916074,
+            "interv": 1347000,
+            "churn": 16827765.60839334,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 281888193.7469745,
+            "gross": 10856339,
+            "future": 290823623.3734879,
+            "interv": 1372800,
+            "churn": 18418968.62651222,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 285666817.28784066,
+            "gross": 12966525,
+            "future": 291647642.1439215,
+            "interv": 1352400,
+            "churn": 17594949.85607898,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 309435506.0204793,
+            "gross": 12078606,
+            "future": 303667346.01024085,
+            "interv": 735200,
+            "churn": 5575245.989760001,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 312298490.7731187,
+            "gross": 14363546,
+            "future": 303940268.3865605,
+            "interv": 703000,
+            "churn": 5302323.613440004,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 312781613.443519,
+            "gross": 14663715,
+            "future": 304028145.2217604,
+            "interv": 695800,
+            "churn": 5214446.778240001,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 317852512.18719894,
+            "gross": 19161349,
+            "future": 304302577.59359974,
+            "interv": 671400,
+            "churn": 4940014.406400006,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.015,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 76543287.9371353,
+            "gross": 13022580,
+            "future": 71089177.96856771,
+            "interv": 1347000,
+            "churn": 6221470.031432262,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 73185439.56060608,
+            "gross": 10856339,
+            "future": 70506274.28030333,
+            "interv": 1372800,
+            "churn": 6804373.719696866,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 75918817.76650108,
+            "gross": 12966525,
+            "future": 70807670.38325079,
+            "interv": 1352400,
+            "churn": 6502977.616749309,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 84482080.21552026,
+            "gross": 12078606,
+            "future": 75224661.10776012,
+            "interv": 735200,
+            "churn": 2085986.8922400041,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 87002878.20088042,
+            "gross": 14363546,
+            "future": 75326490.10044013,
+            "interv": 703000,
+            "churn": 1984157.8995600042,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 87375821.96048044,
+            "gross": 14663715,
+            "future": 75359277.48024014,
+            "interv": 695800,
+            "churn": 1951370.5197600052,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 92102640.72280031,
+            "gross": 19161349,
+            "future": 75461669.8614,
+            "interv": 671400,
+            "churn": 1848978.1386000067,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 141410995.87427104,
+            "gross": 13022580,
+            "future": 142178355.93713543,
+            "interv": 1347000,
+            "churn": 12442940.062864523,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 136887340.12121212,
+            "gross": 10856339,
+            "future": 141012548.56060666,
+            "interv": 1372800,
+            "churn": 13608747.439393733,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 140223510.5330026,
+            "gross": 12966525,
+            "future": 141615340.76650158,
+            "interv": 1352400,
+            "churn": 13005955.233498618,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 157620754.43104023,
+            "gross": 12078606,
+            "future": 150449322.21552023,
+            "interv": 735200,
+            "churn": 4171973.7844800083,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 160345210.40176034,
+            "gross": 14363546,
+            "future": 150652980.20088026,
+            "interv": 703000,
+            "churn": 3968315.7991200085,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 160783728.92096043,
+            "gross": 14663715,
+            "future": 150718554.96048027,
+            "interv": 695800,
+            "churn": 3902741.0395200104,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 165715332.4456008,
+            "gross": 19161349,
+            "future": 150923339.7228,
+            "interv": 671400,
+            "churn": 3697956.2772000134,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 271146411.7485411,
+            "gross": 13022580,
+            "future": 284356711.87427086,
+            "interv": 1347000,
+            "churn": 24885880.125729047,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 264291141.24242407,
+            "gross": 10856339,
+            "future": 282025097.1212133,
+            "interv": 1372800,
+            "churn": 27217494.878787465,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 268832896.0660046,
+            "gross": 12966525,
+            "future": 283230681.53300315,
+            "interv": 1352400,
+            "churn": 26011910.466997236,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 303898102.86207944,
+            "gross": 12078606,
+            "future": 300898644.43104047,
+            "interv": 735200,
+            "churn": 8343947.568960017,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 307029874.80351985,
+            "gross": 14363546,
+            "future": 301305960.4017605,
+            "interv": 703000,
+            "churn": 7936631.598240017,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 307599542.8419199,
+            "gross": 14663715,
+            "future": 301437109.92096055,
+            "interv": 695800,
+            "churn": 7805482.079040021,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 312940715.8912007,
+            "gross": 19161349,
+            "future": 301846679.4456,
+            "interv": 671400,
+            "churn": 7395912.554400027,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.02,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 72629793.08384353,
+            "gross": 13022580,
+            "future": 69132430.54192163,
+            "interv": 1347000,
+            "churn": 8178217.45807823,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 68919584.38736138,
+            "gross": 10856339,
+            "future": 68373346.6936806,
+            "interv": 1372800,
+            "churn": 8937301.30631941,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 71833915.73271109,
+            "gross": 12966525,
+            "future": 68765219.36635539,
+            "interv": 1352400,
+            "churn": 8545428.633644512,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 83104036.56447983,
+            "gross": 12078606,
+            "future": 74535639.28223974,
+            "interv": 735200,
+            "churn": 2775008.7177600022,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 85691342.14911973,
+            "gross": 14363546,
+            "future": 74670722.07455966,
+            "interv": 703000,
+            "churn": 2639925.925440001,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 86085700.33951977,
+            "gross": 14663715,
+            "future": 74714216.66975968,
+            "interv": 695800,
+            "churn": 2596431.330240002,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 90879394.66719985,
+            "gross": 19161349,
+            "future": 74850046.83359961,
+            "interv": 671400,
+            "churn": 2460601.166399999,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 133584006.16768713,
+            "gross": 13022580,
+            "future": 138264861.08384326,
+            "interv": 1347000,
+            "churn": 16356434.91615646,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 128355629.77472273,
+            "gross": 10856339,
+            "future": 136746693.3873612,
+            "interv": 1372800,
+            "churn": 17874602.61263882,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 132053706.46542223,
+            "gross": 12966525,
+            "future": 137530438.73271078,
+            "interv": 1352400,
+            "churn": 17090857.267289024,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 154864667.1289602,
+            "gross": 12078606,
+            "future": 149071278.56447947,
+            "interv": 735200,
+            "churn": 5550017.4355200045,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 157722138.29823995,
+            "gross": 14363546,
+            "future": 149341444.14911932,
+            "interv": 703000,
+            "churn": 5279851.850880002,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 158203485.67903998,
+            "gross": 14663715,
+            "future": 149428433.33951935,
+            "interv": 695800,
+            "churn": 5192862.660480004,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 163268840.33439982,
+            "gross": 19161349,
+            "future": 149700093.66719922,
+            "interv": 671400,
+            "churn": 4921202.332799998,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 255492432.33537433,
+            "gross": 13022580,
+            "future": 276529722.1676865,
+            "interv": 1347000,
+            "churn": 32712869.83231292,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 247227720.5494453,
+            "gross": 10856339,
+            "future": 273493386.7747224,
+            "interv": 1372800,
+            "churn": 35749205.22527764,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 252493287.93084452,
+            "gross": 12966525,
+            "future": 275060877.46542156,
+            "interv": 1352400,
+            "churn": 34181714.53457805,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 298385928.2579202,
+            "gross": 12078606,
+            "future": 298142557.12895894,
+            "interv": 735200,
+            "churn": 11100034.871040009,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 301783730.596481,
+            "gross": 14363546,
+            "future": 298682888.29823864,
+            "interv": 703000,
+            "churn": 10559703.701760003,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 302439056.3580809,
+            "gross": 14663715,
+            "future": 298856866.6790387,
+            "interv": 695800,
+            "churn": 10385725.320960008,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 308047731.668801,
+            "gross": 19161349,
+            "future": 299400187.33439845,
+            "interv": 671400,
+            "churn": 9842404.665599996,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.025,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 68829615.70262519,
+            "gross": 13022580,
+            "future": 67232341.85131231,
+            "interv": 1347000,
+            "churn": 10078306.148687404,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 64784483.90801944,
+            "gross": 10856339,
+            "future": 66305796.4540094,
+            "interv": 1372800,
+            "churn": 11004851.545990255,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 67870174.43189132,
+            "gross": 12966525,
+            "future": 66783348.715945356,
+            "interv": 1352400,
+            "churn": 10527299.284054337,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 81732300.0519999,
+            "gross": 12078606,
+            "future": 73849771.02599974,
+            "interv": 735200,
+            "churn": 3460876.9740000046,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 84385424.03799988,
+            "gross": 14363546,
+            "future": 74017763.01899984,
+            "interv": 703000,
+            "churn": 3292884.981000006,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 84800974.74799992,
+            "gross": 14663715,
+            "future": 74071853.87399985,
+            "interv": 695800,
+            "churn": 3238794.1260000053,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 89660851.62999986,
+            "gross": 19161349,
+            "future": 74240775.31499986,
+            "interv": 671400,
+            "churn": 3069872.685000009,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 125983651.40525052,
+            "gross": 13022580,
+            "future": 134464683.70262462,
+            "interv": 1347000,
+            "churn": 20156612.297374807,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 120085428.81603871,
+            "gross": 10856339,
+            "future": 132611592.9080188,
+            "interv": 1372800,
+            "churn": 22009703.09198051,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 124126223.86378261,
+            "gross": 12966525,
+            "future": 133566697.43189071,
+            "interv": 1352400,
+            "churn": 21054598.568108674,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 152121194.10399973,
+            "gross": 12078606,
+            "future": 147699542.05199948,
+            "interv": 735200,
+            "churn": 6921753.948000009,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 155110302.07599965,
+            "gross": 14363546,
+            "future": 148035526.0379997,
+            "interv": 703000,
+            "churn": 6585769.962000012,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 155634034.49599972,
+            "gross": 14663715,
+            "future": 148143707.7479997,
+            "interv": 695800,
+            "churn": 6477588.252000011,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 160831754.25999957,
+            "gross": 19161349,
+            "future": 148481550.62999973,
+            "interv": 671400,
+            "churn": 6139745.370000018,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 240291722.81050083,
+            "gross": 13022580,
+            "future": 268929367.40524924,
+            "interv": 1347000,
+            "churn": 40313224.594749615,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 230687318.63207746,
+            "gross": 10856339,
+            "future": 265223185.8160376,
+            "interv": 1372800,
+            "churn": 44019406.18396102,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 236638322.727565,
+            "gross": 12966525,
+            "future": 267133394.86378142,
+            "interv": 1352400,
+            "churn": 42109197.13621735,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 292898982.2079988,
+            "gross": 12078606,
+            "future": 295399084.10399896,
+            "interv": 735200,
+            "churn": 13843507.896000018,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 296560058.1519986,
+            "gross": 14363546,
+            "future": 296071052.0759994,
+            "interv": 703000,
+            "churn": 13171539.924000025,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 297300153.9919985,
+            "gross": 14663715,
+            "future": 296287415.4959994,
+            "interv": 695800,
+            "churn": 12955176.504000021,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 303173559.51999867,
+            "gross": 19161349,
+            "future": 296963101.25999945,
+            "interv": 671400,
+            "churn": 12279490.740000036,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.03,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 65140531.127682984,
+            "gross": 13022580,
+            "future": 65387799.56384106,
+            "interv": 1347000,
+            "churn": 11922848.436158584,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 60777509.09686074,
+            "gross": 10856339,
+            "future": 64302309.04843007,
+            "interv": 1372800,
+            "churn": 13008338.951569652,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 64025198.19480859,
+            "gross": 12966525,
+            "future": 64860860.59740392,
+            "interv": 1352400,
+            "churn": 12449787.40259576,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 80366870.67807992,
+            "gross": 12078606,
+            "future": 73167056.33903958,
+            "interv": 735200,
+            "churn": 4143591.660960004,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 83085123.86751972,
+            "gross": 14363546,
+            "future": 73367612.93375961,
+            "interv": 703000,
+            "churn": 3943035.0662400024,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 83521645.18591973,
+            "gross": 14663715,
+            "future": 73432189.09295961,
+            "interv": 695800,
+            "churn": 3878458.907040004,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 88447011.61119987,
+            "gross": 19161349,
+            "future": 73633855.30559953,
+            "interv": 671400,
+            "churn": 3676792.6944000004,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 118605482.25536577,
+            "gross": 13022580,
+            "future": 130775599.12768212,
+            "interv": 1347000,
+            "churn": 23845696.87231717,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 112071479.19372155,
+            "gross": 10856339,
+            "future": 128604618.09686014,
+            "interv": 1372800,
+            "churn": 26016677.903139304,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 116436271.38961709,
+            "gross": 12966525,
+            "future": 129721721.19480784,
+            "interv": 1352400,
+            "churn": 24899574.80519152,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 149390335.35616013,
+            "gross": 12078606,
+            "future": 146334112.67807916,
+            "interv": 735200,
+            "churn": 8287183.321920008,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 152509701.73503995,
+            "gross": 14363546,
+            "future": 146735225.86751923,
+            "interv": 703000,
+            "churn": 7886070.132480005,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 153075375.37184,
+            "gross": 14663715,
+            "future": 146864378.18591923,
+            "interv": 695800,
+            "churn": 7756917.814080008,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 158404074.2223998,
+            "gross": 19161349,
+            "future": 147267710.61119905,
+            "interv": 671400,
+            "churn": 7353585.388800001,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 225535384.51073173,
+            "gross": 13022580,
+            "future": 261551198.25536424,
+            "interv": 1347000,
+            "churn": 47691393.74463434,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 214659419.3874429,
+            "gross": 10856339,
+            "future": 257209236.19372028,
+            "interv": 1372800,
+            "churn": 52033355.80627861,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 221258417.77923423,
+            "gross": 12966525,
+            "future": 259443442.38961568,
+            "interv": 1352400,
+            "churn": 49799149.61038304,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 287437264.7123199,
+            "gross": 12078606,
+            "future": 292668225.3561583,
+            "interv": 735200,
+            "churn": 16574366.643840017,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 291358857.47007996,
+            "gross": 14363546,
+            "future": 293470451.73503846,
+            "interv": 703000,
+            "churn": 15772140.26496001,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 292182835.74367994,
+            "gross": 14663715,
+            "future": 293728756.37183845,
+            "interv": 695800,
+            "churn": 15513835.628160017,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 298318199.4447996,
+            "gross": 19161349,
+            "future": 294535421.2223981,
+            "interv": 671400,
+            "churn": 14707170.777600002,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.035,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 61560334.96072339,
+            "gross": 13022580,
+            "future": 63597701.480361775,
+            "interv": 1347000,
+            "churn": 13712946.519638207,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 56896055.161434054,
+            "gross": 10856339,
+            "future": 62361582.080717035,
+            "interv": 1372800,
+            "churn": 14949065.919282947,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 60296613.22169331,
+            "gross": 12966525,
+            "future": 62996568.110846676,
+            "interv": 1352400,
+            "churn": 14314079.889153294,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 79007748.44271997,
+            "gross": 12078606,
+            "future": 72487495.22135997,
+            "interv": 735200,
+            "churn": 4823152.778640004,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 81790441.63767998,
+            "gross": 14363546,
+            "future": 72720271.81884007,
+            "interv": 703000,
+            "churn": 4590376.181160006,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 82247711.65327996,
+            "gross": 14663715,
+            "future": 72795222.32664004,
+            "interv": 695800,
+            "churn": 4515425.67336001,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 87237874.61079986,
+            "gross": 19161349,
+            "future": 73029286.80540003,
+            "interv": 671400,
+            "churn": 4281361.19460001,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 111445089.92144682,
+            "gross": 13022580,
+            "future": 127195402.96072355,
+            "interv": 1347000,
+            "churn": 27425893.039276414,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 104308571.32286803,
+            "gross": 10856339,
+            "future": 124723164.16143407,
+            "interv": 1372800,
+            "churn": 29898131.838565893,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 108979101.44338664,
+            "gross": 12966525,
+            "future": 125993136.22169335,
+            "interv": 1352400,
+            "churn": 28628159.77830659,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 146672090.88543996,
+            "gross": 12078606,
+            "future": 144974990.44271994,
+            "interv": 735200,
+            "churn": 9646305.557280008,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 149920337.27536,
+            "gross": 14363546,
+            "future": 145440543.63768014,
+            "interv": 703000,
+            "churn": 9180752.362320011,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 150527508.30656007,
+            "gross": 14663715,
+            "future": 145590444.65328008,
+            "interv": 695800,
+            "churn": 9030851.34672002,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 155985800.22160003,
+            "gross": 19161349,
+            "future": 146058573.61080006,
+            "interv": 671400,
+            "churn": 8562722.38920002,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 211214599.84289345,
+            "gross": 13022580,
+            "future": 254390805.9214471,
+            "interv": 1347000,
+            "churn": 54851786.07855283,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 199133603.6457361,
+            "gross": 10856339,
+            "future": 249446328.32286814,
+            "interv": 1372800,
+            "churn": 59796263.67713179,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 206344077.88677317,
+            "gross": 12966525,
+            "future": 251986272.4433867,
+            "interv": 1352400,
+            "churn": 57256319.55661318,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 282000775.7708804,
+            "gross": 12078606,
+            "future": 289949980.8854399,
+            "interv": 735200,
+            "churn": 19292611.114560015,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 286180128.5507207,
+            "gross": 14363546,
+            "future": 290881087.2753603,
+            "interv": 703000,
+            "churn": 18361504.724640023,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 287087101.61312073,
+            "gross": 14663715,
+            "future": 291180889.30656016,
+            "interv": 695800,
+            "churn": 18061702.69344004,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 293481651.4432004,
+            "gross": 19161349,
+            "future": 292117147.2216001,
+            "interv": 671400,
+            "churn": 17125444.77840004,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.04,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 58086843.070958965,
+            "gross": 13022580,
+            "future": 61860955.53547948,
+            "interv": 1347000,
+            "churn": 15449692.464520438,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 53137541.54255746,
+            "gross": 10856339,
+            "future": 60482325.2712788,
+            "interv": 1372800,
+            "churn": 16828322.7287212,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 56682067.582241036,
+            "gross": 12966525,
+            "future": 61189295.29112053,
+            "interv": 1352400,
+            "churn": 16121352.70887943,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 77654933.34591945,
+            "gross": 12078606,
+            "future": 71811087.67295992,
+            "interv": 735200,
+            "churn": 5499560.327039995,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 80501377.3484795,
+            "gross": 14363546,
+            "future": 72075739.67423996,
+            "interv": 703000,
+            "churn": 5234908.325760003,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 80979174.1500795,
+            "gross": 14663715,
+            "future": 72160953.57503994,
+            "interv": 695800,
+            "churn": 5149694.424959999,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 86033440.62879974,
+            "gross": 19161349,
+            "future": 72427069.81439994,
+            "interv": 671400,
+            "churn": 4883578.185599985,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 104498106.14191796,
+            "gross": 13022580,
+            "future": 123721911.07095896,
+            "interv": 1347000,
+            "churn": 30899384.929040875,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 96791544.08511506,
+            "gross": 10856339,
+            "future": 120964650.5425576,
+            "interv": 1372800,
+            "churn": 33656645.4574424,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 101750010.16448207,
+            "gross": 12966525,
+            "future": 122378590.58224106,
+            "interv": 1352400,
+            "churn": 32242705.41775886,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 143966460.6918395,
+            "gross": 12078606,
+            "future": 143622175.34591985,
+            "interv": 735200,
+            "churn": 10999120.65407999,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 147342208.6969597,
+            "gross": 14363546,
+            "future": 144151479.34847993,
+            "interv": 703000,
+            "churn": 10469816.651520006,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 147990433.30015978,
+            "gross": 14663715,
+            "future": 144321907.15007988,
+            "interv": 695800,
+            "churn": 10299388.849919997,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 153576932.25759977,
+            "gross": 19161349,
+            "future": 144854139.6287999,
+            "interv": 671400,
+            "churn": 9767156.37119997,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 197320632.283836,
+            "gross": 13022580,
+            "future": 247443822.1419179,
+            "interv": 1347000,
+            "churn": 61798769.85808175,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 184099549.1702303,
+            "gross": 10856339,
+            "future": 241929301.0851152,
+            "interv": 1372800,
+            "churn": 67313290.9148848,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 191885895.32896453,
+            "gross": 12966525,
+            "future": 244757181.16448212,
+            "interv": 1352400,
+            "churn": 64485410.83551772,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 276589515.38367933,
+            "gross": 12078606,
+            "future": 287244350.6918397,
+            "interv": 735200,
+            "churn": 21998241.30815998,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 281023871.3939193,
+            "gross": 14363546,
+            "future": 288302958.69695985,
+            "interv": 703000,
+            "churn": 20939633.303040013,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 282012951.60031945,
+            "gross": 14663715,
+            "future": 288643814.30015975,
+            "interv": 695800,
+            "churn": 20598777.699839994,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 288663915.5152,
+            "gross": 19161349,
+            "future": 289708279.2575998,
+            "interv": 671400,
+            "churn": 19534312.74239994,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.045,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 54717891.59510615,
+            "gross": 13022580,
+            "future": 60176479.797552906,
+            "interv": 1347000,
+            "churn": 17134168.20244692,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 49499411.91431865,
+            "gross": 10856339,
+            "future": 58663260.45715923,
+            "interv": 1372800,
+            "churn": 18647387.54284078,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 53179231.215611376,
+            "gross": 12966525,
+            "future": 59437877.107805565,
+            "interv": 1352400,
+            "churn": 17872770.892194342,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 76308425.38767996,
+            "gross": 12078606,
+            "future": 71137833.69384027,
+            "interv": 735200,
+            "churn": 6172814.306160008,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 79217930.99991976,
+            "gross": 14363546,
+            "future": 71434016.49996024,
+            "interv": 703000,
+            "churn": 5876631.50004,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 79716032.67631976,
+            "gross": 14663715,
+            "future": 71529382.8381602,
+            "interv": 695800,
+            "churn": 5781265.161839994,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 84833709.66519962,
+            "gross": 19161349,
+            "future": 71827204.33259986,
+            "interv": 671400,
+            "churn": 5483443.667399981,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 97760203.1902125,
+            "gross": 13022580,
+            "future": 120352959.59510581,
+            "interv": 1347000,
+            "churn": 34268336.40489384,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 89515284.82863729,
+            "gross": 10856339,
+            "future": 117326520.91431846,
+            "interv": 1372800,
+            "churn": 37294775.08568156,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 94744337.43122295,
+            "gross": 12966525,
+            "future": 118875754.21561113,
+            "interv": 1352400,
+            "churn": 35745541.784388684,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 141273444.77536,
+            "gross": 12078606,
+            "future": 142275667.38768053,
+            "interv": 735200,
+            "churn": 12345628.612320015,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 144775315.99984008,
+            "gross": 14363546,
+            "future": 142868032.9999205,
+            "interv": 703000,
+            "churn": 11753263.00008,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 145464150.3526401,
+            "gross": 14663715,
+            "future": 143058765.6763204,
+            "interv": 695800,
+            "churn": 11562530.323679987,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 151177470.33039972,
+            "gross": 19161349,
+            "future": 143654408.66519973,
+            "interv": 671400,
+            "churn": 10966887.334799962,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 183844826.38042498,
+            "gross": 13022580,
+            "future": 240705919.19021162,
+            "interv": 1347000,
+            "churn": 68536672.80978768,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 169547030.65727463,
+            "gross": 10856339,
+            "future": 234653041.8286369,
+            "interv": 1372800,
+            "churn": 74589550.17136312,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 177874549.86244592,
+            "gross": 12966525,
+            "future": 237751508.43122226,
+            "interv": 1352400,
+            "churn": 71491083.56877737,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 271203483.55071986,
+            "gross": 12078606,
+            "future": 284551334.77536106,
+            "interv": 735200,
+            "churn": 24691257.22464003,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 275890085.9996796,
+            "gross": 14363546,
+            "future": 285736065.999841,
+            "interv": 703000,
+            "churn": 23506526.00016,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 276960385.70527977,
+            "gross": 14663715,
+            "future": 286117531.3526408,
+            "interv": 695800,
+            "churn": 23125060.647359975,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 283864991.66080016,
+            "gross": 19161349,
+            "future": 287308817.33039945,
+            "interv": 671400,
+            "churn": 21933774.669599924,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.05,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 51451336.93738583,
+            "gross": 13022580,
+            "future": 58543202.46869279,
+            "interv": 1347000,
+            "churn": 18767445.53130718,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 45979134.18407333,
+            "gross": 10856339,
+            "future": 56903121.59203654,
+            "interv": 1372800,
+            "churn": 20407526.40796338,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 49785795.93042816,
+            "gross": 12966525,
+            "future": 57741159.465213954,
+            "interv": 1352400,
+            "churn": 19569488.534786027,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 74968224.5680004,
+            "gross": 12078606,
+            "future": 70467733.28399974,
+            "interv": 735200,
+            "churn": 6842914.716000002,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 77940102.59200037,
+            "gross": 14363546,
+            "future": 70795102.29599975,
+            "interv": 703000,
+            "churn": 6515545.704000001,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 78458287.23200032,
+            "gross": 14663715,
+            "future": 70900510.11599974,
+            "interv": 695800,
+            "churn": 6410137.884000004,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 83638681.72000033,
+            "gross": 19161349,
+            "future": 71229690.35999963,
+            "interv": 671400,
+            "churn": 6080957.640000013,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 91227093.87477158,
+            "gross": 13022580,
+            "future": 117086404.93738557,
+            "interv": 1347000,
+            "churn": 37534891.06261436,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 82474729.36814651,
+            "gross": 10856339,
+            "future": 113806243.18407308,
+            "interv": 1372800,
+            "churn": 40815052.81592676,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 87957466.86085619,
+            "gross": 12966525,
+            "future": 115482318.93042791,
+            "interv": 1352400,
+            "churn": 39138977.069572054,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 138593043.13600147,
+            "gross": 12078606,
+            "future": 140935466.56799948,
+            "interv": 735200,
+            "churn": 13685829.432000004,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 142219659.1840011,
+            "gross": 14363546,
+            "future": 141590204.5919995,
+            "interv": 703000,
+            "churn": 13031091.408000002,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 142948659.4640011,
+            "gross": 14663715,
+            "future": 141801020.2319995,
+            "interv": 695800,
+            "churn": 12820275.768000009,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 148787414.4400007,
+            "gross": 19161349,
+            "future": 142459380.71999925,
+            "interv": 671400,
+            "churn": 12161915.280000025,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 170778607.749543,
+            "gross": 13022580,
+            "future": 234172809.87477115,
+            "interv": 1347000,
+            "churn": 75069782.12522872,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 155465919.73629302,
+            "gross": 10856339,
+            "future": 227612486.36814615,
+            "interv": 1372800,
+            "churn": 81630105.63185352,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 164300808.72171202,
+            "gross": 12966525,
+            "future": 230964637.86085582,
+            "interv": 1352400,
+            "churn": 78277954.13914411,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 265842680.2720023,
+            "gross": 12078606,
+            "future": 281870933.13599896,
+            "interv": 735200,
+            "churn": 27371658.864000008,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 270778772.3680021,
+            "gross": 14363546,
+            "future": 283180409.183999,
+            "interv": 703000,
+            "churn": 26062182.816000003,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 271929403.928002,
+            "gross": 14663715,
+            "future": 283602040.463999,
+            "interv": 695800,
+            "churn": 25640551.536000017,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 279084879.88000184,
+            "gross": 19161349,
+            "future": 284918761.4399985,
+            "interv": 671400,
+            "churn": 24323830.56000005,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.055,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 48285055.76952403,
+            "gross": 13022580,
+            "future": 56960061.88476212,
+            "interv": 1347000,
+            "churn": 20350586.11523798,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 42574200.49244745,
+            "gross": 10856339,
+            "future": 55200654.746223874,
+            "interv": 1372800,
+            "churn": 22109993.253776286,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 46499475.40477984,
+            "gross": 12966525,
+            "future": 56097999.20239003,
+            "interv": 1352400,
+            "churn": 21212648.797610093,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 73634330.88687986,
+            "gross": 12078606,
+            "future": 69800786.44343989,
+            "interv": 735200,
+            "churn": 7509861.556560059,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 76667892.12471974,
+            "gross": 14363546,
+            "future": 70158997.0623598,
+            "interv": 703000,
+            "churn": 7151650.93764005,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 77205937.81711973,
+            "gross": 14663715,
+            "future": 70274335.40855977,
+            "interv": 695800,
+            "churn": 7036312.59144004,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 82448356.7932,
+            "gross": 19161349,
+            "future": 70634527.8965998,
+            "interv": 671400,
+            "churn": 6676120.103400025,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 84894531.53904806,
+            "gross": 13022580,
+            "future": 113920123.76952425,
+            "interv": 1347000,
+            "churn": 40701172.23047596,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 75664861.98489502,
+            "gross": 10856339,
+            "future": 110401309.49244775,
+            "interv": 1372800,
+            "churn": 44219986.50755257,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 81384825.80955967,
+            "gross": 12966525,
+            "future": 112195998.40478006,
+            "interv": 1352400,
+            "churn": 42425297.595220186,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 135925255.77375937,
+            "gross": 12078606,
+            "future": 139601572.88687977,
+            "interv": 735200,
+            "churn": 15019723.113120118,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 139675238.2494395,
+            "gross": 14363546,
+            "future": 140317994.1247196,
+            "interv": 703000,
+            "churn": 14303301.8752801,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 140443960.6342396,
+            "gross": 14663715,
+            "future": 140548670.81711954,
+            "interv": 695800,
+            "churn": 14072625.18288008,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 146406764.58639985,
+            "gross": 19161349,
+            "future": 141269055.7931996,
+            "interv": 671400,
+            "churn": 13352240.20680005,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 158113483.0780959,
+            "gross": 13022580,
+            "future": 227840247.5390485,
+            "interv": 1347000,
+            "churn": 81402344.46095192,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 141846184.96978995,
+            "gross": 10856339,
+            "future": 220802618.9848955,
+            "interv": 1372800,
+            "churn": 88439973.01510514,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 151155526.61911935,
+            "gross": 12966525,
+            "future": 224391996.80956012,
+            "interv": 1352400,
+            "churn": 84850595.19044037,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 260507105.54751855,
+            "gross": 12078606,
+            "future": 279203145.77375954,
+            "interv": 735200,
+            "churn": 30039446.226240236,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 265689930.49887902,
+            "gross": 14363546,
+            "future": 280635988.2494392,
+            "interv": 703000,
+            "churn": 28606603.7505602,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 266920006.2684791,
+            "gross": 14663715,
+            "future": 281097341.6342391,
+            "interv": 695800,
+            "churn": 28145250.36576016,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 274323580.1727994,
+            "gross": 19161349,
+            "future": 282538111.5863992,
+            "interv": 671400,
+            "churn": 26704480.4136001,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.06,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 45216945.03075208,
+            "gross": 13022580,
+            "future": 55426006.51537602,
+            "interv": 1347000,
+            "churn": 21884641.48462397,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 39282127.21333607,
+            "gross": 10856339,
+            "future": 53554618.10666799,
+            "interv": 1372800,
+            "churn": 23756029.89333194,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 43318005.1862199,
+            "gross": 12966525,
+            "future": 54507264.093109906,
+            "interv": 1352400,
+            "churn": 22803383.906890057,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 72306744.34432027,
+            "gross": 12078606,
+            "future": 69136993.17216009,
+            "interv": 735200,
+            "churn": 8173654.82783998,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 75401299.5980804,
+            "gross": 14363546,
+            "future": 69525700.79903996,
+            "interv": 703000,
+            "churn": 7784947.200959988,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 75958984.43168043,
+            "gross": 14663715,
+            "future": 69650858.71583992,
+            "interv": 695800,
+            "churn": 7659789.284159995,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 81262734.88480029,
+            "gross": 19161349,
+            "future": 70041716.94239964,
+            "interv": 671400,
+            "churn": 7268931.0575999925,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 78758310.06150407,
+            "gross": 13022580,
+            "future": 110852013.03075203,
+            "interv": 1347000,
+            "churn": 43769282.96924794,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 69080715.42667219,
+            "gross": 10856339,
+            "future": 107109236.21333598,
+            "interv": 1372800,
+            "churn": 47512059.78666388,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 75021885.37243992,
+            "gross": 12966525,
+            "future": 109014528.18621981,
+            "interv": 1352400,
+            "churn": 45606767.813780114,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 133270082.68864009,
+            "gross": 12078606,
+            "future": 138273986.34432018,
+            "interv": 735200,
+            "churn": 16347309.65567996,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 137142053.19616044,
+            "gross": 14363546,
+            "future": 139051401.59807992,
+            "interv": 703000,
+            "churn": 15569894.401919976,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 137950053.8633606,
+            "gross": 14663715,
+            "future": 139301717.43167984,
+            "interv": 695800,
+            "churn": 15319578.56831999,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 144035520.76960048,
+            "gross": 19161349,
+            "future": 140083433.88479927,
+            "interv": 671400,
+            "churn": 14537862.115199985,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 145841040.12300837,
+            "gross": 13022580,
+            "future": 221704026.06150407,
+            "interv": 1347000,
+            "churn": 87538565.93849587,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 128677891.85334457,
+            "gross": 10856339,
+            "future": 214218472.42667195,
+            "interv": 1372800,
+            "churn": 95024119.57332776,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 138429645.74487945,
+            "gross": 12966525,
+            "future": 218029056.37243962,
+            "interv": 1352400,
+            "churn": 91213535.62756023,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 255196759.37728006,
+            "gross": 12078606,
+            "future": 276547972.68864036,
+            "interv": 735200,
+            "churn": 32694619.31135992,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 260623560.39232036,
+            "gross": 14363546,
+            "future": 278102803.19615984,
+            "interv": 703000,
+            "churn": 31139788.80383995,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 261932192.7267204,
+            "gross": 14663715,
+            "future": 278603434.8633597,
+            "interv": 695800,
+            "churn": 30639157.13663998,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 269581092.5392007,
+            "gross": 19161349,
+            "future": 280166867.76959854,
+            "interv": 671400,
+            "churn": 29075724.23039997,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.065,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 42244921.92780501,
+            "gross": 13022580,
+            "future": 53939994.96390213,
+            "interv": 1347000,
+            "churn": 23370653.036097504,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 36100454.95390309,
+            "gross": 10856339,
+            "future": 51963781.97695123,
+            "interv": 1372800,
+            "churn": 25346866.023048475,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 40239142.69176552,
+            "gross": 12966525,
+            "future": 52967832.84588251,
+            "interv": 1352400,
+            "churn": 24342815.15411723,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 70985464.94031982,
+            "gross": 12078606,
+            "future": 68476353.47015974,
+            "interv": 735200,
+            "churn": 8834294.529840006,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 74140325.01207961,
+            "gross": 14363546,
+            "future": 68895213.50603975,
+            "interv": 703000,
+            "churn": 8415434.493960027,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 74717427.07567962,
+            "gross": 14663715,
+            "future": 69030080.0378398,
+            "interv": 695800,
+            "churn": 8280567.9621600155,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 80081815.99479929,
+            "gross": 19161349,
+            "future": 69451257.49739991,
+            "interv": 671400,
+            "churn": 7859390.502600018,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 72814263.85560995,
+            "gross": 13022580,
+            "future": 107879989.92780426,
+            "interv": 1347000,
+            "churn": 46741306.07219501,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 62717370.90780626,
+            "gross": 10856339,
+            "future": 103927563.95390245,
+            "interv": 1372800,
+            "churn": 50693732.04609695,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 68864160.38353126,
+            "gross": 12966525,
+            "future": 105935665.69176503,
+            "interv": 1352400,
+            "churn": 48685630.30823446,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 130627523.88064007,
+            "gross": 12078606,
+            "future": 136952706.94031948,
+            "interv": 735200,
+            "churn": 17668589.05968001,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 134620104.0241599,
+            "gross": 14363546,
+            "future": 137790427.0120795,
+            "interv": 703000,
+            "churn": 16830868.987920053,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 135466939.1513599,
+            "gross": 14663715,
+            "future": 138060160.0756796,
+            "interv": 695800,
+            "churn": 16561135.924320031,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 141673682.98959947,
+            "gross": 19161349,
+            "future": 138902514.99479982,
+            "interv": 671400,
+            "churn": 15718781.005200036,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 133952947.71121994,
+            "gross": 13022580,
+            "future": 215759979.85560852,
+            "interv": 1347000,
+            "churn": 93482612.14439002,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 115951202.81561242,
+            "gross": 10856339,
+            "future": 207855127.9078049,
+            "interv": 1372800,
+            "churn": 101387464.0921939,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 126114195.76706243,
+            "gross": 12966525,
+            "future": 211871331.38353005,
+            "interv": 1352400,
+            "churn": 97371260.61646892,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 249911641.7612801,
+            "gross": 12078606,
+            "future": 273905413.88063896,
+            "interv": 735200,
+            "churn": 35337178.11936002,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 255579662.04831985,
+            "gross": 14363546,
+            "future": 275580854.024159,
+            "interv": 703000,
+            "churn": 33661737.97584011,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 256965963.3027197,
+            "gross": 14663715,
+            "future": 276120320.1513592,
+            "interv": 695800,
+            "churn": 33122271.848640062,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 264857416.97919983,
+            "gross": 19161349,
+            "future": 277805029.98959965,
+            "interv": 671400,
+            "churn": 31437562.01040007,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.07,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 39366923.934923254,
+            "gross": 13022580,
+            "future": 52500995.96746149,
+            "interv": 1347000,
+            "churn": 24809652.032538284,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 33026748.554581065,
+            "gross": 10856339,
+            "future": 50426928.77729053,
+            "interv": 1372800,
+            "churn": 26883719.22270929,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 37260667.20789868,
+            "gross": 12966525,
+            "future": 51478595.1039492,
+            "interv": 1352400,
+            "churn": 25832052.89605052,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 69670492.67488033,
+            "gross": 12078606,
+            "future": 67818867.33743998,
+            "interv": 735200,
+            "churn": 9491780.662559988,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 72884968.3667202,
+            "gross": 14363546,
+            "future": 68267535.18336004,
+            "interv": 703000,
+            "churn": 9043112.816639988,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 73481265.74912013,
+            "gross": 14663715,
+            "future": 68411999.37456007,
+            "interv": 695800,
+            "churn": 8898648.625439994,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 78905600.12320013,
+            "gross": 19161349,
+            "future": 68863149.56160022,
+            "interv": 671400,
+            "churn": 8447498.438399984,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 67058267.86984599,
+            "gross": 13022580,
+            "future": 105001991.93492298,
+            "interv": 1347000,
+            "churn": 49619304.06507657,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 56569958.1091623,
+            "gross": 10856339,
+            "future": 100853857.55458106,
+            "interv": 1372800,
+            "churn": 53767438.44541858,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 62907209.415797055,
+            "gross": 12966525,
+            "future": 102957190.2078984,
+            "interv": 1352400,
+            "churn": 51664105.79210104,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 127997579.34976058,
+            "gross": 12078606,
+            "future": 135637734.67487997,
+            "interv": 735200,
+            "churn": 18983561.325119976,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 132109390.73344046,
+            "gross": 14363546,
+            "future": 136535070.36672008,
+            "interv": 703000,
+            "churn": 18086225.633279976,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 132994616.49824037,
+            "gross": 14663715,
+            "future": 136823998.74912015,
+            "interv": 695800,
+            "churn": 17797297.250879988,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 139321251.24639994,
+            "gross": 19161349,
+            "future": 137726299.12320045,
+            "interv": 671400,
+            "churn": 16894996.876799967,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 122440955.73969193,
+            "gross": 13022580,
+            "future": 210003983.86984596,
+            "interv": 1347000,
+            "churn": 99238608.13015313,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 103656377.21832447,
+            "gross": 10856339,
+            "future": 201707715.10916212,
+            "interv": 1372800,
+            "churn": 107534876.89083716,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 114200293.83159433,
+            "gross": 12966525,
+            "future": 205914380.4157968,
+            "interv": 1352400,
+            "churn": 103328211.58420208,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 244651752.69952086,
+            "gross": 12078606,
+            "future": 271275469.34975994,
+            "interv": 735200,
+            "churn": 37967122.65023995,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 250558235.46688086,
+            "gross": 14363546,
+            "future": 273070140.73344016,
+            "interv": 703000,
+            "churn": 36172451.26655995,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 252021317.99648085,
+            "gross": 14663715,
+            "future": 273647997.4982403,
+            "interv": 695800,
+            "churn": 35594594.501759976,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 260152553.49280006,
+            "gross": 19161349,
+            "future": 275452598.2464009,
+            "interv": 671400,
+            "churn": 33789993.753599934,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.075,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 36580908.793851614,
+            "gross": 13022580,
+            "future": 51107988.39692531,
+            "interv": 1347000,
+            "churn": 26202659.603074256,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 30058597.08907309,
+            "gross": 10856339,
+            "future": 48942853.04453611,
+            "interv": 1372800,
+            "churn": 28367794.95546352,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 34380379.89056565,
+            "gross": 12966525,
+            "future": 50038451.44528238,
+            "interv": 1352400,
+            "churn": 27272196.55471721,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 68361827.54799989,
+            "gross": 12078606,
+            "future": 67164534.7739999,
+            "interv": 735200,
+            "churn": 10146113.225999909,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 71635229.66199999,
+            "gross": 14363546,
+            "future": 67642665.831,
+            "interv": 703000,
+            "churn": 9667982.16899994,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 72250500.45199998,
+            "gross": 14663715,
+            "future": 67796616.726,
+            "interv": 695800,
+            "churn": 9514031.273999944,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 77734087.27000001,
+            "gross": 19161349,
+            "future": 68277393.13500017,
+            "interv": 671400,
+            "churn": 9033254.864999978,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 61486237.58770305,
+            "gross": 13022580,
+            "future": 102215976.79385062,
+            "interv": 1347000,
+            "churn": 52405319.20614851,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 50633655.178146094,
+            "gross": 10856339,
+            "future": 97885706.08907221,
+            "interv": 1372800,
+            "churn": 56735589.91092704,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 57146634.78113127,
+            "gross": 12966525,
+            "future": 100076902.89056475,
+            "interv": 1352400,
+            "churn": 54544393.10943442,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 125380249.09599988,
+            "gross": 12078606,
+            "future": 134329069.5479998,
+            "interv": 735200,
+            "churn": 20292226.451999817,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 129609913.32399979,
+            "gross": 14363546,
+            "future": 135285331.662,
+            "interv": 703000,
+            "churn": 19335964.33799988,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 130533085.9039998,
+            "gross": 14663715,
+            "future": 135593233.452,
+            "interv": 695800,
+            "churn": 19028062.54799989,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 136978225.53999949,
+            "gross": 19161349,
+            "future": 136554786.27000034,
+            "interv": 671400,
+            "churn": 18066509.729999956,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 111296895.17540596,
+            "gross": 13022580,
+            "future": 204431953.58770123,
+            "interv": 1347000,
+            "churn": 104810638.41229703,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 91783771.35629226,
+            "gross": 10856339,
+            "future": 195771412.17814443,
+            "interv": 1372800,
+            "churn": 113471179.82185408,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 102679144.56226249,
+            "gross": 12966525,
+            "future": 200153805.7811295,
+            "interv": 1352400,
+            "churn": 109088786.21886884,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 239417092.19200003,
+            "gross": 12078606,
+            "future": 268658139.0959996,
+            "interv": 735200,
+            "churn": 40584452.903999634,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 245559280.64799955,
+            "gross": 14363546,
+            "future": 270570663.324,
+            "interv": 703000,
+            "churn": 38671928.67599976,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 247098256.8079995,
+            "gross": 14663715,
+            "future": 271186466.904,
+            "interv": 695800,
+            "churn": 38056125.09599978,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 255466502.07999888,
+            "gross": 19161349,
+            "future": 273109572.5400007,
+            "interv": 671400,
+            "churn": 36133019.45999991,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    },
+    {
+      "hazard": 0.08,
+      "horizons": {
+        "3": [
+          {
+            "strategy": "fixed",
+            "nrv": 33884854.51383937,
+            "gross": 13022580,
+            "future": 49759961.2569198,
+            "interv": 1347000,
+            "churn": 27550686.743080273,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 27193613.864349443,
+            "gross": 10856339,
+            "future": 47510361.43217501,
+            "interv": 1372800,
+            "churn": 29800286.56782517,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 31596103.765176866,
+            "gross": 12966525,
+            "future": 48646313.38258863,
+            "interv": 1352400,
+            "churn": 28664334.617411517,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 67059469.55967999,
+            "gross": 12078606,
+            "future": 66513355.779840104,
+            "interv": 735200,
+            "churn": 10797292.220160011,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 70391108.8979199,
+            "gross": 14363546,
+            "future": 67020605.44896008,
+            "interv": 703000,
+            "churn": 10290042.551039992,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 71025131.18431987,
+            "gross": 14663715,
+            "future": 67183932.09216009,
+            "interv": 695800,
+            "churn": 10126715.907839993,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 76567277.43520011,
+            "gross": 19161349,
+            "future": 67693988.21760033,
+            "interv": 671400,
+            "churn": 9616659.7824,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "6": [
+          {
+            "strategy": "fixed",
+            "nrv": 56094129.027678736,
+            "gross": 13022580,
+            "future": 99519922.5138396,
+            "interv": 1347000,
+            "churn": 55101373.48616055,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 44903688.72869897,
+            "gross": 10856339,
+            "future": 95020722.86435002,
+            "interv": 1372800,
+            "churn": 59600573.13565034,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 51578082.530353755,
+            "gross": 12966525,
+            "future": 97292626.76517726,
+            "interv": 1352400,
+            "churn": 57328669.23482303,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 122775533.11936013,
+            "gross": 12078606,
+            "future": 133026711.55968021,
+            "interv": 735200,
+            "churn": 21594584.440320022,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 127121671.79584004,
+            "gross": 14363546,
+            "future": 134041210.89792016,
+            "interv": 703000,
+            "churn": 20580085.102079984,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 128082347.36864,
+            "gross": 14663715,
+            "future": 134367864.18432018,
+            "interv": 695800,
+            "churn": 20253431.815679986,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 134644605.8703997,
+            "gross": 19161349,
+            "future": 135387976.43520066,
+            "interv": 671400,
+            "churn": 19233319.5648,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ],
+        "12": [
+          {
+            "strategy": "fixed",
+            "nrv": 100512678.05535747,
+            "gross": 13022580,
+            "future": 199039845.0276792,
+            "interv": 1347000,
+            "churn": 110202746.9723211,
+            "att_cyc": 2.80625,
+            "pdn_cyc": 2.79625,
+            "violations": 0
+          },
+          {
+            "strategy": "aggressive",
+            "nrv": 80323838.45739825,
+            "gross": 10856339,
+            "future": 190041445.72870004,
+            "interv": 1372800,
+            "churn": 119201146.27130067,
+            "att_cyc": 2.86,
+            "pdn_cyc": 2.93875,
+            "violations": 0
+          },
+          {
+            "strategy": "rules_only",
+            "nrv": 91542040.06070757,
+            "gross": 12966525,
+            "future": 194585253.53035453,
+            "interv": 1352400,
+            "churn": 114657338.46964607,
+            "att_cyc": 2.8175,
+            "pdn_cyc": 2.870833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun",
+            "nrv": 234207660.23872003,
+            "gross": 12078606,
+            "future": 266053423.11936042,
+            "interv": 735200,
+            "churn": 43189168.880640045,
+            "att_cyc": 1.5316666666666667,
+            "pdn_cyc": 1.5191666666666668,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_shrinkage",
+            "nrv": 240582797.59168002,
+            "gross": 14363546,
+            "future": 268082421.79584032,
+            "interv": 703000,
+            "churn": 41160170.20415997,
+            "att_cyc": 1.4645833333333333,
+            "pdn_cyc": 1.4520833333333334,
+            "violations": 0
+          },
+          {
+            "strategy": "netrun_promise",
+            "nrv": 242196779.73727998,
+            "gross": 14663715,
+            "future": 268735728.36864036,
+            "interv": 695800,
+            "churn": 40506863.63135997,
+            "att_cyc": 1.4495833333333332,
+            "pdn_cyc": 1.4370833333333333,
+            "violations": 0
+          },
+          {
+            "strategy": "oracle",
+            "nrv": 250799262.7407998,
+            "gross": 19161349,
+            "future": 270775952.8704013,
+            "interv": 671400,
+            "churn": 38466639.1296,
+            "att_cyc": 1.39875,
+            "pdn_cyc": 1.39125,
+            "violations": 0
+          }
+        ]
+      }
+    }
+  ]
+}

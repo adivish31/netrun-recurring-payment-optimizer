@@ -37,8 +37,7 @@ import {
   usableTraces,
   type AgentTrace,
 } from '../../lib/traceDerive';
-
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:3000';
+import { API_BASE } from '../../lib/api';
 
 /** Replay clock. Simulated, and the header says so in words. */
 const REPLAY_DAY = 12;

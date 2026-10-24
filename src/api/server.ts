@@ -99,7 +99,8 @@ let _pool: import('pg').Pool;
 export function getPool() {
   if (!_pool) {
     const { Pool } = require('pg');
-    _pool = new Pool({ connectionString: process.env.DATABASE_URL || 'postgres://netrun:netrun@localhost:5432/netrun' });
+    const { poolConfig } = require('../db/connection');
+    _pool = new Pool(poolConfig());
   }
   return _pool;
 }
@@ -112,7 +113,8 @@ import fs from 'fs';
 function getResultsData() {
   const p = path.join(process.cwd(), 'data', 'generated', 'results.json');
   if (!fs.existsSync(p)) {
-    throw new Error('results.json not found. Run npm run eval and npm run sensitivity first.');
+    console.warn('results.json not found at ' + p + '. Returning empty fallback results.');
+    return { results: { '3': [], '6': [] }, sensitivity: [], grid: [], traces: {} };
   }
   return JSON.parse(fs.readFileSync(p, 'utf-8'));
 }
@@ -158,9 +160,13 @@ app.get('/api/agent/traces', (req, res) => {
   }
 });
 
-app.post('/api/agent/live', async (req, res) => {
+app.get('/healthz', (req, res) => {
+  res.json({ ok: true });
+});
+
+app.post('/api/agent/live', express.json(), async (req, res) => {
   try {
-    const { cycleId, mandateId, amountPaise } = req.body;
+    const { cycleId, mandateId, amountPaise } = req.body ?? {};
     if (!process.env.GEMINI_API_KEY) {
       return res.status(403).json({ error: 'GEMINI_API_KEY is missing' });
     }
@@ -261,15 +267,15 @@ app.get('/api/rules', (req, res) => {
   }
 });
 
-export function startServer(port: number = 3000) {
-  return app.listen(port, () => {
-    // Server started
+export function startServer(port?: number) {
+  const resolvedPort = port ?? (process.env.PORT ? parseInt(process.env.PORT, 10) : 3000);
+  return app.listen(resolvedPort, () => {
+    console.log(`Server started on port ${resolvedPort}`);
   });
 }
 
 export { app, processedEvents };
 
 if (require.main === module) {
-  startServer(3000);
-  console.log('Server started on port 3000');
+  startServer();
 }

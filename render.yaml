@@ -1,0 +1,45 @@
+# Render Blueprint: New > Blueprint > pick this repo.
+# Deploys the Express API and the Next.js dashboard as two web services.
+services:
+  - type: web
+    name: netrun-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # All optional. Without DATABASE_URL only /webhooks/razorpay fails;
+      # without GEMINI_API_KEY only the live-agent button fails.
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+
+  - type: web
+    name: netrun-web
+    runtime: node
+    plan: free
+    rootDir: web
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Bare host (no scheme); web/src/lib/api.ts prefixes https://.
+      # Baked in at build time, so redeploy web if the API URL changes.
+      - key: NEXT_PUBLIC_API_BASE
+        fromService:
+          type: web
+          name: netrun-api
+          property: host

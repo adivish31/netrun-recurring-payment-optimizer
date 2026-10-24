@@ -6,8 +6,12 @@
   "type": "commonjs",
   "scripts": {
     "build": "tsc",
+    "start": "node dist/src/api/server.js",
     "typecheck": "tsc --noEmit",
-    "migrate": "docker cp src/db/migrations/001_init.sql netrun-recurring-payment-optimizer-db-1:/tmp/001_init.sql && docker exec netrun-recurring-payment-optimizer-db-1 psql -U netrun -d netrun -f /tmp/001_init.sql",
+    "migrate": "ts-node src/db/migrate.ts",
+    "migrate:docker": "docker cp src/db/migrations/001_init.sql netrun-recurring-payment-optimizer-db-1:/tmp/001_init.sql && docker exec netrun-recurring-payment-optimizer-db-1 psql -U netrun -d netrun -f /tmp/001_init.sql",
+    "migrate:prod": "node dist/src/db/migrate.js",
+    "db:setup": "docker compose up -d --wait && npm run migrate",
     "rules:audit": "ts-node src/config/audit.ts",
     "gen": "ts-node src/sim/generator.ts",
     "eval": "ts-node src/eval/run.ts",
@@ -33,5 +37,8 @@
     "@types/pg": "^8.11.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=20.9"
   }
 }

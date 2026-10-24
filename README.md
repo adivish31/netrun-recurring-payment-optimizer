@@ -147,16 +147,34 @@ cd netrun-recurring-payment-optimizer
 
 # Install dependencies and setup Postgres database
 npm install
+npm install --prefix web
 cp .env.example .env
 # Edit .env with your Razorpay test keys and Postgres URL
-npm run db:setup
+npm run db:setup   # docker compose up + migrate (idempotent)
 
-# Run backend API
+# Run backend API (port 3000)
 npm run dev
 
-# Run frontend Next.js Dashboard
+# Run frontend Next.js Dashboard (port 3001)
 npm run web:dev
 ```
+
+### Deploying
+
+Two services: the Express API (`/`) and the Next.js dashboard (`/web`). The API serves the committed `data/generated/results.json` and `agent-traces.json`, so it runs without Postgres. Only `/webhooks/razorpay` needs `DATABASE_URL`, and only the live-agent button needs `GEMINI_API_KEY`.
+
+**Render (one click):** New → Blueprint → select this repo. `render.yaml` creates `netrun-api` and `netrun-web` and wires `NEXT_PUBLIC_API_BASE` to the API host. Fill in the optional secrets when prompted.
+
+**Manual / other hosts:**
+
+| Service | Root | Build | Start | Env |
+| :--- | :--- | :--- | :--- | :--- |
+| API | `.` | `npm ci --include=dev && npm run build` | `npm start` | `PORT` (host-provided), optional `DATABASE_URL`, `GEMINI_API_KEY`, `RAZORPAY_*` |
+| Web | `web` | `npm ci && npm run build` | `npm start` | `NEXT_PUBLIC_API_BASE` = API URL (set **before** building) |
+
+The web service also deploys to Vercel: set Root Directory to `web` and add `NEXT_PUBLIC_API_BASE`.
+
+**Database (optional):** point `DATABASE_URL` at any Postgres (Neon, Render, Supabase) and run `npm run migrate:prod` once after building. SSL is inferred from the host; override with `DATABASE_SSL=true|false`.
 
 ## 13. Testing
 
